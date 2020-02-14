@@ -68,7 +68,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 }
 
 .overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
+  animation: bounce 1s infinite;
 }
 
 .overlay .closebtn {
