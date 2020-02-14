@@ -2,6 +2,18 @@
 <html>
   <head>
     <title>GoPlay</title>
+    <!--Icon for tab-->
+    <link rel="icon" href="https://sem4project.s3-eu-west-1.amazonaws.com/assets/favicon.PNG">
+    <!--Link for jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+    <!--Icons-->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!--Code to make app responsive-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--Link for w3 schools css-->
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,5 +22,10 @@
 
   <body>
     <%= yield %>
+  
+  <footer>
+  	<div class="top-footer"></div>
+  	<div class="bottom-footer"></div>
+  </footer>
   </body>
 </html>
