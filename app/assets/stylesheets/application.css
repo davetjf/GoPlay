@@ -19,9 +19,109 @@ html, body{
 	margin: 0;
 	height: 100%;
 	font-family: 'Special Elite', cursive !important;
+
+}
+
+/*navbar code - taken from w3 schools and customized 
+
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
+*/
+
+.navbar span{
+	font-size:30px;
+	cursor:pointer;
+	color: rgb(189, 96, 25);
+}
+.navbar{
+	position: fixed;
+	padding: 10px;
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(189, 96, 25,0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
 }
 
 /* Home Page CSS */
+
+#gamesButton{
+	animation: fade 1s linear;
+}
+#informationButton{
+	animation: fade 1s linear;
+	animation-delay: 1s;
+}
+#loginButton{
+	animation: fade 1s linear;
+	animation-delay: 1s;
+}
+#registerButton{
+	animation: fade 1s linear;
+	
+}
+@keyframes fade{
+	20%{
+		width: 100%;
+		height: 50px;
+		
+
+	}
+	40%{
+		width: 100px;
+
+	}
+	100%{
+		opacity: 1;
+		
+	}
+}
+
+
 .homeContainer{
 	height:100%;
 	/*background: yellow;*/
@@ -34,7 +134,7 @@ html, body{
 	height: 40px;
 	border-radius: 10%;
 	background-color: transparent;
-	border:1px solid #bd6019;
+	border:2px solid #bd6019;
 	color: #fff;
 }
 
@@ -62,13 +162,108 @@ html, body{
 /*Start of footer CSS*/
 .bottom-footer{
 	width: 100%;
-	height: 50px;
-	background-color: #2a4857;
+	height: 30px;
+	background-color: #103f4f;
+	color: white;
+	padding: 10px;
 }
 .top-footer{
 	width: 100%;
-	height: 80px;
+	height: 50px;
 	background-color: #bd6019;
+	padding-top: 10px;
+}
+
+.fa-comment{
+	color: white;
+}
+
+footer a{
+	text-decoration: none;
+}
+#bfm:hover {
+	animation: bounce 1s infinite; 
+
+}
+@keyframes bounce {
+    0%,  
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /*End of footer CSS*/
+
+
+/*Start of Message Page CSS*/
+#messagePage{
+	height: 100%;
+	background-color: #103f4f;
+	padding: 60px 20px;
+
+}
+#contact_Name{
+	width: 60%;
+	background-color: transparent;
+	border:none;
+	border-bottom:2px solid #bd6019;
+	color: #fff;
+	margin-left: 25px;
+	margin-bottom: 20px;
+
+}
+#contact_email{
+	width: 60%;
+	background-color: transparent;
+	border:none;
+	border-bottom:2px solid #bd6019;
+	color: #fff;
+	margin-left: 25px;
+	margin-bottom: 20px;
+}
+#contact_subject{
+	width: 60%;
+	background-color: transparent;
+	border:none;
+	border-bottom:2px solid #bd6019;
+	color: #fff;
+	margin-left: 25px;
+	margin-bottom: 20px;
+}
+#contact_message{
+	width: 60%;
+	background-color: transparent;
+	border:2px solid #bd6019;
+	color: #fff;
+	height: 300px;
+	margin-left: 25px;
+	margin-bottom: 20px;
+	
+}
+
+.messageField label{
+	color:white;
+	width: 100px;
+}
+.white{
+	color: white;
+}
+.actions input{
+	background-color: #bd6019;
+	border: 2px solid #bd6019;
+	color: #fff;
+	width: 60%;
+	height: 40px;
+	border-radius: 10%;
+	margin-left: 25px;
+}
+.actions input:hover{
+	animation: bounce 1s infinite;
+	transition: 0.5s;
+	color: #085054;
+
+}
+/*End of Message Page CSS*/

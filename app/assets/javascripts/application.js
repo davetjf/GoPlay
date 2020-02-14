@@ -13,10 +13,7 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-$(document).ready(function(){
-
-
-// jQuery code can go in here 
+$(document).ready(function(){ 
 
 
 $(function(){

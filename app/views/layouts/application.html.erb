@@ -21,11 +21,41 @@
   </head>
 
   <body>
+
+<div class="navbar">
+  <span onclick="openNav()">&#9776;</span>
+</div>
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="#">Home</a>
+    <a href="#">Games</a>
+    <a href="#">Information</a>
+    <a href="#">Login</a>
+    <a href="#">Register</a>
+  </div>
+</div>
+
+
+
+
+<script>
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+</script>
+
+
+
     <%= yield %>
   
   <footer>
-  	<div class="top-footer"></div>
-  	<div class="bottom-footer"></div>
+  	<div class="top-footer w3-center"><a href="/contact"><i id="bfm"  class="far fa-comment fa-2x">  Message Admin</i></a></div>
+  	<div class="bottom-footer w3-center">GoPlay &copy; 2020 </div>
   </footer>
   </body>
 </html>

@@ -1,0 +1,41 @@
+<div class="w3-container w3-center">
+
+<%= form_with(model: contact, local: true) do |form| %>
+  <% if contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="messageField">
+    <!--<%= form.label :Name %> <span class="white"> : </span>-->
+    <%= form.text_field :Name, id: :contact_Name, placeholder: "Name" %>
+  </div>
+
+  <div class="messageField">
+    <!--<%= form.label :email %><span class="white"> :</span>-->
+    <%= form.text_field :email, id: :contact_email, placeholder: "email@email.com"  %>
+  </div>
+
+  <div class="messageField">
+    <!--<%= form.label :subject %><span class="white"> :</span>-->
+    <%= form.text_field :subject, id: :contact_subject, placeholder: "Subject"  %>
+  </div>
+
+  <div class="messageField">
+    <!--<%= form.label :message %><span class="white"> :</span>-->
+    <%= form.text_area :message, id: :contact_message, placeholder: "Message"  %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Send message" %>
+  </div>
+<% end %>
+
+</div>
