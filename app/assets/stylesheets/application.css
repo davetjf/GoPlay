@@ -94,7 +94,8 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 }
 #informationButton{
 	animation: fade 1s linear;
-	animation-delay: 1s;
+	animation-delay: 0.5s;
+	
 }
 #loginButton{
 	animation: fade 1s linear;
@@ -102,17 +103,17 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 }
 #registerButton{
 	animation: fade 1s linear;
-	
+	animation-delay: 1.5s;
 }
 @keyframes fade{
-	20%{
-		width: 100%;
-		height: 50px;
+	0%{
+		opacity: 0;
 		
 
 	}
-	40%{
+	50%{
 		width: 100px;
+		background-color: #bd6019;
 
 	}
 	100%{
