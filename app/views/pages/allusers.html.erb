@@ -1,0 +1,15 @@
+    <h1>All The People...... So Many People....</h1>
+    
+<% @users.each do |user| %>
+
+
+    
+    
+   <h1>User Id: <%= user.id %></h1>
+   <h1>email: <%= user.email %></h1>
+   <h1>Admin: <%= user.admin %></h1>
+   <a href="/upgrade/<%= user.id %>" class="button">Make Admin</a>
+   <a href="/downgrade/<%= user.id %>" class="button">Remove Admin</a>
+    
+   
+<% end %>

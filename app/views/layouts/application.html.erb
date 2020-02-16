@@ -24,7 +24,7 @@
 
 <div id="navbar">
   <span id="navbarMenu" onclick="openNav()">&#9776;</span>
-  <a href=""><img id="navlogo" class="w3-responsive" src="https://sem4project.s3-eu-west-1.amazonaws.com/assets/favicon.PNG"/></a>
+  <a href="/"><img id="navlogo" class="w3-responsive" src="https://sem4project.s3-eu-west-1.amazonaws.com/assets/favicon.PNG"/></a>
 </div>
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -32,8 +32,15 @@
     <a href="#">Home</a>
     <a href="#">Games</a>
     <a href="#">Information</a>
-    <a href="#">Login</a>
-    <a href="#">Register</a>
+
+      <% if user_signed_in? %>
+      <a><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></a>
+      <a><%= link_to 'Edit Profile', edit_user_registration_path, :method => :delete %></a>
+      <% else %>
+      <a><%= link_to 'Login', new_user_session_path %></a>
+      <a><%= link_to 'Register', new_user_registration_path %></a>
+      <% end %>
+
   </div>
 </div>
 

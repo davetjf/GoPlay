@@ -14,6 +14,11 @@
  *= require_self
  */
 
+
+
+
+
+
 /* For the App */
 html, body{
 	margin: 0;
@@ -149,6 +154,8 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 	background-image: url("https://sem4project.s3-eu-west-1.amazonaws.com/assets/GP+Logo.PNG");
 	background-position: center;
 	padding-top: 10px;
+	border-right: 5px solid #bd6019;
+	border-left: 5px solid #bd6019;
 }
 
 .homeButton{
@@ -228,6 +235,8 @@ footer a{
 	height: 100%;
 	background-color: #103f4f;
 	padding: 60px 20px;
+	border-right: 5px solid #bd6019;
+	border-left: 5px solid #bd6019;
 
 }
 #contact_Name{
@@ -249,7 +258,7 @@ footer a{
 	margin-left: 25px;
 	margin-bottom: 20px;
 }
-#contact_subject{
+#contact_subject, #user_email, #user_password, #user_password_confirmation {
 	width: 60%;
 	background-color: transparent;
 	border:none;
