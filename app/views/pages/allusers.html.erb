@@ -1,15 +1,28 @@
-    <h1>All The People...... So Many People....</h1>
-    
+<div id="messagePage" class="w3-container white">
+	<div style="padding: 50px 10px">
+    <h1 style="font-family: 'Special Elite', cursive !important;">List of Users</h1>
 <% @users.each do |user| %>
 
 
+
     
-    
-   <h1>User Id: <%= user.id %></h1>
-   <h1>email: <%= user.email %></h1>
-   <h1>Admin: <%= user.admin %></h1>
-   <a href="/upgrade/<%= user.id %>" class="button">Make Admin</a>
-   <a href="/downgrade/<%= user.id %>" class="button">Remove Admin</a>
-    
+    <table id="usertable" style="width: 100%; padding: 5px;" class="w3-responsive w3-border">
+
+    <tr>
+   <td>User Id: <%= user.id %></td></tr>
+   <tr><td>email: <%= user.email %></td></tr>
+   <tr><td>Admin: <%= user.admin %></td></tr>
+
+   <% if user.admin == true %>
+   <tr><td><a href="/downgrade/<%= user.id %>"><button class="adminButton">Remove Admin</button></a></td></tr>
+   <% else %>
+   <tr><td><a href="/upgrade/<%= user.id %>"><button class="adminButton">Make Admin</button></a></td><tr>
+   <% end %>
+   
+	
+    </table>
    
 <% end %>
+</div>
+
+</div>

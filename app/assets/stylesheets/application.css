@@ -299,3 +299,24 @@ footer a{
 	transition: 0.5s;
 }
 /*End of Message Page CSS*/
+
+
+
+/*Start of All Users Page CSS*/
+
+.adminButton{
+	border:2px solid #bd6019;
+	padding: 2px;
+	width: 150px;
+	background-color: transparent;
+	color: white;
+}
+.adminButton:hover{
+	width: 150px;
+	background-color: #bd6019;
+}
+#usertable:hover{
+	background-color: black;
+	opacity: 0.9;
+}
+/*End of All Users Page CSS*/
