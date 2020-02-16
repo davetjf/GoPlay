@@ -27,14 +27,34 @@ html, body{
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 */
 
-.navbar span{
+#navlogo{
+	width: 45px;
+	height: 45px;
+	
+	
+}
+#navbar a:hover{
+	color:#fff;
+	transition: 0.5s;
+}
+#navbar span{
 	font-size:30px;
 	cursor:pointer;
 	color: rgb(189, 96, 25);
+	float: right;
 }
-.navbar{
+#navbarMenu:hover{
+	color: #fff;
+	transition: 0.5s;
+}
+#navbar{
 	position: fixed;
 	padding: 10px;
+	border-right: 5px solid #bd6019;
+	border-left: 5px solid #bd6019;
+	width: 100%;
+	transition: 1s;
+	
 }
 
 .overlay {
@@ -128,6 +148,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 	/*background: yellow;*/
 	background-image: url("https://sem4project.s3-eu-west-1.amazonaws.com/assets/GP+Logo.PNG");
 	background-position: center;
+	padding-top: 10px;
 }
 
 .homeButton{
@@ -167,6 +188,9 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 	background-color: #103f4f;
 	color: white;
 	padding: 10px;
+	border-right: 5px solid #bd6019;
+	border-left: 5px solid #bd6019;
+
 }
 .top-footer{
 	width: 100%;
@@ -264,7 +288,5 @@ footer a{
 .actions input:hover{
 	animation: bounce 1s infinite;
 	transition: 0.5s;
-	color: #085054;
-
 }
 /*End of Message Page CSS*/

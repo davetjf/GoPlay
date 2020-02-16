@@ -22,8 +22,9 @@
 
   <body>
 
-<div class="navbar">
-  <span onclick="openNav()">&#9776;</span>
+<div id="navbar">
+  <span id="navbarMenu" onclick="openNav()">&#9776;</span>
+  <a href=""><img id="navlogo" class="w3-responsive" src="https://sem4project.s3-eu-west-1.amazonaws.com/assets/favicon.PNG"/></a>
 </div>
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -35,6 +36,21 @@
     <a href="#">Register</a>
   </div>
 </div>
+
+<script>
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
+    document.getElementById("navbar").style.backgroundColor = "#bd6019";
+    document.getElementById("navbarMenu").style.color = "#103f4f";
+  } else {
+    document.getElementById("navbar").style.backgroundColor = "transparent";
+    document.getElementById("navbarMenu").style.color = "#bd6019";
+  }
+}
+</script>
+
+
 
 
 
