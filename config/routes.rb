@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  resources :abouts
   devise_for :users
   resources :contacts
   root 'pages#home'
 
   get '/contact' => 'contacts#new'
+  get '/messages' => 'contacts#index'
+  get '/about' => 'abouts#index'
 
   root :to => 'site#home'
 

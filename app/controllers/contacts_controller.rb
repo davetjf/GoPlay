@@ -4,7 +4,11 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
+    if  user_signed_in? && current_user.admin?
     @contacts = Contact.all
+    else
+    redirect_to '/'
+    end
   end
 
   # GET /contacts/1

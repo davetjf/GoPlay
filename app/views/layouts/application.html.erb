@@ -23,22 +23,23 @@
   <body>
 
 <div id="navbar">
+  <% if user_signed_in? && current_user.admin? %>
+  <span id="adminButton" onclick="openAdmin()">Admin Panel</span>
+  <% end %>
   <span id="navbarMenu" onclick="openNav()">&#9776;</span>
   <a href="/"><img id="navlogo" class="w3-responsive" src="https://sem4project.s3-eu-west-1.amazonaws.com/assets/favicon.PNG"/></a>
 </div>
+
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="overlay-content">
     <a href="#">Home</a>
     <a href="#">Games</a>
-    <a href="#">Information</a>
+    <a href="/about">About</a>
 
       <% if user_signed_in? %>
-      <% if current_user.admin? %>
-      <a><%= link_to 'All Users', '/allusers' %></a>
-      <% end %>
       <a><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></a>
-      <a><%= link_to 'Edit Profile', edit_user_registration_path, :method => :delete %></a>
+      <a><%= link_to 'Edit Profile', edit_user_registration_path, :method => :get %></a>
       <% else %>
       <a><%= link_to 'Login', new_user_session_path %></a>
       <a><%= link_to 'Register', new_user_registration_path %></a>
@@ -48,15 +49,33 @@
   </div>
 </div>
 
+<!--Below is the code for the admin menu-->
+<div id="myAdminNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeAdmin()">&times;</a>
+  <div class="overlay-content">
+      <% if user_signed_in? %>
+      <% if current_user.admin? %>
+      <a><%= link_to 'All Users', '/allusers' %></a>
+      <a><%= link_to 'Messages', '/messages' %></a>
+      <a><%= link_to 'Edit "About" Page', '/about' %></a>
+      <% end %>
+      <% end %>
+
+  </div>
+</div>
+<!--End of the Admin Menu-->
+
 <script>
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
   if (document.body.scrollTop > 1 || document.documentElement.scrollTop > 1) {
     document.getElementById("navbar").style.backgroundColor = "#bd6019";
     document.getElementById("navbarMenu").style.color = "#103f4f";
+    document.getElementById("adminButton").style.color = "#103f4f";
   } else {
     document.getElementById("navbar").style.backgroundColor = "transparent";
     document.getElementById("navbarMenu").style.color = "#bd6019";
+    document.getElementById("adminButton").style.color = "#bd6019";
   }
 }
 </script>
@@ -73,6 +92,13 @@ function openNav() {
 
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
+}
+function openAdmin() {
+  document.getElementById("myAdminNav").style.width = "100%";
+}
+
+function closeAdmin() {
+  document.getElementById("myAdminNav").style.width = "0%";
 }
 </script>
 
