@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/messages' => 'contacts#index'
   get '/about' => 'abouts#index'
 
+  get '/dashboard' => 'pages#dashboard'
+
   root :to => 'site#home'
 
 

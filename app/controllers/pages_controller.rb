@@ -3,6 +3,13 @@ class PagesController < ApplicationController
   	# Below code user to make the first admin
   	#current_user.update_attribute :admin, true
   end
+
+  def dashboard
+    if  user_signed_in? == false 
+      redirect_to '/'
+    end
+
+  end
 	
   def allusers
     if  user_signed_in? && current_user.admin?

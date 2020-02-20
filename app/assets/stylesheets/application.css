@@ -53,10 +53,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 	color: rgb(189, 96, 25);
 	float: right;
 }
-#navbarMenu:hover{
-	color: #fff;
-	transition: 0.5s;
-}
+
 #navbar{
 	position: fixed;
 	padding: 10px;
@@ -336,3 +333,47 @@ footer a{
 	opacity: 0.9;
 }
 /*End of All Users Page CSS*/
+
+/*Start of Dashboard CSS*/
+.dashboard { 
+	width: 50%; 
+	height: 50%; 
+	float: left; 
+	text-align: center;
+
+
+	
+}
+.dashboard p{
+	padding-top: 20%;
+	color: white;
+	font-size: 50px;
+}
+.dashboard p:hover{
+	animation: bounce 1s infinite;
+}
+.dashboard a{
+	text-decoration: none;
+
+}
+#div1 { background: #64AFE4; }
+#div2 { background: #528BB3; }
+#div3 { background: #81A5BD; }
+#div4 { background: #9ACBEC; }
+
+#dash{
+	height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard {
+    width: 50%;
+
+  }
+  .dashboard p{
+	padding-top: 70%;
+	font-size: 25px;
+}
+
+}
+/*End of Dashboard CSS*/
