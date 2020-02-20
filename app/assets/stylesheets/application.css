@@ -119,6 +119,10 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 
 /* Home Page CSS */
 
+.no-decoration{
+	text-decoration: none;
+}
+
 #gamesButton{
 	animation: fade 1s linear;
 }

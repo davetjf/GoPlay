@@ -1,0 +1,31 @@
+<!-- app/views/messages/index.html.erb -->
+<div style="margin-bottom: 10%">Message <%= @conversation.recipient.email %></div>
+
+<% if @over_ten %>
+  <%= link_to "Show previous", '?m=all', class:'button is-link' %>
+<% end %>
+
+<section>
+  <% @messages.each do |message| %>
+    <% if message.body %>
+      <% user = User.find(message.user_id) %>
+      <article>
+        <div>
+          <div><%#= gravatar_for user, size: 32 %></div>
+          <div><strong><%= user.email %></strong> <%= message.message_time %></div>
+          <div>
+            <div><%= message.body %></div>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  <% end %>
+</section>
+
+<%= form_for [@conversation, @message] do |f| %>
+  <%= f.text_area :body, class: "textarea", placeholder: "type your message here..." %>
+  <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <div class="text-align-right">
+    <%= f.submit "Send message", class: "button is-link is-large mt3" %>
+  </div>
+<% end %>
