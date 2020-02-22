@@ -374,3 +374,21 @@ footer a{
 
 }
 /*End of Dashboard CSS*/
+
+
+
+/*Start of Conversations CSS*/
+#conversation{
+	min-height: 100%;
+	color: white;
+	background-color: #103f4f;
+	padding: 100px 50px;
+}
+#allUsers{
+	display: none;
+}
+.block{
+	display: inline-block;
+}
+
+/*End of Conversations CSS*/

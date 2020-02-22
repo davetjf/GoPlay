@@ -1,14 +1,27 @@
+<div id="conversation" class="w3-container">
 
-    <h3 style="margin-bottom: 10%">All Users</h3>
+
+<h3 id="userClick" style="font-family: 'Special Elite', cursive !important">All Users</h3><hr>
+  <div id="allUsers">
+    
     <% @users.each do |user| %>
-      <% if user.id != current_user.id %>
-       <%= link_to "Message #{user.email}", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post" %>
+      <% if user.id != current_user.id %><br>
+       <li><%= link_to "#{user.email} Message", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post", class: "no-decoration" %></li><br>
       <% end %>
     <% end %>
+    </div>
+
+    <script>
+      $(document).ready(function(){
+  $("#userClick").click(function(){
+    $("#allUsers").toggle("slow");
+  });
+});
+    </script>
   
 
   
-    <h3>Conversations</h3>
+    <h3 style="font-family: 'Special Elite', cursive !important">Conversations</h3>
     <% @conversations.each do |conversation| %>
       <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
         <% if conversation.sender_id == current_user.id %>
@@ -24,4 +37,4 @@
         <% end %>
       <% end %>
     <% end %>
-
+</div>
