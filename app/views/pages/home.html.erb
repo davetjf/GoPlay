@@ -15,15 +15,26 @@
 <i id="ib2" class="fas fa-chevron-right"></i>
 <i id="ib3" class="fas fa-chevron-right"></i></button></a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
+<% if user_signed_in? %>
+    <button id="loginButton" class="homeButton"><%= link_to 'Logout  ', destroy_user_session_path, :method => :delete, class: "no-decoration" %><i id="lb1" class="fas fa-chevron-right"></i>
+    <i id="lb2" class="fas fa-chevron-right"></i>
+    <i id="lb3" class="fas fa-chevron-right"></i></button><br><br>
 
-<button id="loginButton" class="homeButton"><%= link_to 'Login  ', new_user_session_path, :class=> "no-decoration" %><i id="lb1" class="fas fa-chevron-right"></i>
-<i id="lb2" class="fas fa-chevron-right"></i>
-<i id="lb3" class="fas fa-chevron-right"></i></button><br><br>
 
-<button id="registerButton" class="homeButton">Register  <i id="rb1" class="fas fa-chevron-right"></i>
-<i id="rb2" class="fas fa-chevron-right"></i>
-<i id="rb3" class="fas fa-chevron-right"></i></button><br><br>
+    <button id="registerButton" class="homeButton"><%= link_to 'Edit Profile  ', edit_user_registration_path, :method => :get, :class=> "no-decoration" %><i id="rb1" class="fas fa-chevron-right"></i>
+    <i id="rb2" class="fas fa-chevron-right"></i>
+    <i id="rb3" class="fas fa-chevron-right"></i></button><br><br>
+<% else %>
+    <button id="loginButton" class="homeButton"><%= link_to 'Login  ', new_user_session_path, :class=> "no-decoration" %><i id="lb1" class="fas fa-chevron-right"></i>
+    <i id="lb2" class="fas fa-chevron-right"></i>
+    <i id="lb3" class="fas fa-chevron-right"></i></button><br><br>
 
+
+    <button id="registerButton" class="homeButton"><%= link_to 'Register  ', new_user_registration_path, class: "no-decoration" %><i id="rb1" class="fas fa-chevron-right"></i>
+    <i id="rb2" class="fas fa-chevron-right"></i>
+    <i id="rb3" class="fas fa-chevron-right"></i></button><br><br>
+
+<% end %>
 
 
 

@@ -14,6 +14,14 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
+    if  user_signed_in? && current_user.admin?
+    @contacts = Contact.all
+    else
+    flash[:notice] = "You do not have permission to view this page"
+    redirect_to '/'
+
+    end
+
   end
 
   # GET /contacts/new
@@ -32,8 +40,9 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+        format.html { redirect_to '/', notice: 'Message was successfully sent. Admin will respond within 24 hours' }
         format.json { render :show, status: :created, location: @contact }
+
       else
         format.html { render :new }
         format.json { render json: @contact.errors, status: :unprocessable_entity }

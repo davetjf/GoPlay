@@ -29,12 +29,13 @@
   <span id="navbarMenu" onclick="openNav()">&#9776;</span>
   <a href="/"><img id="navlogo" class="w3-responsive" src="https://sem4project.s3-eu-west-1.amazonaws.com/assets/favicon.PNG"/></a>
 </div>
+<div style="background-color:black" class="white w3-center"><%= notice %></div>
 
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="overlay-content">
-    <a href="#">Home</a>
-    <a href="#">Games</a>
+    <a href="/">Home</a>
+    <a href="/dashboard">Dash</a>
     <a href="/about">About</a>
 
       <% if user_signed_in? %>
@@ -105,6 +106,7 @@ function closeAdmin() {
 
 
     <%= yield %>
+
   
   <footer>
   	<div class="top-footer w3-center"><a href="/contact"><i id="bfm"  class="far fa-comment fa-2x">  Message Admin</i></a></div>
