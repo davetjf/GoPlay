@@ -1,30 +1,61 @@
-<p id="notice"><%= notice %></p>
+<style>
+  #postBody{
+    display: none;
+  }
+</style>
+<div id="noticeBoard" class="white w3-container">
 
-<h1>Posts</h1>
+<h1 style="font-family: 'Special Elite', cursive !important">Notice Board</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
+
+
+  
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <h2><%= post.comments.count %> Comments</h2>
-        <td><%= post.body %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <table id="usertable" style="width: 100%; padding: 5px;" class="w3-responsive w3-border"><br>
+
+      
+      
+        <tr><td id="postTitle"><h2 style="font-family: 'Special Elite', cursive !important"><%= post.title %></h2></td></tr>
+      
+      
+        <!--<tr><td id="postBody"><%= post.body %></td></tr>-->
+        <% if post.canComment == false %>
+        <p>Comments are closed</p>
+        <% else %>
+        <tr><td>Comments (<%= post.comments.count %>)</td></tr>
+        <% end %>
+        <tr><td><p>How old is this post? <%= time_ago_in_words(post.created_at) %></p></td></tr>
+        
+
+        <tr><td><%= link_to 'Show Post', post, class: "adminButton no-decoration" %></td>
+        <% if user_signed_in? && current_user.admin? %>
+        <td><%= link_to 'Edit', edit_post_path(post), class: "adminButton no-decoration" %></td>
+        <td><%= post.canComment %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "adminButton no-decoration" %></td>
+         <p><a href="/on/<%= post.id %>" class="button">On</a></p>
+         <p><a href="/off/<%= post.id %>" class="button">Off</a></p>
       </tr>
+        <% end %>
+      
     <% end %>
-  </tbody>
+  
 </table>
 
 <br>
 
 <%= link_to 'New Post', new_post_path %>
+
+</div> <!--End of container-->
+
+<script>
+
+  $(document).ready(function(){
+  $("#postTitle").click(function(){
+    $("#postBody").toggle();
+  });
+});
+    
+
+
+</script>

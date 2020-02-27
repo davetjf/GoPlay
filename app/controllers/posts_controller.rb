@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+
   end
 
   # GET /posts/new
@@ -21,6 +22,20 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
   end
+
+  def on 
+      @post = Post.find_by(id: params[:id])
+      @post.update_attribute(:canComment, true)
+      redirect_to "/posts"
+  end
+    
+  def off 
+      @post = Post.find_by(id: params[:id])
+      @post.update_attribute(:canComment, false)
+      redirect_to "/posts"
+  end
+   
+
 
   # POST /posts
   # POST /posts.json

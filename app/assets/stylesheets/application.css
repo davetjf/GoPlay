@@ -116,6 +116,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 
 /* Home Page CSS */
 
+
 .no-decoration{
 	text-decoration: none;
 }
@@ -238,7 +239,7 @@ footer a{
 
 /*Start of Message Page CSS*/
 #messagePage{
-	height: 100%;
+	min-height: 100%;
 	background-color: #103f4f;
 	padding: 60px 20px;
 	border-right: 5px solid #bd6019;
@@ -392,3 +393,16 @@ footer a{
 }
 
 /*End of Conversations CSS*/
+
+/*Start of Notice Board CSS*/
+#noticeBoard{
+	min-height: 100%;
+	background-color: #103f4f;
+	padding: 60px 20px;
+	border-right: 5px solid #bd6019;
+	border-left: 5px solid #bd6019;
+}
+
+
+
+/*End of Notice Board CSS*/

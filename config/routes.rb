@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   root :to => 'site#home'
 
+ get '/on/:id' => 'posts#on'
+ get '/off/:id' => 'posts#off'
 
 
   get '/upgrade/:id' => 'pages#upgrade'
