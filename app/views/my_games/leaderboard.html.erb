@@ -1,0 +1,252 @@
+<style>
+  #allGames, #TT, #pool, #fb{
+    display: none;
+  }
+</style>
+<div id="conversation" class="w3-container">
+
+<h1 id="clickAllGames">All Games (<%= @my_games.count %>)</h1>
+<div id="allGames" style="color: black">
+<table class="w3-table-all w3-responsive w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Game type</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Player one</th>
+      <th>Player two</th>
+      <th>Player three</th>
+      <th>Player four</th>
+      <th>Isprivate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @my_games.each do |my_game| %>
+      <tr>
+        
+
+        <td><%= my_game.game_name %></td>
+        <td><%= my_game.game_type %></td>
+        <td><%= my_game.date %></td>
+        <td><%= my_game.result %></td>
+        <td><%= my_game.player_one %></td>
+        <td><%= my_game.player_two %></td>
+        <td><%= my_game.player_three %></td>
+        <td><%= my_game.player_four %></td>
+        <td><%= my_game.isPrivate %></td>
+        <td><%= link_to 'Show', my_game %></td>
+        <td><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
+        <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div>
+<hr>
+
+<!--all TT-->
+<h1 id="clickTT">Table Tennis <% @count = 0 %>
+<% @my_games.each do |my_game| %>
+<% if my_game.game_name == 'Table Tennis' %>
+<% @count = @count + 1 %>
+
+<% end %>
+
+<% end %>
+(<%= @count %>)</h1>
+
+
+<div id="TT" style="color: black">
+<table class="w3-table-all w3-responsive w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Game type</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Player one</th>
+      <th>Player two</th>
+      <th>Player three</th>
+      <th>Player four</th>
+      <th>Isprivate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @my_games.each do |my_game| %>
+      <tr>
+        <% if my_game.game_name == 'Table Tennis' %>
+
+        <td><%= my_game.game_name %></td>
+        <td><%= my_game.game_type %></td>
+        <td><%= my_game.date %></td>
+        <td><%= my_game.result %></td>
+        <td><%= my_game.player_one %></td>
+        <td><%= my_game.player_two %></td>
+        <td><%= my_game.player_three %></td>
+        <td><%= my_game.player_four %></td>
+        <td><%= my_game.isPrivate %></td>
+        <td><%= link_to 'Show', my_game %></td>
+        <td><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
+        <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+
+      <% end %>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div> 
+<hr>
+<!--end of tt-->
+
+<!--all pool-->
+<h1 id="clickPool">Pool <% @count = 0 %>
+<% @my_games.each do |my_game| %>
+<% if my_game.game_name == 'Pool' %>
+<% @count = @count + 1 %>
+
+<% end %>
+
+<% end %>
+(<%= @count %>)</h1>
+
+
+<div id="pool" style="color: black">
+<table class="w3-table-all w3-responsive w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Game type</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Player one</th>
+      <th>Player two</th>
+      <th>Player three</th>
+      <th>Player four</th>
+      <th>Isprivate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @my_games.each do |my_game| %>
+      <tr>
+        <% if my_game.game_name == 'Pool' %>
+
+        <td><%= my_game.game_name %></td>
+        <td><%= my_game.game_type %></td>
+        <td><%= my_game.date %></td>
+        <td><%= my_game.result %></td>
+        <td><%= my_game.player_one %></td>
+        <td><%= my_game.player_two %></td>
+        <td><%= my_game.player_three %></td>
+        <td><%= my_game.player_four %></td>
+        <td><%= my_game.isPrivate %></td>
+        <td><%= link_to 'Show', my_game %></td>
+        <td><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
+        <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+
+      <% end %>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div> 
+<hr>
+<!--end of pool-->
+
+<!--all fuseball-->
+<h1 id="clickFB">Fuseball <% @count = 0 %>
+<% @my_games.each do |my_game| %>
+<% if my_game.game_name == 'Fuseball' %>
+<% @count = @count + 1 %>
+
+<% end %>
+
+<% end %>
+(<%= @count %>)</h1>
+
+
+<div id="fb" style="color: black">
+<table class="w3-table-all w3-responsive w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Game type</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Player one</th>
+      <th>Player two</th>
+      <th>Player three</th>
+      <th>Player four</th>
+      <th>Isprivate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @my_games.each do |my_game| %>
+      <tr>
+        <% if my_game.game_name == 'Fuseball' %>
+
+        <td><%= my_game.game_name %></td>
+        <td><%= my_game.game_type %></td>
+        <td><%= my_game.date %></td>
+        <td><%= my_game.result %></td>
+        <td><%= my_game.player_one %></td>
+        <td><%= my_game.player_two %></td>
+        <td><%= my_game.player_three %></td>
+        <td><%= my_game.player_four %></td>
+        <td><%= my_game.isPrivate %></td>
+        <td><%= link_to 'Show', my_game %></td>
+        <td><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
+        <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+
+      <% end %>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div> 
+<hr>
+<!--end of fuseball-->
+
+
+</div> <!--End of container-->
+    <script>
+      $(document).ready(function(){
+  $("#clickAllGames").click(function(){
+    $("#allGames").toggle('slow');
+  });
+
+    $("#clickTT").click(function(){
+    $("#TT").toggle('slow');
+  });
+    $("#clickPool").click(function(){
+    $("#pool").toggle('slow');
+  });
+    $("#clickFB").click(function(){
+    $("#fb").toggle('slow');
+  });
+});
+    </script>

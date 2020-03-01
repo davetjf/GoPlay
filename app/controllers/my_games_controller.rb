@@ -7,12 +7,15 @@ class MyGamesController < ApplicationController
     @my_games = MyGame.all
     @email = current_user.email
 
-  
+   
+  end
+
+  def leaderboard
+    @my_games = MyGame.all
 
 
    
   end
-
   # GET /my_games/1
   # GET /my_games/1.json
   def show

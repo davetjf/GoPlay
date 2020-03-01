@@ -32,5 +32,7 @@ Rails.application.routes.draw do
 
   get '/mygames' => 'my_games#index'
 
+  get '/lb' => 'my_games#leaderboard'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
