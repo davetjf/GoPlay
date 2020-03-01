@@ -5,6 +5,11 @@ class MyGamesController < ApplicationController
   # GET /my_games.json
   def index
     @my_games = MyGame.all
+    @email = current_user.email
+
+  
+
+
    
   end
 
@@ -19,6 +24,7 @@ class MyGamesController < ApplicationController
     @email = current_user.email
     @game_names = GameName.all
     @my_game = MyGame.new
+    
   end
 
   # GET /my_games/1/edit

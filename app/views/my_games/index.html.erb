@@ -16,10 +16,29 @@
       <th colspan="3"></th>
     </tr>
   </thead>
+  <%= @my_games.count %>
+
+<% @count = 0 %>
+<% @my_games.each do |my_game| %>
+<% if my_game.player_one == @email %>
+<% @count = @count + 1 %>
+
+<% end %>
+
+<% end %>
+<% if @count == 0 %>
+<p>No games played yet</p>
+<% elsif @count == 1 %>
+<p><%= @count %> Game Recorded</p>
+<% else %>
+<p><%= @count %> Games Recorded</p>
+<% end %>
 
   <tbody>
     <% @my_games.each do |my_game| %>
       <tr>
+        <% if @email == my_game.player_one %>
+
         <td><%= my_game.game_name %></td>
         <td><%= my_game.game_type %></td>
         <td><%= my_game.date %></td>
@@ -32,6 +51,10 @@
         <td><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
         <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% else %>
+      
+    <% end %>
+      
     <% end %>
   </tbody>
 </table>
