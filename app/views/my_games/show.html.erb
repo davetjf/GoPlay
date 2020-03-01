@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game name:</strong>
+  <%= @my_game.game_name %>
+</p>
+
+<p>
+  <strong>Game type:</strong>
+  <%= @my_game.game_type %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @my_game.date %>
+</p>
+
+<p>
+  <strong>Player one:</strong>
+  <%= @my_game.player_one %>
+</p>
+
+<p>
+  <strong>Player two:</strong>
+  <%= @my_game.player_two %>
+</p>
+
+<p>
+  <strong>Player three:</strong>
+  <%= @my_game.player_three %>
+</p>
+
+<p>
+  <strong>Player four:</strong>
+  <%= @my_game.player_four %>
+</p>
+
+<p>
+  <strong>Isprivate:</strong>
+  <%= @my_game.isPrivate %>
+</p>
+
+<%= link_to 'Edit', edit_my_game_path(@my_game) %> |
+<%= link_to 'Back', my_games_path %>

@@ -21,7 +21,7 @@
       
         <!--<tr><td id="postBody"><%= post.body %></td></tr>-->
         <% if post.canComment == false %>
-        <p>Comments are closed</p>
+        <tr><td><p>Comments are closed</p></td></tr>
         <% else %>
         <tr><td>Comments (<%= post.comments.count %>)</td></tr>
         <% end %>
@@ -42,10 +42,11 @@
   
 </table>
 
+
 <br>
-
+<% if user_signed_in? && current_user.admin? %>
 <%= link_to 'New Post', new_post_path %>
-
+<% end %>
 </div> <!--End of container-->
 
 <script>

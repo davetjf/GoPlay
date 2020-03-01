@@ -26,13 +26,13 @@ class PostsController < ApplicationController
   def on 
       @post = Post.find_by(id: params[:id])
       @post.update_attribute(:canComment, true)
-      redirect_to "/posts"
+      redirect_to request.referrer
   end
     
   def off 
       @post = Post.find_by(id: params[:id])
       @post.update_attribute(:canComment, false)
-      redirect_to "/posts"
+      redirect_to request.referrer
   end
    
 

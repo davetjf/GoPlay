@@ -14,7 +14,7 @@
           <div><%#= gravatar_for user, size: 32 %></div>
           <div><strong><%= user.email %></strong> <%= message.message_time %></div>
           <div>
-            <div><%= message.body %></div>
+            <div><%= message.body %></div>    
           </div>
         </div>
       </article>
@@ -29,3 +29,4 @@
     <%= f.submit "Send", class: "button is-link is-large mt3" %>
   </div>
 <% end %>
+

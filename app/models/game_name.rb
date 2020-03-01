@@ -1,0 +1,2 @@
+class GameName < ApplicationRecord
+end

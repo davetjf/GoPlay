@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200227203008) do
+ActiveRecord::Schema.define(version: 20200301154602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,12 @@ ActiveRecord::Schema.define(version: 20200227203008) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "game_names", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "body"
     t.bigint "conversation_id"
@@ -55,6 +61,20 @@ ActiveRecord::Schema.define(version: 20200227203008) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "my_games", force: :cascade do |t|
+    t.string "game_name"
+    t.string "game_type"
+    t.date "date"
+    t.string "player_one"
+    t.string "player_two"
+    t.string "player_three"
+    t.string "player_four"
+    t.boolean "isPrivate", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "result"
   end
 
   create_table "posts", force: :cascade do |t|

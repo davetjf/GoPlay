@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :my_games
+  resources :game_names
   resources :posts do
     resources :comments
   end
@@ -27,6 +29,8 @@ Rails.application.routes.draw do
   get '/upgrade/:id' => 'pages#upgrade'
   get '/downgrade/:id' => 'pages#downgrade'
   get '/allusers' => 'pages#allusers'
+
+  get '/mygames' => 'my_games#index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

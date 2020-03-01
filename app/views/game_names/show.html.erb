@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @game_name.name %>
+</p>
+
+<%= link_to 'Edit', edit_game_name_path(@game_name) %> |
+<%= link_to 'Back', game_names_path %>

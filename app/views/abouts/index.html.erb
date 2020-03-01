@@ -5,8 +5,10 @@
 
 
 
+
   
     <% @abouts.each do |about| %>
+     <%= time_ago_in_words(about.created_at) %>
       
         <%= about.title %>
         <%= about.body %><br><br>
