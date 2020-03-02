@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game_name: MyString
+  date: 2020-03-02
+  player_one: MyString
+  player_two: MyString
+  player_three: MyString
+  player_four: MyString
+  result: MyString
+
+two:
+  game_name: MyString
+  date: 2020-03-02
+  player_one: MyString
+  player_two: MyString
+  player_three: MyString
+  player_four: MyString
+  result: MyString

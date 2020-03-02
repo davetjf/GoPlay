@@ -17,11 +17,12 @@
     <%= form.select :game_name, @game_names.collect {|u| [ u.name ] }, :prompt => 'Select One', id: :my_game_game_name %>
   </div>
 
+<!---------------------------------------------------------
   <div class="field">
     <%= form.label :game_type, "Format:" %>
     <%= form.select :game_type, [ 'Singles', 'Doubles'], :prompt => 'Select One',  id: :my_game_game_type %>
   </div>
-
+------------------------------------------------------------------>
   <div class="field">
     <%= form.label :date %>
     <%= form.date_select :date, id: :my_game_date %>
@@ -39,26 +40,34 @@
     <%= form.select :player_two, @users.collect {|u| [ u.email ] }, :prompt => 'Select One', id: :my_game_player_two  %>
   </div>
 
+<!---------------------------------------------------------
+
   <div class="field">
     <%= form.label :player_three %>
     <%= form.select :player_three, @users.collect {|u| [ u.email ] }, :prompt => 'Select One', id: :my_game_player_three  %>
   </div>
+  ------------------------------------------------------------------>
 
+<!---------------------------------------------------------
   <div class="field">
     <%= form.label :player_four %>
     <%= form.select :player_four, @users.collect {|u| [ u.email ] }, :prompt => 'Select One', id: :my_game_player_four  %>
   </div>
+  ------------------------------------------------------------------>
+
+
 
     <div class="field">
     <%= form.label :result %>
     <%= form.select :result, [ 'Win', 'Lose', 'Yet to be played'], :prompt => 'Select One',  id: :my_game_result %>
   </div>
 
-
+<!---------------------------------------------------------
   <div class="field">
     <%= form.label :isPrivate %>
     <%= form.check_box :isPrivate, id: :my_game_isPrivate %>
   </div>
+  ------------------------------------------------------------------>
 
   <div class="actions">
     <%= form.submit %>

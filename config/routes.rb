@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :doubles
   resources :my_games
   resources :game_names
   resources :posts do
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
   get '/mygames' => 'my_games#index'
 
   get '/lb' => 'my_games#leaderboard'
+  get '/sod' => 'pages#sod'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

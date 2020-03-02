@@ -4,8 +4,10 @@ class MyGamesController < ApplicationController
   # GET /my_games
   # GET /my_games.json
   def index
-    @my_games = MyGame.all
+    @my_games = MyGame.all.order("date ASC")
+    @doubles = Double.all.order("date ASC")
     @email = current_user.email
+
 
    
   end
@@ -32,6 +34,11 @@ class MyGamesController < ApplicationController
 
   # GET /my_games/1/edit
   def edit
+    @users = User.all
+    @email = current_user.email
+    @game_names = GameName.all
+    @my_game = MyGame.new
+    
   end
 
   # POST /my_games
@@ -82,6 +89,6 @@ class MyGamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def my_game_params
-      params.require(:my_game).permit(:game_name, :game_type, :date, :player_one, :player_two, :player_three, :player_four, :isPrivate)
+      params.require(:my_game).permit(:game_name, :game_type, :result, :date, :player_one, :player_two, :player_three, :player_four, :isPrivate)
     end
 end

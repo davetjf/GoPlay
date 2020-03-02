@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game name:</strong>
+  <%= @double.game_name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @double.date %>
+</p>
+
+<p>
+  <strong>Player one:</strong>
+  <%= @double.player_one %>
+</p>
+
+<p>
+  <strong>Player two:</strong>
+  <%= @double.player_two %>
+</p>
+
+<p>
+  <strong>Player three:</strong>
+  <%= @double.player_three %>
+</p>
+
+<p>
+  <strong>Player four:</strong>
+  <%= @double.player_four %>
+</p>
+
+<p>
+  <strong>Result:</strong>
+  <%= @double.result %>
+</p>
+
+<%= link_to 'Edit', edit_double_path(@double) %> |
+<%= link_to 'Back', doubles_path %>

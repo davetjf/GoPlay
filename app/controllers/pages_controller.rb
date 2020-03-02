@@ -33,6 +33,14 @@ class PagesController < ApplicationController
     redirect_to "/allusers"
    end
 
+    def sod
+    if  user_signed_in? == false 
+      redirect_to '/'
+      flash[:notice] = "You need to register or log in first"
+    end
+
+  end
+
 
 
 

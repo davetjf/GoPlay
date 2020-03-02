@@ -296,6 +296,7 @@ footer a{
 }
 
 
+
 .messageField label{
 	color:white;
 	width: 100px;
@@ -380,6 +381,50 @@ footer a{
 }
 /*End of Dashboard CSS*/
 
+/*Start of Singles or Doubles CSS*/
+.sod { 
+	width: 50%; 
+	height: 100%; 
+	float: left; 
+	text-align: center;
+}
+.sod p{
+	padding-top: 30%;
+	color: white;
+	font-size: 50px;
+}
+.sod p:hover{
+	animation: bounce 1s infinite;
+}
+.sod a{
+	text-decoration: none;
+
+}
+#sod1 { background: #64AFE4; border-left:5px solid #bd6019;}
+#sod2 { background: #528BB3; border-right:5px solid #bd6019;}
+
+#dash{
+	height: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .sod {
+    width: 50%;
+
+  }
+  .sod p{
+	padding-top: 70%;
+	font-size: 25px;
+}
+
+}
+/*End of Singles or Doubles CSS*/
+#doubleIndex{
+	min-height: 100%;
+	color: white;
+	background-color: #103f4f;
+	
+}
 
 
 /*Start of Conversations CSS*/
