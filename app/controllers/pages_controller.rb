@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    
   	# Below code user to make the first admin
   	#current_user.update_attribute :admin, true
   end

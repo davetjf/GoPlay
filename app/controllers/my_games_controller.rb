@@ -7,6 +7,14 @@ class MyGamesController < ApplicationController
     @my_games = MyGame.all.order("date ASC")
     @doubles = Double.all.order("date ASC")
     @email = current_user.email
+    @users = User.all
+
+
+
+
+ 
+
+  
 
 
    
@@ -14,6 +22,17 @@ class MyGamesController < ApplicationController
 
   def leaderboard
     @my_games = MyGame.all
+    @users = User.all
+    
+
+
+ 
+
+  
+
+ 
+
+
 
 
    

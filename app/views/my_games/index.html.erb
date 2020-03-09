@@ -1,9 +1,112 @@
-<style type="text/css">#hi{background-color:white;color:black;}#singlesTable{display:none;}</style>
+<style type="text/css">#hi{background-color:white;color:black;}#singlesTable{display:none;}#allGames, #TT, #pool, #fb{display: none;}</style>
 
 
 <div id="conversation" class="w3-container">
 
-<h1 id="singlesClick">My Games - Singles <% @count = 0 %>
+
+<h1 id="x">Singles</h1><hr>
+
+
+<div id="xx">
+<div class="w3-responsive"> <h1>Overview</h1>
+<% @totalwins = 0 %>
+<% @pwins = 0 %>
+<% @twins = 0 %>
+<% @fwins = 0 %>
+<% @my_games.each do |my_game| %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Pool' && my_game.result== 'Win' %>
+<% @pwins = @pwins + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Table Tennis' && my_game.result == 'Win'  %>
+<% @twins = @twins + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Fuseball' && my_game.result == 'Win'  %>
+<% @fwins = @fwins + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.result== 'Win' %>
+<% @totalwins = @totalwins + 1 %>
+<% end %>
+
+<% @totallosses = 0 %>
+<% @plosses = 0 %>
+<% @tlosses = 0 %>
+<% @flosses = 0 %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Pool' && my_game.result== 'Lose' %>
+<% @plosses = @plosses + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Table Tennis' && my_game.result == 'Lose'  %>
+<% @tlosses = @tlosses + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Fuseball' && my_game.result == 'Lose'  %>
+<% @flosses = @flosses + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.result== 'Lose' %>
+<% @totallosses = @totallosses + 1 %>
+<% end %>
+
+<% @totalnp = 0 %>
+<% @pnp = 0 %>
+<% @tnp = 0 %>
+<% @fnp = 0 %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Pool' && my_game.result== 'Yet to be played' %>
+<% @pnp = @pnp + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Table Tennis' && my_game.result == 'Yet to be played'  %>
+<% @tnp = @tnp + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.game_name=='Fuseball' && my_game.result == 'Yet to be played'  %>
+<% @fnp = @fnp + 1 %>
+<% end %>
+<% if current_user.email == my_game.player_one && my_game.result== 'Yet to be played' %>
+<% @totalnp = @totalnp + 1 %>
+<%= current_user.email %>
+<%= my_game.player_one %>
+<% end %>
+
+<% end %><!--End of loop-->
+
+
+<table class="w3-table w3-border ">
+  <thead><tr><td>Total Wins</td><td>Pool</td><td>Table Tennis</td><td>Fuseball</td></tr></thead>
+
+<tbody>
+  <tr>
+<td><%= @totalwins %></td>
+<td><%= @pwins %></td>
+<td><%= @twins %></td>
+<td><%= @fwins %></td>
+</tr></tbody>
+</table><br>
+
+<table class="w3-table w3-border ">
+  <thead><tr><td>Total Losses</td><td>Pool</td><td>Table Tennis</td><td>Fuseball</td></tr></thead>
+
+<tbody>
+  <tr>
+<td><%= @totallosses %></td>
+<td><%= @plosses %></td>
+<td><%= @tlosses %></td>
+<td><%= @flosses %></td>
+</tr></tbody>
+</table><br>
+
+<table class="w3-table w3-border ">
+  <thead><tr><td>Yet to be Played</td><td>Pool</td><td>Table Tennis</td><td>Fuseball</td></tr></thead>
+
+<tbody>
+  <tr>
+<td><%= @totalnp %></td>
+<td><%= @pnp %></td>
+<td><%= @tnp %></td>
+<td><%= @fnp %></td>
+</tr></tbody>
+</table><br>
+</div><br><br>
+<!--End of overview -->
+
+
+
+<h3 id="singlesClick">All Games <% @count = 0 %>
 <% @my_games.each do |my_game| %>
 <% if my_game.player_one == @email %>
 <% @count = @count + 1 %>
@@ -17,7 +120,7 @@
 (<%= @count %> Game Recorded)
 <% else %>
 (<%= @count %> Games Recorded)
-<% end %></h1>
+<% end %></h3>
 
 
 <div id="singlesTable" class="w3-responsive">
@@ -56,7 +159,7 @@
         <%#= my_game.isPrivate %><!--Not required-->
         <%#= link_to 'Show', my_game %><!--Not required-->
         <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
-        <%#= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %><!--Not required-->
+        <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td><!--Not required-->
       </tr>
       <% else %>
       
@@ -68,6 +171,199 @@
 </div>
 <hr>
 
+
+<!--all TT-->
+<h3 id="clickTT">Table Tennis <% @count = 0 %>
+<% @my_games.each do |my_game| %>
+<% if my_game.player_one == @email %>
+<% if my_game.game_name == 'Table Tennis' %>
+<% @count = @count + 1 %>
+<% end %>
+<% end %>
+
+<% end %>
+(<%= @count %>)</h3>
+
+
+<div id="TT" style="color: black">
+<table class="w3-table-all w3-responsive w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Game type</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Player one</th>
+      <th>Player two</th>
+      <th>Player three</th>
+      <th>Player four</th>
+      <th>Isprivate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @my_games.each do |my_game| %>
+      <tr>
+        <% if @email == my_game.player_one %>
+        <% if my_game.game_name == 'Table Tennis' %>
+
+        <td><%= my_game.game_name %></td>
+        <td><%= my_game.game_type %></td>
+        <td><%= my_game.date %></td>
+        <td><%= my_game.result %></td>
+        <td><%= my_game.player_one %></td>
+        <td><%= my_game.player_two %></td>
+        <td><%= my_game.player_three %></td>
+        <td><%= my_game.player_four %></td>
+        <td><%= my_game.isPrivate %></td>
+        <td><%= link_to 'Show', my_game %></td>
+        <td><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
+        <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      
+      <% end %>
+
+      <% end %>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div> 
+<hr>
+<!--end of tt-->
+
+<!--all pool-->
+<h3 id="clickPool">Pool <% @count = 0 %>
+<% @my_games.each do |my_game| %>
+<% if my_game.player_one == @email %>
+<% if my_game.game_name == 'Pool' %>
+<% @count = @count + 1 %>
+<% end %>
+<% end %>
+
+<% end %>
+(<%= @count %>)</h3>
+
+
+<div id="pool" style="color: black">
+<table class="w3-table-all w3-responsive w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Game type</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Player one</th>
+      <th>Player two</th>
+      <th>Player three</th>
+      <th>Player four</th>
+      <th>Isprivate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @my_games.each do |my_game| %>
+      <tr>
+        <% if @email == my_game.player_one %>
+        <% if my_game.game_name == 'Pool' %>
+
+        <td><%= my_game.game_name %></td>
+        <td><%= my_game.game_type %></td>
+        <td><%= my_game.date %></td>
+        <td><%= my_game.result %></td>
+        <td><%= my_game.player_one %></td>
+        <td><%= my_game.player_two %></td>
+        <td><%= my_game.player_three %></td>
+        <td><%= my_game.player_four %></td>
+        <td><%= my_game.isPrivate %></td>
+        <td><%= link_to 'Show', my_game %></td>
+        <td><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
+        <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+
+      <% end %>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div> 
+<hr>
+<!--end of pool-->
+
+<!--all fuseball-->
+<h3 id="clickFB">Fuseball <% @count = 0 %>
+<% @my_games.each do |my_game| %>
+<% if my_game.player_one == @email %>
+<% if my_game.game_name == 'Fuseball' %>
+<% @count = @count + 1 %>
+
+<% end %>
+<% end %>
+<% end %>
+(<%= @count %>)</h3>
+
+
+<div id="fb" style="color: black">
+<table class="w3-table-all w3-responsive w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Game type</th>
+      <th>Date</th>
+      <th>Result</th>
+      <th>Player one</th>
+      <th>Player two</th>
+      <th>Player three</th>
+      <th>Player four</th>
+      <th>Isprivate</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @my_games.each do |my_game| %>
+      <tr>
+        <% if @email == my_game.player_one %>
+        <% if my_game.game_name == 'Fuseball' %>
+
+        <td><%= my_game.game_name %></td>
+        <td><%= my_game.game_type %></td>
+        <td><%= my_game.date %></td>
+        <td><%= my_game.result %></td>
+        <td><%= my_game.player_one %></td>
+        <td><%= my_game.player_two %></td>
+        <td><%= my_game.player_three %></td>
+        <td><%= my_game.player_four %></td>
+        <td><%= my_game.isPrivate %></td>
+        <td><%= link_to 'Show', my_game %></td>
+        <td><%= link_to 'Edit', edit_my_game_path(my_game) %></td>
+        <td><%= link_to 'Destroy', my_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+
+      <% end %>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div> 
+<hr>
+<!--end of fuseball-->
+</div> <!--end of singles container-->
+
+
 <br>
 
 <%= render 'doubles/index' %>
@@ -75,7 +371,14 @@
 
 <a href="/sod"><button>Create new game</button></a>
 
+
+
 </div>
+
+
+
+
+
 
 
 
@@ -84,5 +387,33 @@
   $("#singlesClick").click(function(){
   $("#singlesTable").toggle('slow');
   });
+
+  $("#clickTT").click(function(){
+  $("#TT").toggle('slow');
+  });
+  $("#clickPool").click(function(){
+  $("#pool").toggle('slow');
+  });
+  $("#clickFB").click(function(){
+  $("#fb").toggle('slow');
+  });
+  $("#x").click(function(){
+  $("#xx").toggle('slow');
+  });
 });
     </script>
+
+<style type="text/css">
+
+  #singlesClick:hover, #clickTT:hover, #clickFB:hover, #clickPool:hover{
+    animation: bounce 1s infinite;
+    cursor: pointer;
+  }
+  #x{
+    cursor: pointer;
+  }
+  #xx{
+    display: none;
+  }
+  
+</style>

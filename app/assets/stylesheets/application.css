@@ -97,6 +97,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
   transition: 0.3s;
 }
 
+
 .overlay a:hover, .overlay a:focus {
   animation: bounce 1s infinite;
 }
@@ -160,9 +161,9 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 
 .homeContainer{
 	height:100%;
-	/*background: yellow;*/
-	background-image: url("https://sem4project.s3-eu-west-1.amazonaws.com/assets/GP+Logo.PNG");
-	background-position: center;
+	background: #103f4f;
+	/* background-image: url("https://sem4project.s3-eu-west-1.amazonaws.com/assets/GP+Logo.PNG"); */
+	/* background-position: center; */
 	padding-top: 10px;
 	border-right: 5px solid #bd6019;
 	border-left: 5px solid #bd6019;
@@ -275,7 +276,7 @@ footer a{
 	margin-left: 25px;
 	margin-bottom: 20px;
 }
-#contact_subject, #user_email, #user_password, #user_password_confirmation {
+#contact_subject, #user_email, #user_password, #user_password_confirmation, #user_username, #user_current_password {
 	width: 60%;
 	background-color: transparent;
 	border:none;

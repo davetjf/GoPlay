@@ -13,9 +13,15 @@
 
 <a href="/about"><button id="informationButton" class="homeButton">About  <i id="ib1" class="fas fa-chevron-right"></i>
 <i id="ib2" class="fas fa-chevron-right"></i>
-<i id="ib3" class="fas fa-chevron-right"></i></button></a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<i id="ib3" class="fas fa-chevron-right"></i></button></a><br><br>
+
+<img src="https://sem4project.s3-eu-west-1.amazonaws.com/assets/hp.PNG" style="height: 200px;width: 200px;"><br><br>
+
 
 <% if user_signed_in? %>
+
+<p>Hi <%= current_user.username %></p>
+
     <button id="loginButton" class="homeButton"><%= link_to 'Logout  ', destroy_user_session_path, :method => :delete, class: "no-decoration" %><i id="lb1" class="fas fa-chevron-right"></i>
     <i id="lb2" class="fas fa-chevron-right"></i>
     <i id="lb3" class="fas fa-chevron-right"></i></button><br><br>
