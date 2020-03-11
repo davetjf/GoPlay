@@ -10,43 +10,44 @@
       </ul>
     </div>
   <% end %>
-
+  <div id="singleForm" class="w3-center w3-container">
   <div class="field">
-    <%= form.label :game_name %>
+    <%= form.label :game_name, 'Game' %><br>
     <%= form.select :game_name, @game_names.collect {|u| [ u.name ] }, :prompt => 'Select One', id: :double_game_name %>
-  </div>
+  </div><br><br>
 
   <div class="field">
-    <%= form.label :date %>
+    <%= form.label :date %><br>
     <%= form.date_select :date, id: :double_date %>
-  </div>
+  </div><br><br>
 
   <div class="field">
-    <%= form.label :player_one %>
-    <%= form.select :player_one, [@email], id: :double_player_one %>
-  </div>
+    <%= form.label :player_one, 'Player one' %><br>
+    <%= form.select :player_one, [current_user.username], id: :double_player_one %>
+  </div><br>
 
   <div class="field">
-    <%= form.label :player_two %>
-    <%= form.select :player_two, @users.collect {|u| [ u.email ] }, :prompt => 'Select One', id: :double_player_two  %>
-  </div>
+    <%= form.label :player_two, 'Player two' %><br>
+    <%= form.select :player_two, @users.collect {|u| [ u.username ] }, :prompt => 'Select One', id: :double_player_two  %>
+  </div><br>
 
   <div class="field">
-    <%= form.label :player_three %>
-    <%= form.select :player_three, @users.collect {|u| [ u.email ] }, :prompt => 'Select One', id: :double_player_three  %>
-  </div>
+    <%= form.label :player_three, 'Opponent' %><br>
+    <%= form.select :player_three, @users.collect {|u| [ u.username ] }, :prompt => 'Select One', id: :double_player_three  %>
+  </div><br>
 
   <div class="field">
-    <%= form.label :player_four %>
-    <%= form.select :player_four, @users.collect {|u| [ u.email ] }, :prompt => 'Select One', id: :double_player_four  %>
-  </div>
+    <%= form.label :player_four, 'Opponent' %><br>
+    <%= form.select :player_four, @users.collect {|u| [ u.username ] }, :prompt => 'Select One', id: :double_player_four  %>
+  </div><br><br>
 
   <div class="field">
-    <%= form.label :result %>
+    <%= form.label :result %><br>
     <%= form.select :result, [ 'Win', 'Lose', 'Yet to be played'], :prompt => 'Select One',  id: :double_result %>
-  </div>
+  </div><br><br>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+</div>

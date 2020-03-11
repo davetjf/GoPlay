@@ -282,7 +282,7 @@ footer a{
 	border:none;
 	border-bottom:2px solid #bd6019;
 	color: #fff;
-	margin-left: 25px;
+	
 	margin-bottom: 20px;
 }
 #contact_message{
@@ -298,10 +298,12 @@ footer a{
 
 
 
+
 .messageField label{
 	color:white;
 	width: 100px;
 }
+
 .white{
 	color: white;
 }
@@ -312,7 +314,7 @@ footer a{
 	width: 60%;
 	height: 40px;
 	border-radius: 10%;
-	margin-left: 25px;
+	
 }
 .actions input:hover{
 	animation: bounce 1s infinite;
@@ -456,3 +458,20 @@ footer a{
 
 
 /*End of Notice Board CSS*/
+
+
+
+/*Start of Game Forms*/
+
+#singleForm select{
+	background-color: transparent;
+	border: 1px solid #bd6019;
+	width: 60%;
+	height: 20px;
+	color: #bd6019;
+}
+
+
+
+
+/*End of Game Forms*/

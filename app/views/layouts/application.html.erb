@@ -30,7 +30,7 @@
   <% end %>
     <% if user_signed_in? %>
 
-  <span id="adminButton"><%= link_to current_user.username, edit_user_registration_path, :method => :get, class: "no-decoration" %></span>
+  <span style="padding-left:5px;" id="name"><%= link_to current_user.username, edit_user_registration_path, :method => :get, class: "no-decoration" %></span>
 
   <% end %>
 
@@ -83,11 +83,13 @@ function scrollFunction() {
     document.getElementById("navbar").style.backgroundColor = "#bd6019";
     document.getElementById("navbarMenu").style.color = "#103f4f";
     document.getElementById("adminButton").style.color = "#103f4f";
+    document.getElementById("name").style.color = "#103f4f";
 
   } else {
     document.getElementById("navbar").style.backgroundColor = "transparent";
     document.getElementById("navbarMenu").style.color = "#bd6019";
     document.getElementById("adminButton").style.color = "#bd6019";
+    document.getElementById("name").style.color = "#bd6019";
   }
 }
 </script>

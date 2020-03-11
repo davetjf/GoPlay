@@ -1,11 +1,15 @@
-<style type="text/css">#hi1{background-color:white;color:black;}#doublesTable{display:none;}</style>
+
+<h1 id="dx">Doubles</h1><hr>
+
+<div id="dxx">
 
 
-<div id="doublesIndex">
 
-<h1 id="doublesClick">My Games - Doubles <% @count = 0 %>
+
+
+<h3 id="doublesClick">All Games <% @count = 0 %>
 <% @doubles.each do |double| %>
-<% if double.player_one == @email %>
+<% if double.player_one == current_user.username %>
 <% @count = @count + 1 %>
 
 <% end %>
@@ -17,61 +21,254 @@
 (<%= @count %> Game Recorded)
 <% else %>
 (<%= @count %> Games Recorded)
-<% end %></h1>
+<% end %></h3>
 
 
 <div id="doublesTable" class="w3-responsive">
-<table id="hi1" class="w3-table-all w3-hoverable w3-border">
+<table class="hi w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
       <th>Game name</th>
       <th>Date</th>
-      <th>Player one</th>
-      <th>Player two</th>
-      <th>Player three</th>
-      <th>Player four</th>
+      <th>Teammate</th>
+      <th>Opponent</th>
+      <th>Opponent</th>
+      <th>Result</th>
+      
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @doubles.each do |double| %>
+      <tr>
+        <% if current_user.username == double.player_one %>
+
+        <td><%= double.game_name %></td>
+        <td><%= double.date %></td>
+        <td><%= double.player_two %></td>
+        <td><%= double.player_three %></td>
+        <td><%= double.player_four %></td>
+        <td><%= double.result %></td>
+        <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(double) %></td>
+        <td><%= link_to 'Delete', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% else %>
+      
+    <% end %>
+      
+    <% end %>
+  </tbody>
+</table>
+</div>
+<hr style="width: 25%;">
+
+
+<!--all TT-->
+<h3 id="dclickTT">Table Tennis <% @count = 0 %>
+<% @doubles.each do |double| %>
+<% if double.player_one == current_user.username %>
+<% if double.game_name == 'Table Tennis' %>
+<% @count = @count + 1 %>
+<% end %>
+<% end %>
+
+<% end %>
+(<%= @count %>)</h3>
+
+
+<div id="dTT" class="w3-responsive">
+<table class="hi w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Date</th>
+      <th>Teammate</th>
+      <th>Opponent</th>
+      <th>Opponent</th>
       <th>Result</th>
     </tr>
   </thead>
 
 
-    <tbody>
+  <tbody>
     <% @doubles.each do |double| %>
       <tr>
-        <% if @email == double.player_one %>
+        <% if current_user.username == double.player_one %>
+        <% if double.game_name == 'Table Tennis' %>
+
         <td><%= double.game_name %></td>
         <td><%= double.date %></td>
-        <td><%= double.player_one %></td>
         <td><%= double.player_two %></td>
         <td><%= double.player_three %></td>
         <td><%= double.player_four %></td>
         <td><%= double.result %></td>
-        <!--<td><%= link_to 'Show', double %></td>-->
         <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(double) %></td>
-        <!--<td><%= link_to 'Destroy', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+        <td><%= link_to 'Delete', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-      <% else %>
+      
       <% end %>
+
+      <% end %>
+       
     <% end %>
+      
+  
   </tbody>
-
 </table>
-</div>
+</div> 
+<hr style="width: 50%;">
+<!--end of tt-->
+
+<!--all pool-->
+<h3 id="dclickPool">Pool <% @count = 0 %>
+<% @doubles.each do |double| %>
+<% if double.player_one == current_user.username %>
+<% if double.game_name == 'Pool' %>
+<% @count = @count + 1 %>
+<% end %>
+<% end %>
+
+<% end %>
+(<%= @count %>)</h3>
+
+
+<div id="dpool" class="w3-responsive">
+<table class="hi w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Date</th>
+      <th>Teammate</th>
+      <th>Opponent</th>
+      <th>Opponent</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @doubles.each do |double| %>
+      <tr>
+        <% if current_user.username == double.player_one %>
+        <% if double.game_name == 'Pool' %>
+
+
+        <td><%= double.game_name %></td>
+        <td><%= double.date %></td>
+        <td><%= double.player_two %></td>
+        <td><%= double.player_three %></td>
+        <td><%= double.player_four %></td>
+        <td><%= double.result %></td>
+        <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(double) %></td>
+        <td><%= link_to 'Delete', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+
+      <% end %>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div> 
+<hr style="width: 75%;">
+<!--end of pool-->
+
+<!--all fuseball-->
+<h3 id="dclickFB">Fuseball <% @count = 0 %>
+<% @doubles.each do |double| %>
+<% if double.player_one == current_user.username %>
+<% if double.game_name == 'Fuseball' %>
+<% @count = @count + 1 %>
+
+<% end %>
+<% end %>
+<% end %>
+(<%= @count %>)</h3>
+
+
+<div id="dfb" class="w3-responsive">
+<table class="hi w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Game name</th>
+      <th>Date</th>
+      <th>Teammate</th>
+      <th>Opponent</th>
+      <th>Opponent</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% @doubles.each do |double| %>
+      <tr>
+        <% if current_user.username == double.player_one %>
+        <% if double.game_name == 'Fuseball' %>
+
+
+        <td><%= double.game_name %></td>
+        <td><%= double.date %></td>
+        <td><%= double.player_two %></td>
+        <td><%= double.player_three %></td>
+        <td><%= double.player_four %></td>
+        <td><%= double.result %></td>
+        <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(double) %></td>
+        <td><%= link_to 'Delete', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+
+      <% end %>
+       
+    <% end %>
+      
+  
+  </tbody>
+</table>
+</div> 
 <hr>
-
+<!--end of fuseball-->
 <br>
-
-
-
-
 </div>
-
-
 
     <script>
   $(document).ready(function(){
   $("#doublesClick").click(function(){
   $("#doublesTable").toggle('slow');
   });
+
+  $("#dclickTT").click(function(){
+  $("#dTT").toggle('slow');
+  });
+  $("#dclickPool").click(function(){
+  $("#dpool").toggle('slow');
+  });
+  $("#dclickFB").click(function(){
+  $("#dfb").toggle('slow');
+  });
+  $("#dx").click(function(){
+  $("#dxx").toggle('slow');
+  });
 });
     </script>
+
+<style type="text/css">
+
+  #dx:hover,#doublesClick:hover, #dclickTT:hover, #dclickFB:hover, #dclickPool:hover{
+    animation: bounce 1s infinite;
+    cursor: pointer;
+  }
+  #dx{
+    cursor: pointer;
+  }
+  #dxx, #dTT, #dpool, #dfb, #doublesTable{
+    display: none;
+  }
+
+  
+</style>
+
+

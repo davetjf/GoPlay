@@ -6,37 +6,14 @@ class MyGamesController < ApplicationController
   def index
     @my_games = MyGame.all.order("date ASC")
     @doubles = Double.all.order("date ASC")
-    @email = current_user.email
     @users = User.all
-
-
-
-
- 
-
-  
-
-
-   
   end
 
   def leaderboard
     @my_games = MyGame.all
     @users = User.all
-    
-
-
- 
-
-  
-
- 
-
-
-
-
-   
   end
+  
   # GET /my_games/1
   # GET /my_games/1.json
   def show
@@ -54,9 +31,7 @@ class MyGamesController < ApplicationController
   # GET /my_games/1/edit
   def edit
     @users = User.all
-    @email = current_user.email
     @game_names = GameName.all
-    @my_game = MyGame.new
     
   end
 
@@ -67,8 +42,8 @@ class MyGamesController < ApplicationController
 
     respond_to do |format|
       if @my_game.save
-        format.html { redirect_to @my_game, notice: 'My game was successfully created.' }
-        format.json { render :show, status: :created, location: @my_game }
+        format.html { redirect_to '/my_games', notice: 'My game was successfully created.' }
+        format.json { render :show, status: :created, location: '/my_games' }
       else
         format.html { render :new }
         format.json { render json: @my_game.errors, status: :unprocessable_entity }
@@ -81,8 +56,8 @@ class MyGamesController < ApplicationController
   def update
     respond_to do |format|
       if @my_game.update(my_game_params)
-        format.html { redirect_to @my_game, notice: 'My game was successfully updated.' }
-        format.json { render :show, status: :ok, location: @my_game }
+        format.html { redirect_to '/my_games', notice: 'My game was successfully updated.' }
+        format.json { render :show, status: :ok, location: '/my_games' }
       else
         format.html { render :edit }
         format.json { render json: @my_game.errors, status: :unprocessable_entity }

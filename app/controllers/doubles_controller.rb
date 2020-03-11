@@ -24,6 +24,8 @@ class DoublesController < ApplicationController
 
   # GET /doubles/1/edit
   def edit
+    @users = User.all
+    @game_names = GameName.all
   end
 
   # POST /doubles
@@ -34,7 +36,7 @@ class DoublesController < ApplicationController
     respond_to do |format|
       if @double.save
         format.html { redirect_to '/my_games', notice: 'Double was successfully created.' }
-        format.json { render :show, status: :created, location: @double }
+        format.json { render :show, status: :created, location: '/my_games' }
       else
         format.html { render :new }
         format.json { render json: @double.errors, status: :unprocessable_entity }
@@ -48,8 +50,8 @@ class DoublesController < ApplicationController
   def update
     respond_to do |format|
       if @double.update(double_params)
-        format.html { redirect_to @double, notice: 'Double was successfully updated.' }
-        format.json { render :show, status: :ok, location: @double }
+        format.html { redirect_to '/my_games', notice: 'Double was successfully updated.' }
+        format.json { render :show, status: :ok, location: '/my_games' }
       else
         format.html { render :edit }
         format.json { render json: @double.errors, status: :unprocessable_entity }
