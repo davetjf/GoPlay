@@ -20,7 +20,7 @@
 
 <% if user_signed_in? %>
 
-<p>Hi <%= current_user.username %></p>
+
 
     <button id="loginButton" class="homeButton"><%= link_to 'Logout  ', destroy_user_session_path, :method => :delete, class: "no-decoration" %><i id="lb1" class="fas fa-chevron-right"></i>
     <i id="lb2" class="fas fa-chevron-right"></i>

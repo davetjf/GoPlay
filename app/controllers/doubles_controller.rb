@@ -64,7 +64,7 @@ class DoublesController < ApplicationController
   def destroy
     @double.destroy
     respond_to do |format|
-      format.html { redirect_to doubles_url, notice: 'Double was successfully destroyed.' }
+      format.html { redirect_to '/lb', notice: 'Double was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

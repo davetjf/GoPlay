@@ -116,6 +116,12 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
   top: 15px;
   right: 35px;
   }
+
+  .one, .two{
+  	display: block;
+  	width: 100%;
+  }
+
 }
 
 /* Home Page CSS */
@@ -437,8 +443,17 @@ footer a{
 	background-color: #103f4f;
 	padding: 100px 50px;
 }
-#allUsers{
+#allUsers, #allConvo{
 	display: none;
+}
+#userClick:hover, #convoClick:hover{
+	animation: bounce 1s infinite;
+}
+#userClick, #convoClick{
+	cursor: pointer;
+}
+.testButton:hover{
+	color: #bd6019; 
 }
 .block{
 	display: inline-block;

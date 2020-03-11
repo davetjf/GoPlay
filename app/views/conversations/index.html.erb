@@ -1,15 +1,16 @@
+
 <div id="conversation" class="w3-container">
 
+<div class="one">
 
-<h3 id="userClick" style="font-family: 'Special Elite', cursive !important">All Users <% @x = @users.count %>(<%= @x -1 %>)</h3><hr>
-
-
-
-  <div id="allUsers">
-    
+<h1 id="userClick" style="font-family: 'Special Elite', cursive !important">Message Users</h1>
+  <div id="allUsers"><br>
+  
     <% @users.each do |user| %>
-      <% if user.id != current_user.id %><br>
-       <li><%= link_to "#{user.email} Message", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post", class: "no-decoration" %></li><br>
+      <% if user.id != current_user.id %>
+       <div><i class="far fa-comment-dots fa-lg"></i><%= link_to "  #{user.username}", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post", class: "no-decoration testButton" %><br><br></div>
+
+
 
       <% end %>
     <% end %>
@@ -17,17 +18,15 @@
 
  
 
-    <script>
-      $(document).ready(function(){
-  $("#userClick").click(function(){
-    $("#allUsers").toggle("slow");
-  });
-});
-    </script>
+
+  </div>
+  <div class="two">
   
 
   
-    <h3 style="font-family: 'Special Elite', cursive !important">Conversations <% @y = @conversations.count %>(<%= @y -1 %>)</h3>
+    <h1 id="convoClick" style="font-family: 'Special Elite', cursive !important">Conversations</h1>
+    <div id="allConvo"><br>
+
     <% @conversations.each do |conversation| %>
       <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
         <% if conversation.sender_id == current_user.id %>
@@ -38,27 +37,61 @@
         <% unless current_user.id == recipient %>
           
               
-              <div><%= link_to recipient.email, conversation_messages_path(conversation) %></div>
+              <div><i style="margin-right:12px;" class="far fa-comments fa-lg">  </i><%= link_to recipient.username, conversation_messages_path(conversation), class: "testButton no-decoration" %></div><br>
     
         <% end %>
       <% end %>
     <% end %>
+  </div>
+
+
+
 </div>
 
-<!--below is for testing-->
-  <div>
-    <h1>Test</h1>
-    <% @users.each do |user| %>
-    <p><%= user.email %></p>
-    <% end %>
 
 
-    <%= form_with do |f| %>
-  
+</div>
+
+
+
+<style type="text/css">
+
+
+.one {
+  width: 40%;
+  min-height: 100%;
+  float: left;
+  padding: 10px;
+  border:5px solid #bd6019;
+  font-size: 35px;
+  text-align: center;
+  margin-left: 5%;
+}
+
+.two {
  
- <%= f.select :user, @users.collect {|u| [ u.email ] } %>
-  
-    <%= f.submit "Send" %>
-  <
-<% end %>
-    </div>
+  min-height: 100%;
+  padding: 10px;
+  border: 5px solid #bd6019;
+  width: 40%;
+  float: left;
+  margin-left: 10%;
+  font-size: 35px;
+  text-align: center;
+}
+</style>
+
+
+    <script>
+      $(document).ready(function(){
+  $("#convoClick").click(function(){
+    $("#allConvo").toggle("slow");
+  });
+
+  $("#userClick").click(function(){
+    $("#allUsers").toggle("slow");
+  });
+
+});
+    </script>
+

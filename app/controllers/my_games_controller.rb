@@ -12,6 +12,7 @@ class MyGamesController < ApplicationController
   def leaderboard
     @my_games = MyGame.all
     @users = User.all
+    @doubles = Double.all
   end
   
   # GET /my_games/1

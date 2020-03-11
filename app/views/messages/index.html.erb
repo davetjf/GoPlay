@@ -1,5 +1,6 @@
+<div id="conversation" class="w3-responsive w3-container">
 <!-- app/views/messages/index.html.erb -->
-<div style="margin-bottom: 10%">Message <%= @conversation.recipient.email %></div>
+<div style="color: #bd6019;border:1px solid #bd6019;padding: 5px;">Conversation with "<%= @conversation.recipient.username %>"</div><br>
 
 <% if @over_ten %>
   <%= link_to "Show previous", '?m=all', class:'button is-link' %>
@@ -12,21 +13,42 @@
       <article>
         <div>
           <div><%#= gravatar_for user, size: 32 %></div>
-          <div><strong><%= user.email %></strong> <%= message.message_time %></div>
+          <div style="color: #bd6019;"><%= message.message_time %></div>
           <div>
-            <div><%= message.body %></div>    
+            <div><strong style="color: #bd6019;"><%= user.username %>: </strong><%= message.body %></div><br>   
           </div>
         </div>
       </article>
     <% end %>
   <% end %>
-</section>
+</section><br>
 
 <%= form_for [@conversation, @message] do |f| %>
-  <%= f.text_area :body, class: "textarea", placeholder: "type your message here..." %>
+  <%= f.text_area :body, class: "textareaConvo", placeholder: "type your message here..." %>
   <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
   <div class="text-align-right">
-    <%= f.submit "Send", class: "button is-link is-large mt3" %>
+    <%= f.submit "Send", class: "messageButton" %>
   </div>
 <% end %>
+</div>
 
+<style type="text/css">
+  .messageButton{
+    width: 15%;
+    height: 35px;
+    color:white;
+    background-color: #bd6019;
+    border:none;
+    border-radius: 10%;
+    cursor:pointer;
+  }
+  .messageButton:hover{
+    animation: bounce 1s infinite;
+  }
+  .textareaConvo{
+    width:30%;
+    height: 70px;
+    background-color: transparent;
+    color: white;
+  }
+</style>
