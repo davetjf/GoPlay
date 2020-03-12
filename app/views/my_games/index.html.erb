@@ -138,6 +138,10 @@
 <% else %>
 (<%= @count %> Games Recorded)
 <% end %></h3>
+<% if @count > 5 %>
+
+<a href="/"><button>Secret Button</button></a>
+<% end %>
 
 
 <div id="singlesTable" class="w3-responsive">

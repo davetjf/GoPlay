@@ -9,11 +9,30 @@ class MyGamesController < ApplicationController
     @users = User.all
   end
 
+
+
+
+
+
   def leaderboard
     @my_games = MyGame.all
     @users = User.all
     @doubles = Double.all
+
+    #@leaderboard = MyGame.where("result = 'Win'").count
+    @leaderboard = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Fuseball'").count
+
+
+
+
   end
+
+
+
+
+
+
+
   
   # GET /my_games/1
   # GET /my_games/1.json
