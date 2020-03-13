@@ -1,104 +1,529 @@
 <div id="conversation" class="w3-container">
+<br><br>
   
-<!-- Start of doubles -->
-<!---------------------------------------------------
-<h3>All Doubles</h3>
-<div class="w3-responsive">
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Game Name</th>
-      <th>Player</th>
-      <th>Teammate</th>
-      <th>Opponent</th>
-      <th>Opponent</th>
-      <th>Result</th> 
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @doubles.each do |double| %>
-      <tr>
-        <td><%= double.game_name %></td>
-        <td><%= double.player_one %></td>
-        <td><%= double.player_two %></td>
-        <td><%= double.player_three %></td>
-        <td><%= double.player_four %></td>
-        <td><%= double.result %></td>
-      </tr>      
-    <% end %>
-  </tbody>
-</table>
-</div>
--------------------------------------------------->
-<!-- end of doubles -->
 
 <!-- Start of singles -->
-<h3>All Singles</h3>
-<div class="w3-responsive">
+<h1 id="lbSingleClick">Singles Leaderboard</h1><hr class="hr">
+<div class="singleTable">
+<!-- start of pool --> 
+
+<h2 id="lbPoolClick">Pool</h2><hr style="width:50%;" class="hr">
+
+<div id="lbPool" class="w3-responsive">
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
-      <th>Game Name</th>
-      <th>Player</th>
-      <th>Opponent</th>
-      <th>Result</th> 
+      <th>Games Played</th>
     </tr>
   </thead>
 
 
   <tbody>
-    <% @my_games.each do |my_game| %>
-      <tr>
-        <td><%= my_game.game_name %></td>
-        <td><%= my_game.player_one %></td>
-        <td><%= my_game.player_two %></td>
-        <td><%= my_game.result %></td>
-      </tr>      
-    <% end %>
+<% @totalp.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
   </tbody>
-</table>
-</div>
-<!-- end of singles-->
+</table><br>
 
-<h3>Players</h3>
-<div class="w3-responsive">
+
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
-      <th>Singles Player</th>
-      
-
+      <th>Games Won</th>
+    </tr>
   </thead>
 
 
   <tbody>
- <tr>
+<% @poolLeaderboardW.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
 
- <td><%= @leaderboard %></td>
- 
-  </tr>
-   
-  
-   
-    
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Lost</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @poolLeaderboardL.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Yet to be Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @poolLeaderboardNP.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
   </tbody>
 </table>
 </div>
-<!-- end of singles-->
+<!-- end of pool -->
+
+<!-- start of TT --> 
+
+<h2 id="lbTTClick">Table Tennis</h2><hr style="width:50%;" class="hr">
+
+<div id="lbTT" class="w3-responsive">
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
 
 
+  <tbody>
+<% @totaltt.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
 
 
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Won</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardW.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Lost</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardL.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Yet to be Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardNP.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+</div> 
+<!-- end of table tennis -->
+
+
+<!-- start of fuseball --> 
+
+<h2 id="lbFBClick">Fuseball</h2><hr style="width:50%;" class="hr">
+
+<div id="lbFB" class="w3-responsive">
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totalfb.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Won</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @fbLeaderboardW.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Lost</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @fbLeaderboardL.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Yet to be Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @fbLeaderboardNP.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+</div> 
+<!-- end of fuseball -->
+
+
+</div><br><br>
+<!-----End of singles leaderboard-------------------->
+
+
+<!-- Start of doubles -->
+<h1 id="lbDoubleClick">Doubles Leaderboard</h1><hr class="hr">
+<div class="doubleTable">
+<!-- start of pool --> 
+
+<h2 id="lbPoolClickd">Pool</h2><hr style="width:50%;" class="hr">
+
+<div id="lbPoold" class="w3-responsive">
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totalpd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Won</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @poolLeaderboardWd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Lost</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @poolLeaderboardLd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Yet to be Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @poolLeaderboardNPd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+</div>
+<!-- end of pool -->
+
+<!-- start of TT --> 
+
+<h2 id="lbTTClickd">Table Tennis</h2><hr style="width:50%;" class="hr">
+
+<div id="lbTTd" class="w3-responsive">
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totalttd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Won</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardWd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Lost</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardLd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Yet to be Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardNPd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+</div> 
+<!-- end of table tennis -->
+
+
+<!-- start of fuseball --> 
+
+<h2 id="lbFBClickd">Fuseball</h2><hr style="width:50%;" class="hr">
+
+<div id="lbFBd" class="w3-responsive">
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totalfbd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Won</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @fbLeaderboardWd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Lost</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @fbLeaderboardLd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table><br>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Yet to be Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @fbLeaderboardNPd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+</div> 
+<!-- end of fuseball -->
+
+
+</div>
+<!-----End of doubles leaderboard-------------------->
 
 
 
 
 </div>
+<!-- end of container -->
+
+
+
 
 <style type="text/css">
   table{
     color: black;
   }
+  #lbFB, #lbTT, #lbPool, #lbFBd, #lbTTd, #lbPoold{
+    display: none;
+  }
+  #lbPoolClick:hover, #lbTTClick:hover, #lbFBClick:hover, #lbSingleClick:hover, #lbDoubleClick:hover, #lbPoolClickd:hover, #lbTTClickd:hover, #lbFBClickd:hover{
+    animation: bounce 1s infinite;
+    cursor: pointer;
+  }
+
+  .singleTable, .doubleTable{
+    display: none;
+  }
 </style>
+
+
+
+<script>
+  $(document).ready(function(){
+
+
+  $("#lbPoolClick").click(function(){
+  $("#lbPool").toggle('slow');
+  });
+
+
+  $("#lbSingleClick").click(function(){
+  $(".singleTable").toggle('slow');
+  });
+
+
+  $("#lbTTClick").click(function(){
+  $("#lbTT").toggle('slow');
+  });
+
+
+  $("#lbFBClick").click(function(){
+  $("#lbFB").toggle('slow');
+  });
+
+
+//**************************************
+  $("#lbPoolClickd").click(function(){
+  $("#lbPoold").toggle('slow');
+  });
+
+
+  $("#lbDoubleClick").click(function(){
+  $(".doubleTable").toggle('slow');
+  });
+
+
+  $("#lbTTClickd").click(function(){
+  $("#lbTTd").toggle('slow');
+  });
+
+
+  $("#lbFBClickd").click(function(){
+  $("#lbFBd").toggle('slow');
+  });
+
+
+
+});
+</script>

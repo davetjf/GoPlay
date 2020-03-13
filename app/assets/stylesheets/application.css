@@ -29,6 +29,11 @@ html, body{
 h1,h2,h3,h4,h5{
 	font-family: 'Special Elite', cursive !important;
 }
+.hr{
+    border: 2px solid #bd6019;
+    
+    border-radius: 10%;
+  }
 
 /*navbar code - taken from w3 schools and customized 
 
