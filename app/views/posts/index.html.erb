@@ -6,10 +6,6 @@
 <div id="noticeBoard" class="white w3-container">
 
 <h1 style="font-family: 'Special Elite', cursive !important">Notice Board</h1>
-
-
-
-
   
     <% @posts.each do |post| %>
     <div class="w3-responsive">
@@ -17,7 +13,7 @@
 
       
       
-        <tr><td id="postTitle"><h2 style="font-family: 'Special Elite', cursive !important"><%= post.title %></h2></td></tr>
+        <tr><td id="postTitle"><h3 style="font-family: 'Special Elite', cursive !important"><%= post.title %></h3></td></tr>
       
       
         <!--<tr><td id="postBody"><%= post.body %></td></tr>-->
@@ -26,16 +22,15 @@
         <% else %>
         <tr><td>Comments (<%= post.comments.count %>)</td></tr>
         <% end %>
-        <tr><td><p>How old is this post? <%= time_ago_in_words(post.created_at) %></p></td></tr>
+        <tr><td><p>Posted: <%= time_ago_in_words(post.created_at) %></p></td></tr>
         
 
         <tr><td><%= link_to 'Show Post', post, class: "adminButton no-decoration" %></td>
-        <% if user_signed_in? && current_user.admin? %>
-        <td><%= link_to 'Edit', edit_post_path(post), class: "adminButton no-decoration" %></td>
-        <td><%= post.canComment %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "adminButton no-decoration" %></td>
-         <p><a href="/on/<%= post.id %>" class="button">On</a></p>
-         <p><a href="/off/<%= post.id %>" class="button">Off</a></p>
+        <% if user_signed_in? && current_user.admin? %></tr>
+        
+        <tr>
+        <td><%= link_to 'Delete Post', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "adminButton no-decoration" %></td>
+
       </tr>
         <% end %>
       
@@ -47,7 +42,7 @@
 
 <br>
 <% if user_signed_in? && current_user.admin? %>
-<%= link_to 'New Post', new_post_path %>
+<%#= link_to 'New Post', new_post_path, class: "no-decoration" %>
 <% end %>
 </div> <!--End of container-->
 
