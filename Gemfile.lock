@@ -175,7 +175,8 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
-
+PLATFORMS
+  x64-mingw32
 
 DEPENDENCIES
   byebug
