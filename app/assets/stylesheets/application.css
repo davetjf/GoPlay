@@ -79,7 +79,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgb(189, 96, 25,0.9);
+  background-color: rgba(189, 96, 25,0.9);
   overflow-x: hidden;
   transition: 0.5s;
 
