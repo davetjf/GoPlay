@@ -1,3 +1,17 @@
+<style type="text/css">
+  .singleTable table, .doubleTable table{
+    display: inline;
+  }
+  .singleTable table th, .doubleTable table th{
+    background-color: orange;
+  }
+
+
+
+  
+
+</style>
+
 <div id="conversation" class="w3-container">
 <br><br>
   
@@ -6,25 +20,21 @@
 <h1 id="lbSingleClick">Singles Leaderboard</h1><hr class="hr">
 <div class="singleTable">
 <!-- start of pool --> 
+<% @poolWin = 0.00 %>
+<% @poolTotal = 0.00 %>
+<% @totalp.each do |k,v| %>
+<% @poolTotal = @poolTotal + v %>
+<% end %>
+<% @poolLeaderboardW.each do |k,v| %>
+<% @poolWin = @poolWin + v %>
+<% end %>
 
-<h2 id="lbPoolClick">Pool</h2><hr style="width:50%;" class="hr">
+<% @ps = (@poolWin/@poolTotal) * 100 %>
+
+<h2 id="lbPoolClick">Pool (<%= @ps.ceil %>% Win Rate)</h2><hr style="width:50%;" class="hr">
 
 <div id="lbPool" class="w3-responsive">
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Games Played</th>
-    </tr>
-  </thead>
 
-
-  <tbody>
-<% @totalp.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
-</table><br>
 
 
 <table class="w3-table-all w3-hoverable w3-border">
@@ -41,7 +51,7 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
@@ -57,12 +67,12 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
-      <th>Games Yet to be Played</th>
+      <th>To be Played</th>
     </tr>
   </thead>
 
@@ -74,7 +84,35 @@
 </tr>   
   </tbody>
 </table>
+
+
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totalp.each do |key, value| %>
+<tr>
+ 
+  
+ 
+<td><%= key%> <% if value >4  %>(<%= value %>)<span class="master"> - Master</span><% else %>(<%= value %>)<% end %></td>
+  <% end %>
+  <style type="text/css">.master{
+color: red;
+font-weight: 900;
+  }</style>
+
+</tr>   
+  </tbody>
+</table>
 </div>
+
 <!-- end of pool -->
 
 <!-- start of TT --> 
@@ -82,6 +120,40 @@
 <h2 id="lbTTClick">Table Tennis</h2><hr style="width:50%;" class="hr">
 
 <div id="lbTT" class="w3-responsive">
+
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Lost</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardL.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>To be Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardNP.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
@@ -96,7 +168,7 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 
 <table class="w3-table-all w3-hoverable w3-border">
@@ -113,38 +185,6 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
-
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Games Lost</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @ttLeaderboardL.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
-</table><br>
-
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Games Yet to be Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @ttLeaderboardNP.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
 </table>
 </div> 
 <!-- end of table tennis -->
@@ -155,21 +195,7 @@
 <h2 id="lbFBClick">Fuseball</h2><hr style="width:50%;" class="hr">
 
 <div id="lbFB" class="w3-responsive">
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Games Played</th>
-    </tr>
-  </thead>
 
-
-  <tbody>
-<% @totalfb.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
-</table><br>
 
 
 <table class="w3-table-all w3-hoverable w3-border">
@@ -186,7 +212,7 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
@@ -202,18 +228,34 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
-      <th>Games Yet to be Played</th>
+      <th>To be Played</th>
     </tr>
   </thead>
 
 
   <tbody>
 <% @fbLeaderboardNP.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totalfb.each do |key, value| %>
 <tr>
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
@@ -235,21 +277,6 @@
 <h2 id="lbPoolClickd">Pool</h2><hr style="width:50%;" class="hr">
 
 <div id="lbPoold" class="w3-responsive">
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Games Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @totalpd.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
-</table><br>
 
 
 <table class="w3-table-all w3-hoverable w3-border">
@@ -266,7 +293,7 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
@@ -282,12 +309,12 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
-      <th>Games Yet to be Played</th>
+      <th>To be Played</th>
     </tr>
   </thead>
 
@@ -299,14 +326,8 @@
 </tr>   
   </tbody>
 </table>
-</div>
-<!-- end of pool -->
 
-<!-- start of TT --> 
 
-<h2 id="lbTTClickd">Table Tennis</h2><hr style="width:50%;" class="hr">
-
-<div id="lbTTd" class="w3-responsive">
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
@@ -316,12 +337,22 @@
 
 
   <tbody>
-<% @totalttd.each do |key, value| %>
+<% @totalpd.each do |key, value| %>
 <tr>
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
+
+</div>
+<!-- end of pool -->
+
+<!-- start of TT --> 
+
+<h2 id="lbTTClickd">Table Tennis</h2><hr style="width:50%;" class="hr">
+
+<div id="lbTTd" class="w3-responsive">
+
 
 
 <table class="w3-table-all w3-hoverable w3-border">
@@ -338,7 +369,7 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
@@ -354,18 +385,34 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
-      <th>Games Yet to be Played</th>
+      <th>To be Played</th>
     </tr>
   </thead>
 
 
   <tbody>
 <% @ttLeaderboardNPd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totalttd.each do |key, value| %>
 <tr>
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
@@ -380,21 +427,7 @@
 <h2 id="lbFBClickd">Fuseball</h2><hr style="width:50%;" class="hr">
 
 <div id="lbFBd" class="w3-responsive">
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Games Played</th>
-    </tr>
-  </thead>
 
-
-  <tbody>
-<% @totalfbd.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
-</table><br>
 
 
 <table class="w3-table-all w3-hoverable w3-border">
@@ -411,7 +444,7 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
@@ -427,18 +460,34 @@
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
   </tbody>
-</table><br>
+</table>
 
 <table class="w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
-      <th>Games Yet to be Played</th>
+      <th>To be Played</th>
     </tr>
   </thead>
 
 
   <tbody>
 <% @fbLeaderboardNPd.each do |key, value| %>
+<tr>
+<td><%= key%> (<%= value %>)<% end %></td>
+</tr>   
+  </tbody>
+</table>
+
+<table class="w3-table-all w3-hoverable w3-border">
+  <thead>
+    <tr>
+      <th>Games Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totalfbd.each do |key, value| %>
 <tr>
 <td><%= key%> (<%= value %>)<% end %></td>
 </tr>   
@@ -456,6 +505,37 @@
 
 </div>
 <!-- end of container -->
+
+
+<div>
+  <h4>Testing</h4>
+<%# @gp = 0 %>
+<%# @gw = 0 %>
+<%# index = 0 %>
+<%# @totalp.each do |k, v|  %>
+<%# if v[1] < 5 %>
+<%# @gp = 55 %>
+<%# end %>
+<%# end %>
+<%#= @gp %>
+
+
+<% @poolWin = 0.00 %>
+<% @poolTotal = 0.00 %>
+<% @totalp.each do |k,v| %>
+<% @poolTotal = @poolTotal + v %>
+<% end %>
+<% @poolLeaderboardW.each do |k,v| %>
+<% @poolWin = @poolWin + v %>
+<% end %>
+
+<% @ps = (@poolWin/@poolTotal) * 100 %>
+<%= @ps.ceil %>%
+
+
+
+</div>
+
 
 
 

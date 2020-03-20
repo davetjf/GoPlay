@@ -20,36 +20,48 @@ class MyGamesController < ApplicationController
     @users = User.all
     @doubles = Double.all
 
-    #@leaderboard = MyGame.where("result = 'Win'").count
-    @poolLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count
-    @poolLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Pool'").count
-    @poolLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Pool'").count
-    @totalp = MyGame.all.group(:player_one).where("game_name = 'Pool'").count
+    @totalPoolWins = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count
+    @totalPoolGames = MyGame.all.group(:player_one).where("game_name = 'Pool'").count
+    @totalPoolGames = @totalPoolGames.to_a
 
-    @ttLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Table Tennis'").count
-    @ttLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Table Tennis'").count
-    @ttLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Table Tennis'").count
-    @totaltt = MyGame.all.group(:player_one).where("game_name = 'Table Tennis'").count    
+     
 
-    @fbLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Fuseball'").count
-    @fbLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Fuseball'").count
-    @fbLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Fuseball'").count
-    @totalfb = MyGame.all.group(:player_one).where("game_name = 'Fuseball'").count
+    #singles pool leaderboard
+    @poolLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
+    @poolLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
+    @poolLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
+    @totalp = MyGame.all.group(:player_one).where("game_name = 'Pool'").count.sort_by {|k,v| -v}
+  
+    
+    # singles table tennis leaderboard
+    @ttLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
+    @ttLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
+    @ttLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
+    @totaltt = MyGame.all.group(:player_one).where("game_name = 'Table Tennis'").count.sort_by {|k,v| -v}    
+
+    # singles fuseball leaderboard
+    @fbLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
+    @fbLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
+    @fbLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
+    @totalfb = MyGame.all.group(:player_one).where("game_name = 'Fuseball'").count.sort_by {|k,v| -v}
 #***************************************************************************************************************
-    @poolLeaderboardWd = Double.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count
-    @poolLeaderboardLd = Double.all.group(:player_one).where("result = 'Lose' AND game_name = 'Pool'").count
-    @poolLeaderboardNPd = Double.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Pool'").count
-    @totalpd = Double.all.group(:player_one).where("game_name = 'Pool'").count
+    # doubles pool leaderboard
+    @poolLeaderboardWd = Double.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
+    @poolLeaderboardLd = Double.all.group(:player_one).where("result = 'Lose' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
+    @poolLeaderboardNPd = Double.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
+    @totalpd = Double.all.group(:player_one).where("game_name = 'Pool'").count.sort_by {|k,v| -v}
 
-    @ttLeaderboardWd = Double.all.group(:player_one).where("result = 'Win' AND game_name = 'Table Tennis'").count
-    @ttLeaderboardLd = Double.all.group(:player_one).where("result = 'Lose' AND game_name = 'Table Tennis'").count
-    @ttLeaderboardNPd = Double.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Table Tennis'").count
-    @totalttd = Double.all.group(:player_one).where("game_name = 'Table Tennis'").count    
+    # doubles table tennis leaderboard
+    @ttLeaderboardWd = Double.all.group(:player_one).where("result = 'Win' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
+    @ttLeaderboardLd = Double.all.group(:player_one).where("result = 'Lose' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
+    @ttLeaderboardNPd = Double.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
+    @totalttd = Double.all.group(:player_one).where("game_name = 'Table Tennis'").count.sort_by {|k,v| -v}    
 
-    @fbLeaderboardWd = Double.all.group(:player_one).where("result = 'Win' AND game_name = 'Fuseball'").count
-    @fbLeaderboardLd = Double.all.group(:player_one).where("result = 'Lose' AND game_name = 'Fuseball'").count
-    @fbLeaderboardNPd = Double.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Fuseball'").count
-    @totalfbd = Double.all.group(:player_one).where("game_name = 'Fuseball'").count
+    # doubles fuseball leaderboard
+    @fbLeaderboardWd = Double.all.group(:player_one).where("result = 'Win' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
+    @fbLeaderboardLd = Double.all.group(:player_one).where("result = 'Lose' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
+    @fbLeaderboardNPd = Double.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
+    @totalfbd = Double.all.group(:player_one).where("game_name = 'Fuseball'").count.sort_by {|k,v| -v}
 
 
 
