@@ -4,11 +4,16 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+    <!------------------------------------------------------------------------------------------------
+    Editing this out - if the user changes their username after setting up the account then all the
+    game previously saved will be lost! 
+
+
     <div class="messageField">
       <%#= f.label :username %><br />
-      <%= f.text_field :username, autofocus: true, placeholder: "name", autocomplete: "username" %>
+      <%#= f.text_field :username, autofocus: true, placeholder: "name", autocomplete: "username" %>
     </div>
-
+    ------------------------------------------------------------------------------------------------>
 
   <div class="field">
     <%= f.label :email %><br />
