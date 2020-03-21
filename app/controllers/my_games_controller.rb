@@ -20,12 +20,6 @@ class MyGamesController < ApplicationController
     @users = User.all
     @doubles = Double.all
 
-    @totalPoolWins = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count
-    @totalPoolGames = MyGame.all.group(:player_one).where("game_name = 'Pool'").count
-    @totalPoolGames = @totalPoolGames.to_a
-
-     
-
     #singles pool leaderboard
     @poolLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
     @poolLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Pool'").count.sort_by {|k,v| -v}

@@ -1,15 +1,57 @@
 <style type="text/css">
   .singleTable table, .doubleTable table{
     display: inline;
+    margin-left: 5px;
   }
   .singleTable table th, .doubleTable table th{
     background-color: orange;
   }
-
-
-
+  .singleTable table td, .doubleTable table td{
+    color: white;
+  }
+  .singleTable table td:hover, .doubleTable table td:hover{
+    color: black;
+  }
+  .lbBorder{
   
+  padding: 10px;
+  }
+  .orange{
+    color:orange;
+  }
+  #lbPoolClick, #lbPoolClickd{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(https://sem4project.s3-eu-west-1.amazonaws.com/assets/pool.jfif);
+  }
+  #lbTTClick, #lbTTClickd{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(https://sem4project.s3-eu-west-1.amazonaws.com/assets/tt.jfif); 
+  }
+  #lbFBClick, #lbFBClickd{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(https://sem4project.s3-eu-west-1.amazonaws.com/assets/fb.jpg); 
 
+  }   
+
+  .master{
+    color: red;
+    font-weight: 900;
+  }
+  .beginner{
+    color: green;
+    font-weight: 900;
+  }  
+  .gettingInto{
+    color: blue;
+    font-weight: 900;
+  }
+  .w3-table th:first-child, .w3-table td:first-child, .w3-table-all th:first-child, .w3-table-all td:first-child {width: 280px;}
 </style>
 
 <div id="conversation" class="w3-container">
@@ -17,27 +59,49 @@
   
 
 <!-- Start of singles -->
+<hr class="hr">
 <h1 id="lbSingleClick">Singles Leaderboard</h1><hr class="hr">
 <div class="singleTable">
 <!-- start of pool --> 
-<% @poolWin = 0.00 %>
-<% @poolTotal = 0.00 %>
+<% @poolTotal = 0 %>
+<% @poolWin = 0 %>
+<% @poolLost = 0 %>
+<% @poolNotPlayedYet = 0 %>
+
+
 <% @totalp.each do |k,v| %>
 <% @poolTotal = @poolTotal + v %>
 <% end %>
+
 <% @poolLeaderboardW.each do |k,v| %>
 <% @poolWin = @poolWin + v %>
 <% end %>
 
-<% @ps = (@poolWin/@poolTotal) * 100 %>
+<% @poolLeaderboardL.each do |k,v| %>
+<% @poolLost = @poolLost + v %>
+<% end %>
 
-<h2 id="lbPoolClick">Pool (<%= @ps.ceil %>% Win Rate)</h2><hr style="width:50%;" class="hr">
+<% @poolLeaderboardNP.each do |k,v| %>
+<% @poolNotPlayedYet = @poolNotPlayedYet + v %>
+<% end %>
 
+
+
+
+<div id="lbPoolClick">
+<h2 class="orange">Pool</h2>
+<div class="lbBorder">
+<p>Total Games Recorded (<%= @poolTotal %>)</p>
+<p><%= @poolWin %><% if @poolWin == 1 %> Win<% else %> Wins<% end %></p>
+<p><%= @poolLost %><% if @poolLost == 1 %> Lost<% else %> Losses<% end %></p>
+<p><%= @poolNotPlayedYet %> Not played yet</p>
+</div><br>
+</div><br>
 <div id="lbPool" class="w3-responsive">
 
 
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Won</th>
@@ -48,12 +112,12 @@
   <tbody>
 <% @poolLeaderboardW.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Lost</th>
@@ -64,12 +128,12 @@
   <tbody>
 <% @poolLeaderboardL.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>To be Played</th>
@@ -80,17 +144,17 @@
   <tbody>
 <% @poolLeaderboardNP.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
 
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Played</th>
+      <th>Games Recorded</th>
     </tr>
   </thead>
 
@@ -101,77 +165,65 @@
  
   
  
-<td><%= key%> <% if value >4  %>(<%= value %>)<span class="master"> - Master</span><% else %>(<%= value %>)<% end %></td>
-  <% end %>
-  <style type="text/css">.master{
-color: red;
-font-weight: 900;
-  }</style>
+<td><a class="no-decoration" href="/conversations">
+<%= key%>
+<% if value >= 10 %>
+(<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
+<% elsif value >= 5 %>
+(<%= value %>)</a><span class="gettingInto"> - Getting into it</span>
+<% else %>
+(<%= value %>)</a><span class="beginner"> - Beginner</span>
+<% end %>
+<% end %>
+</td>
+
+
 
 </tr>   
   </tbody>
-</table>
-</div>
+</table><hr>
+</div><br>
 
 <!-- end of pool -->
 
 <!-- start of TT --> 
+<% @tableTennisTotal = 0 %>
+<% @tableTennisWin = 0 %>
+<% @tableTennisLost = 0 %>
+<% @tableTennisNotPlayedYet = 0 %>
 
-<h2 id="lbTTClick">Table Tennis</h2><hr style="width:50%;" class="hr">
+
+<% @totaltt.each do |k,v| %>
+<% @tableTennisTotal = @tableTennisTotal + v %>
+<% end %>
+
+<% @ttLeaderboardW.each do |k,v| %>
+<% @tableTennisWin = @tableTennisWin + v %>
+<% end %>
+
+<% @ttLeaderboardL.each do |k,v| %>
+<% @tableTennisLost = @tableTennisLost + v %>
+<% end %>
+
+<% @ttLeaderboardNP.each do |k,v| %>
+<% @tableTennisNotPlayedYet = @tableTennisNotPlayedYet + v %>
+<% end %>
+
+<div id="lbTTClick">
+<h2 class="orange">Table Tennis</h2>
+<div class="lbBorder">
+<p>Total Games Recorded (<%= @tableTennisTotal %>)</p>
+<p><%= @tableTennisWin %><% if @tableTennisWin == 1 %> Win<% else %> Wins<% end %></p>
+<p><%= @tableTennisLost %><% if @tableTennisLost == 1 %> Lost<% else %> Losses<% end %></p>
+<p><%= @tableTennisNotPlayedYet %> Not played yet</p>
+</div><br>
+</div><br>
+
+
 
 <div id="lbTT" class="w3-responsive">
 
-
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Games Lost</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @ttLeaderboardL.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
-</table>
-
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>To be Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @ttLeaderboardNP.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
-</table>
-
-<table class="w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Games Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @totaltt.each do |key, value| %>
-<tr>
-<td><%= key%> (<%= value %>)<% end %></td>
-</tr>   
-  </tbody>
-</table>
-
-
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Won</th>
@@ -182,23 +234,115 @@ font-weight: 900;
   <tbody>
 <% @ttLeaderboardW.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
+</tr>   
+  </tbody>
+</table>  
+
+
+<table class="w3-table w3-hoverable">
+  <thead>
+    <tr>
+      <th>Games Lost</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardL.each do |key, value| %>
+<tr>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
-</div> 
+
+<table class="w3-table w3-hoverable">
+  <thead>
+    <tr>
+      <th>To be Played</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @ttLeaderboardNP.each do |key, value| %>
+<tr>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
+</tr>   
+  </tbody>
+</table>
+
+<table class="w3-table w3-hoverable">
+  <thead>
+    <tr>
+      <th>Games Recorded</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @totaltt.each do |key, value| %>
+<tr>
+<td><a class="no-decoration" href="/conversations">
+<%= key%>
+<% if value >= 10 %>
+(<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
+<% elsif value >= 5 %>
+(<%= value %>)</a><span class="gettingInto"> - Getting into it</span>
+<% else %>
+(<%= value %>)</a><span class="beginner"> - Beginner</span>
+<% end %>
+<% end %>
+</td>
+
+</tr>   
+  </tbody>
+</table><hr>
+
+
+
+</div><br>
 <!-- end of table tennis -->
 
 
-<!-- start of fuseball --> 
+<!-- start of fuseball -->
+<% @fuseBallTotal = 0 %>
+<% @fuseBallWin = 0 %>
+<% @fuseBallLost = 0 %>
+<% @fuseBallNotPlayedYet = 0 %>
 
-<h2 id="lbFBClick">Fuseball</h2><hr style="width:50%;" class="hr">
+
+<% @totalfb.each do |k,v| %>
+<% @fuseBallTotal = @fuseBallTotal + v %>
+<% end %>
+
+<% @fbLeaderboardW.each do |k,v| %>
+<% @fuseBallWin = @fuseBallWin + v %>
+<% end %>
+
+<% @fbLeaderboardL.each do |k,v| %>
+<% @fuseBallLost = @fuseBallLost + v %>
+<% end %>
+
+<% @fbLeaderboardNP.each do |k,v| %>
+<% @fuseBallNotPlayedYet = @fuseBallNotPlayedYet + v %>
+<% end %>
+
+<div id="lbFBClick">
+<h2 class="orange">Fuseball</h2>
+<div class="lbBorder">
+<p>Total Games Recorded (<%= @fuseBallTotal %>)</p>
+<p><%= @fuseBallWin %><% if @fuseBallWin == 1 %> Win<% else %> Wins<% end %></p>
+<p><%= @fuseBallLost %><% if @fuseBallLost == 1 %> Lost<% else %> Losses<% end %></p>
+<p><%= @fuseBallNotPlayedYet %> Not played yet</p>
+</div><br>
+</div><br>
 
 <div id="lbFB" class="w3-responsive">
 
 
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Won</th>
@@ -209,12 +353,12 @@ font-weight: 900;
   <tbody>
 <% @fbLeaderboardW.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Lost</th>
@@ -225,12 +369,12 @@ font-weight: 900;
   <tbody>
 <% @fbLeaderboardL.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>To be Played</th>
@@ -241,15 +385,15 @@ font-weight: 900;
   <tbody>
 <% @fbLeaderboardNP.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Played</th>
+      <th>Games Recorded</th>
     </tr>
   </thead>
 
@@ -257,11 +401,22 @@ font-weight: 900;
   <tbody>
 <% @totalfb.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations">
+<%= key%>
+<% if value >= 10 %>
+(<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
+<% elsif value >= 5 %>
+(<%= value %>)</a><span class="gettingInto"> - Getting into it</span>
+<% else %>
+(<%= value %>)</a><span class="beginner"> - Beginner</span>
+<% end %>
+<% end %>
+</td>
+
 </tr>   
   </tbody>
-</table>
-</div> 
+</table><hr>
+</div><br> 
 <!-- end of fuseball -->
 
 
@@ -270,16 +425,48 @@ font-weight: 900;
 
 
 <!-- Start of doubles -->
+<hr class="hr">
 <h1 id="lbDoubleClick">Doubles Leaderboard</h1><hr class="hr">
 <div class="doubleTable">
 <!-- start of pool --> 
 
-<h2 id="lbPoolClickd">Pool</h2><hr style="width:50%;" class="hr">
+<% @poolTotald = 0 %>
+<% @poolWind = 0 %>
+<% @poolLostd = 0 %>
+<% @poolNotPlayedYetd = 0 %>
+
+
+<% @totalpd.each do |k,v| %>
+<% @poolTotald = @poolTotald + v %>
+<% end %>
+
+<% @poolLeaderboardWd.each do |k,v| %>
+<% @poolWind = @poolWind + v %>
+<% end %>
+
+<% @poolLeaderboardL.each do |k,v| %>
+<% @poolLostd = @poolLostd + v %>
+<% end %>
+
+<% @poolLeaderboardNPd.each do |k,v| %>
+<% @poolNotPlayedYetd = @poolNotPlayedYetd + v %>
+<% end %>
+
+
+<div id="lbPoolClickd">
+<h2 class="orange">Pool</h2>
+<div class="lbBorder">
+<p>Total Games Recorded (<%= @poolTotald %>)</p>
+<p><%= @poolWind %><% if @poolWind == 1 %> Win<% else %> Wins<% end %></p>
+<p><%= @poolLostd %><% if @poolLostd == 1 %> Lost<% else %> Losses<% end %></p>
+<p><%= @poolNotPlayedYetd %> Not played yet</p>
+</div><br>
+</div><br>
 
 <div id="lbPoold" class="w3-responsive">
 
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Won</th>
@@ -290,12 +477,12 @@ font-weight: 900;
   <tbody>
 <% @poolLeaderboardWd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Lost</th>
@@ -306,12 +493,12 @@ font-weight: 900;
   <tbody>
 <% @poolLeaderboardLd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>To be Played</th>
@@ -322,16 +509,16 @@ font-weight: 900;
   <tbody>
 <% @poolLeaderboardNPd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Played</th>
+      <th>Games Recorded</th>
     </tr>
   </thead>
 
@@ -339,23 +526,63 @@ font-weight: 900;
   <tbody>
 <% @totalpd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations">
+<%= key%>
+<% if value >= 10 %>
+(<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
+<% elsif value >= 5 %>
+(<%= value %>)</a><span class="gettingInto"> - Getting into it</span>
+<% else %>
+(<%= value %>)</a><span class="beginner"> - Beginner</span>
+<% end %>
+<% end %>
+</td>
+
 </tr>   
   </tbody>
-</table>
+</table><hr>
 
-</div>
+</div><br>
 <!-- end of pool -->
 
-<!-- start of TT --> 
+<!-- start of TT -->
+<% @tableTennisTotald = 0 %>
+<% @tableTennisWind = 0 %>
+<% @tableTennisLostd = 0 %>
+<% @tableTennisNotPlayedYetd = 0 %>
 
-<h2 id="lbTTClickd">Table Tennis</h2><hr style="width:50%;" class="hr">
+
+<% @totalttd.each do |k,v| %>
+<% @tableTennisTotald = @tableTennisTotald + v %>
+<% end %>
+
+<% @ttLeaderboardWd.each do |k,v| %>
+<% @tableTennisWind = @tableTennisWind + v %>
+<% end %>
+
+<% @ttLeaderboardLd.each do |k,v| %>
+<% @tableTennisLostd = @tableTennisLostd + v %>
+<% end %>
+
+<% @ttLeaderboardNPd.each do |k,v| %>
+<% @tableTennisNotPlayedYetd = @tableTennisNotPlayedYetd + v %>
+<% end %>
+
+<div id="lbTTClickd">
+<h2 class="orange">Table Tennis</h2>
+<div class="lbBorder">
+<p>Total Games Recorded (<%= @tableTennisTotald %>)</p>
+<p><%= @tableTennisWind %><% if @tableTennisWind == 1 %> Win<% else %> Wins<% end %></p>
+<p><%= @tableTennisLostd %><% if @tableTennisLostd == 1 %> Lost<% else %> Losses<% end %></p>
+<p><%= @tableTennisNotPlayedYetd %> Not played yet</p>
+</div><br>
+</div><br>
 
 <div id="lbTTd" class="w3-responsive">
 
 
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Won</th>
@@ -366,12 +593,12 @@ font-weight: 900;
   <tbody>
 <% @ttLeaderboardWd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Lost</th>
@@ -382,12 +609,12 @@ font-weight: 900;
   <tbody>
 <% @ttLeaderboardLd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>To be Played</th>
@@ -398,15 +625,15 @@ font-weight: 900;
   <tbody>
 <% @ttLeaderboardNPd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Played</th>
+      <th>Games Recorded</th>
     </tr>
   </thead>
 
@@ -414,23 +641,63 @@ font-weight: 900;
   <tbody>
 <% @totalttd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations">
+<%= key%>
+<% if value >= 10 %>
+(<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
+<% elsif value >= 5 %>
+(<%= value %>)</a><span class="gettingInto"> - Getting into it</span>
+<% else %>
+(<%= value %>)</a><span class="beginner"> - Beginner</span>
+<% end %>
+<% end %>
+</td>
+
 </tr>   
   </tbody>
-</table>
-</div> 
+</table><hr>
+</div><br>
 <!-- end of table tennis -->
 
 
 <!-- start of fuseball --> 
+<% @fuseBallTotald = 0 %>
+<% @fuseBallWind = 0 %>
+<% @fuseBallLostd = 0 %>
+<% @fuseBallNotPlayedYetd = 0 %>
 
-<h2 id="lbFBClickd">Fuseball</h2><hr style="width:50%;" class="hr">
+
+<% @totalfbd.each do |k,v| %>
+<% @fuseBallTotald = @fuseBallTotald + v %>
+<% end %>
+
+<% @fbLeaderboardWd.each do |k,v| %>
+<% @fuseBallWind = @fuseBallWind + v %>
+<% end %>
+
+<% @fbLeaderboardLd.each do |k,v| %>
+<% @fuseBallLostd = @fuseBallLostd + v %>
+<% end %>
+
+<% @fbLeaderboardNPd.each do |k,v| %>
+<% @fuseBallNotPlayedYetd = @fuseBallNotPlayedYetd + v %>
+<% end %>
+
+<div id="lbFBClickd"> 
+<h2 class="orange">Fuseball</h2>
+<div class="lbBorder">
+<p>Total Games Recorded (<%= @fuseBallTotald %>)</p>
+<p><%= @fuseBallWind %><% if @fuseBallWind == 1 %> Win<% else %> Wins<% end %></p>
+<p><%= @fuseBallLostd %><% if @fuseBallLostd == 1 %> Lost<% else %> Losses<% end %></p>
+<p><%= @fuseBallNotPlayedYetd %> Not played yet</p>
+</div><br>
+</div><br>
 
 <div id="lbFBd" class="w3-responsive">
 
 
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Won</th>
@@ -441,12 +708,12 @@ font-weight: 900;
   <tbody>
 <% @fbLeaderboardWd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Games Lost</th>
@@ -457,12 +724,12 @@ font-weight: 900;
   <tbody>
 <% @fbLeaderboardLd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>To be Played</th>
@@ -473,15 +740,15 @@ font-weight: 900;
   <tbody>
 <% @fbLeaderboardNPd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table-all w3-hoverable w3-border">
+<table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Played</th>
+      <th>Games Recorded</th>
     </tr>
   </thead>
 
@@ -489,11 +756,22 @@ font-weight: 900;
   <tbody>
 <% @totalfbd.each do |key, value| %>
 <tr>
-<td><%= key%> (<%= value %>)<% end %></td>
+<td><a class="no-decoration" href="/conversations">
+<%= key%>
+<% if value >= 10 %>
+(<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
+<% elsif value >= 5 %>
+(<%= value %>)</a><span class="gettingInto"> - Getting into it</span>
+<% else %>
+(<%= value %>)</a><span class="beginner"> - Beginner</span>
+<% end %>
+<% end %>
+</td>
+
 </tr>   
   </tbody>
-</table>
-</div> 
+</table><hr>
+</div><br>
 <!-- end of fuseball -->
 
 
@@ -506,35 +784,6 @@ font-weight: 900;
 </div>
 <!-- end of container -->
 
-
-<div>
-  <h4>Testing</h4>
-<%# @gp = 0 %>
-<%# @gw = 0 %>
-<%# index = 0 %>
-<%# @totalp.each do |k, v|  %>
-<%# if v[1] < 5 %>
-<%# @gp = 55 %>
-<%# end %>
-<%# end %>
-<%#= @gp %>
-
-
-<% @poolWin = 0.00 %>
-<% @poolTotal = 0.00 %>
-<% @totalp.each do |k,v| %>
-<% @poolTotal = @poolTotal + v %>
-<% end %>
-<% @poolLeaderboardW.each do |k,v| %>
-<% @poolWin = @poolWin + v %>
-<% end %>
-
-<% @ps = (@poolWin/@poolTotal) * 100 %>
-<%= @ps.ceil %>%
-
-
-
-</div>
 
 
 
