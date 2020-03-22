@@ -26,6 +26,9 @@ html, body{
 	font-family: 'Special Elite', cursive !important;
 
 }
+  .circle{
+    border-radius: 50%;
+  }
 h1,h2,h3,h4,h5{
 	font-family: 'Special Elite', cursive !important;
 }
@@ -349,8 +352,7 @@ footer a{
 	background-color: #bd6019;
 }
 #usertable:hover{
-	background-color: black;
-	opacity: 0.9;
+	animation: bounce 1s;
 }
 /*End of All Users Page CSS*/
 

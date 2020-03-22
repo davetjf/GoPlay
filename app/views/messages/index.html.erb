@@ -15,7 +15,7 @@
           <div><%#= gravatar_for user, size: 32 %></div>
           <div style="color: #bd6019;"><%= message.message_time %></div>
           <div>
-            <div><strong style="color: #bd6019;"><%= user.username %>: </strong><%= message.body %></div><br>   
+            <div><%= image_tag avatar_url(user), size: 48, class: "circle" %><strong style="color: #bd6019;"> <%= user.username %>: </strong><%= message.body %></div><br>   
           </div>
         </div>
       </article>
@@ -33,6 +33,7 @@
 </div>
 
 <style type="text/css">
+
   .messageButton{
     width: 15%;
     height: 35px;

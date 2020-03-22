@@ -18,15 +18,16 @@
       
         <!--<tr><td id="postBody"><%= post.body %></td></tr>-->
         <% if post.canComment == false %>
-        <tr><td><p>Comments are closed</p></td></tr>
+        <tr><td><p style="color: orange;">Comments are closed</p></td></tr>
         <% else %>
-        <tr><td>Comments (<%= post.comments.count %>)</td></tr>
+        <tr><td><p style="color: orange;">Comments (<%= post.comments.count %>)</p></td></tr>
         <% end %>
         <tr><td><p>Posted: <%= time_ago_in_words(post.created_at) %></p></td></tr>
         
 
         <tr><td><%= link_to 'Show Post', post, class: "adminButton no-decoration" %></td>
         <% if user_signed_in? && current_user.admin? %></tr>
+        
         
         <tr>
         <td><%= link_to 'Delete Post', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "adminButton no-decoration" %></td>

@@ -2,19 +2,39 @@
 <p>Comments are closed</p>
 <% else %>
 <%= form_for([@post,@post.comments.build]) do |f| %>
-<p>
     <%#= f.label :name %>
-    <%#= f.text_field :name %>
-</p>
+    <%= f.select :name, [current_user.username] %>
+
+
+    
+    
+
+
+    <%#= f.label :body %><br>
+     <%= f.text_area :body, placeholder: "type your commment here..." %><br>
+
 
 <p>
-    <%= f.label :body %><br>
-     <%= f.text_area :body %><br>
-</p>
-
-<br>
-<p>
-    <%= f.submit %>
+    <%= f.submit class: 'gameButton' %>
 </p>
 <% end %>
 <% end %>
+
+<style type="text/css">
+.gameButton{
+  height: 30px;
+  background-color: #bd6019;
+  color: white;
+  border:none;
+  border-radius: 10%;
+}
+.gameButton:hover{
+  animation: bounce 1s infinite;
+  cursor: pointer;
+}
+#comment_name{
+	background-color: transparent;
+	color: #103f4f;
+	border: none;
+}
+</style>
