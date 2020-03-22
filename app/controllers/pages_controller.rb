@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   def dashboard
     @posts=Post.all
     if  user_signed_in? == false 
-      redirect_to '/'
+      redirect_to '/users/sign_in'
       flash[:notice] = "You need to register or log in first"
     end
 
