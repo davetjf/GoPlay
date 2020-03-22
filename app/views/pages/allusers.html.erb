@@ -8,8 +8,8 @@
     
     <table id="usertable" style="width: 100%; padding: 5px;" class="w3-responsive w3-border">
 
-    <tr>
-   <td>User Id: <%= user.id %></td></tr>
+   <tr><td><%= image_tag avatar_url(user), size: 48 %></td></tr> 
+   <tr><td>User Id: <%= user.id %></td></tr>
    <tr><td>Email: <%= user.email %></td></tr>
    <tr><td>Username: <%= user.username %></td></tr>
    <tr><td>Admin: <%= user.admin %></td></tr>
