@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
-  root :to => 'pages#dashboard'
+  #root 'pages#home'
+  root :to => 'pages#home'
+  get '/user' => "pages#dashboard", :as => :user_root
   
-  root 'pages#home'
+  
 
   get '/contact' => 'contacts#new'
   get '/messages' => 'contacts#index'
