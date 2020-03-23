@@ -61,7 +61,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 #navbar span{
 	font-size:30px;
 	cursor:pointer;
-	color: rgb(189, 96, 25);
+	color: orange;
 	float: right;
 }
 
@@ -497,6 +497,8 @@ footer a{
 	height: 20px;
 	color: #bd6019;
 }
+
+
 
 
 

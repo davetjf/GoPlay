@@ -1,9 +1,9 @@
 
 <div id="conversation" class="w3-container">
-
+<br><br>
 <div class="one">
 
-<h1 id="userClick" style="font-family: 'Special Elite', cursive !important">Message Users</h1>
+<h1 id="userClick" style="font-family: 'Special Elite', cursive !important">Message Users</h1><hr class="hr">
   <div id="allUsers"><br>
   
     <% @users.each do |user| %>
@@ -20,12 +20,12 @@
  
 
 
-  </div>
+  </div><br><br>
   <div class="two">
   
 
   
-    <h1 id="convoClick" style="font-family: 'Special Elite', cursive !important">Conversations</h1>
+    <h1 id="convoClick" style="font-family: 'Special Elite', cursive !important">Chats</h1><hr class="hr">
     <div id="allConvo"><br>
 
     <% @conversations.each do |conversation| %>
@@ -38,7 +38,10 @@
         <% unless current_user.id == recipient %>
           
               
-              <div><i style="margin-right:12px;" class="far fa-comments fa-lg">  </i><%= link_to recipient.username, conversation_messages_path(conversation), class: "testButton no-decoration" %></div><br>
+              <div>
+                <% @users.each do |user| %><% if user.username == recipient.username %><%= image_tag avatar_url(user), size: 48, class: "circle" %><% end %><% end %>
+              <%= link_to recipient.username, conversation_messages_path(conversation), class: "testButton no-decoration" %>  <i style="margin-right:12px;" class="far fa-comments fa-lg">  </i>
+            </div><br>
     
         <% end %>
       <% end %>
@@ -57,29 +60,31 @@
 
 <style type="text/css">
 
+.one div, .two div{
+  width: 100%;
+  text-align: left;
+
+}
 
 .one {
-  width: 40%;
+
   min-height: 100%;
-  float: left;
   padding: 10px;
-  border:5px solid #bd6019;
-  font-size: 35px;
+  border-top:2px solid #bd6019;
+  border-bottom: :2px solid #bd6019;
   text-align: center;
-  margin-left: 5%;
+
 }
 
 .two {
  
   min-height: 100%;
   padding: 10px;
-  border: 5px solid #bd6019;
-  width: 40%;
-  float: left;
-  margin-left: 10%;
-  font-size: 35px;
+  border-top:2px solid #bd6019;
+  border-bottom: :2px solid #bd6019;
   text-align: center;
 }
+
 </style>
 
 

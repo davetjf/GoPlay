@@ -10,7 +10,7 @@
 <% if current_user.admin? %>
 	
 
-<p style="border:1px solid orange"> <%= link_to 'Delete',[comment.post,comment], method: :delete, data: {confirm: "Are you sure?"}, class: 'no-decoration' %></p>
+<p class="dHover" style="border:1px solid orange"> <%= link_to 'Delete',[comment.post,comment], method: :delete, data: {confirm: "Are you sure?"}, class: 'no-decoration' %></p>
 
 <% end %>
 
@@ -24,5 +24,10 @@
 		background-color: transparent;
 		color: white;
 		border:1px solid orange;
+	}
+	.dHover:hover{
+		background-color: white;
+		color: orange;
+		
 	}
 </style>
