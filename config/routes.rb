@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
+  root :to => 'pages#dashboard'
   
   root 'pages#home'
 
@@ -21,7 +22,9 @@ Rails.application.routes.draw do
 
   get '/dashboard' => 'pages#dashboard'
 
-  root :to => 'site#home'
+  
+
+
 
  get '/on/:id' => 'posts#on'
  get '/off/:id' => 'posts#off'
