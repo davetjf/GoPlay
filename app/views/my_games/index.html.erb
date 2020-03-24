@@ -23,105 +23,6 @@
 
 <div id="xx">
 
-<!-------------------------------------------------------------------------------------------------
-<div class="w3-responsive"> <h1>Overview</h1>
-<#% @totalwins = 0 %>
-<#% @pwins = 0 %>
-<#% @twins = 0 %>
-<#% @fwins = 0 %>
-<#% @my_games.each do |my_game| %>
-<#% if current_user.email == my_game.player_one && my_game.game_name=='Pool' && my_game.result== 'Win' %>
-<#% @pwins = @pwins + 1 %>
-<#% end %>
-<#% if current_user.email == my_game.player_one && my_game.game_name=='Table Tennis' && my_game.result == 'Win'  %>
-<#% @twins = @twins + 1 %>
-<#% end %>
-<#% if current_user.email == my_game.player_one && my_game.game_name=='Fuseball' && my_game.result == 'Win'  %>
-<#% @fwins = @fwins + 1 %>
-<#% end %>
-<#% if current_user.email == my_game.player_one && my_game.result== 'Win' %>
-<#% @totalwins = @totalwins + 1 %>
-<#% end %>
-
-<#% @totallosses = 0 %>
-<#% @plosses = 0 %>
-<#% @tlosses = 0 %>
-<#% @flosses = 0 %>
-<#% if current_user.email == my_game.player_one && my_game.game_name=='Pool' && my_game.result== 'Lose' %>
-<#% @plosses = @plosses + 1 %>
-<#% end %>
-<#% if current_user.email == my_game.player_one && my_game.game_name=='Table Tennis' && my_game.result == 'Lose'  %>
-<#% @tlosses = @tlosses + 1 %>
-<#% end %>
-<#% if current_user.email == my_game.player_one && my_game.game_name=='Fuseball' && my_game.result == 'Lose'  %>
-<#% @flosses = @flosses + 1 %>
-<%# end %>
-<#% if current_user.email == my_game.player_one && my_game.result== 'Lose' %>
-<#% @totallosses = @totallosses + 1 %>
-<#% end %>###
-
-<%# @totalnp = 0 %>
-<%# @pnp = 0 %>
-<%# @tnp = 0 %>
-<%# @fnp = 0 %>
-<%# if current_user.email == my_game.player_one && my_game.game_name=='Pool' && my_game.result== 'Yet to be played' %>
-<%# @pnp = @pnp + 1 %>
-<%# end %>
-<%# if current_user.email == my_game.player_one && my_game.game_name=='Table Tennis' && my_game.result == 'Yet to be played'  %>
-<%# @tnp = @tnp + 1 %>
-<%# end %>
-<%# if current_user.email == my_game.player_one && my_game.game_name=='Fuseball' && my_game.result == 'Yet to be played'  %>
-<%# @fnp = @fnp + 1 %>
-<%# end %>
-<%# if current_user.email == my_game.player_one && my_game.result== 'Yet to be played' %>
-<%# @totalnp = @totalnp + 1 %>
-<%#= current_user.email %>
-<%#= my_game.player_one %>
-<%# end %>
-
-<%# end %>
-
-
-<table class="w3-table w3-border ">
-  <thead><tr><td>Total Wins</td><td>Pool</td><td>Table Tennis</td><td>Fuseball</td></tr></thead>
-
-<tbody>
-  <tr>
-<td><%= @totalwins %></td>
-<td><%= @pwins %></td>
-<td><%= @twins %></td>
-<td><%= @fwins %></td>
-</tr></tbody>
-</table><br>
-
-<table class="w3-table w3-border ">
-  <thead><tr><td>Total Losses</td><td>Pool</td><td>Table Tennis</td><td>Fuseball</td></tr></thead>
-
-<tbody>
-  <tr>
-<td><%= @totallosses %></td>
-<td><%= @plosses %></td>
-<td><%= @tlosses %></td>
-<td><%= @flosses %></td>
-</tr></tbody>
-</table><br>
-
-<table class="w3-table w3-border ">
-  <thead><tr><td>Yet to be Played</td><td>Pool</td><td>Table Tennis</td><td>Fuseball</td></tr></thead>
-
-<tbody>
-  <tr>
-<td><%= @totalnp %></td>
-<td><%= @pnp %></td>
-<td><%= @tnp %></td>
-<td><%= @fnp %></td>
-</tr></tbody>
-</table><br>
-</div><br><br>
-
-------------------------------------------------------------------------------->
-
-
 
 <h3 id="singlesClick">All Games <% @count = 0 %>
 <% @my_games.each do |my_game| %>
@@ -154,6 +55,7 @@
       <!--<th>Player one</th>-->
       <th>Opponent</th>
       <th>Result</th>
+      <th>Confirmed</th>
       <!-------------------
       <th>Player three</th>
       <th>Player four</th>
@@ -175,6 +77,7 @@
         <%#= my_game.player_one %><!--Not required-->
         <td><%= my_game.player_two %></td>
         <td><%= my_game.result %></td>
+        <td><% if my_game.confirm == 1 %>Confirmed<% end %><% if my_game.confirm != 1 && my_game.result == 'Win' %>Needs to be confirmed<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%><% if my_game.confirm != 1 && my_game.result == 'Lose' %>Needs to be confirmed<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%></td>
         <%#= my_game.player_three %><!--Not required-->
         <%#= my_game.player_four %><!--Not required-->
         <%#= my_game.isPrivate %><!--Not required-->
@@ -394,6 +297,58 @@
 
 
 <a href="/sod"><button id="gameButton">Create new game</button></a>
+
+<!---------------------------------------------------------------------------------------
+  The below code is for testing only 
+---------------------------------------------------------------------------------------->
+
+
+
+
+
+<h1>Testing</h1>
+
+
+<% @my_games.each do |m| %>
+<% if m.confirm == 1 %>
+<% else %>
+<% if m.result == 'Yet to be played' %>
+<% else %>
+<% if m.player_two == current_user.username %>
+<p><%= m.player_one %> has said that they played you in <%= m.game_name %> on <%= m.date %> and that they <% if m.result == 'Lose' %> Lost<% else %> Won<% end %></p><a href="/confirm/<%= m.id %>"><button>Confirm</button></a><br>
+<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a>
+
+<% end %>
+<% end %>
+<% end %>
+<% end %>
+
+<table class="w3-table w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Player One</th>
+      <th>Player Two</th>
+      <th>Result</th>
+      <th>Confirmed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @my_games.each do |m| %>
+    <tr>
+      <td><%= m.game_name %></td>
+      <td><%= m.player_one %></td>
+      <td><%= m.player_two %></td>
+      <td><%= m.result %></td>
+      <td><% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Needs to be confirmed<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Needs to be confirmed<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!---------------------------------------------------------------------------------------
+  The above code is for testing only 
+---------------------------------------------------------------------------------------->
 
 
 

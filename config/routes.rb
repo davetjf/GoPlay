@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get '/allusers' => 'pages#allusers'
 
   get '/mygames' => 'my_games#index'
+  get '/confirm/:id' => 'my_games#confirm'
 
   get '/lb' => 'my_games#leaderboard'
   get '/sod' => 'pages#sod'

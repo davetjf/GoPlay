@@ -5,9 +5,15 @@ class MyGamesController < ApplicationController
   # GET /my_games
   # GET /my_games.json
   def index
-    @my_games = MyGame.all.order("date ASC")
-    @doubles = Double.all.order("date ASC")
+    @my_games = MyGame.all
+    @doubles = Double.all
     @users = User.all
+  end
+
+  def confirm
+    @game = MyGame.find_by(id: params[:id])
+    @game.update_attribute(:confirm, 1)
+    redirect_to "/my_games"
   end
 
 
@@ -21,23 +27,24 @@ class MyGamesController < ApplicationController
     @doubles = Double.all
 
     #singles pool leaderboard
-    @poolLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
-    @poolLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
-    @poolLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Pool'").count.sort_by {|k,v| -v}
-    @totalp = MyGame.all.group(:player_one).where("game_name = 'Pool'").count.sort_by {|k,v| -v}
+
+    @poolLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    @poolLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Pool' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    #@poolLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Pool' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    @totalp = MyGame.all.group(:player_one).where("game_name = 'Pool' AND confirm = 1 ").count.sort_by {|k,v| -v}
   
     
     # singles table tennis leaderboard
-    @ttLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
-    @ttLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
-    @ttLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Table Tennis'").count.sort_by {|k,v| -v}
-    @totaltt = MyGame.all.group(:player_one).where("game_name = 'Table Tennis'").count.sort_by {|k,v| -v}    
+    @ttLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Table Tennis' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    @ttLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Table Tennis' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    @ttLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Table Tennis' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    @totaltt = MyGame.all.group(:player_one).where("game_name = 'Table Tennis' AND confirm = 1 ").count.sort_by {|k,v| -v}    
 
     # singles fuseball leaderboard
-    @fbLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
-    @fbLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
-    @fbLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Fuseball'").count.sort_by {|k,v| -v}
-    @totalfb = MyGame.all.group(:player_one).where("game_name = 'Fuseball'").count.sort_by {|k,v| -v}
+    @fbLeaderboardW = MyGame.all.group(:player_one).where("result = 'Win' AND game_name = 'Fuseball' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    @fbLeaderboardL = MyGame.all.group(:player_one).where("result = 'Lose' AND game_name = 'Fuseball' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    @fbLeaderboardNP = MyGame.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Fuseball' AND confirm = 1 ").count.sort_by {|k,v| -v}
+    @totalfb = MyGame.all.group(:player_one).where("game_name = 'Fuseball' AND confirm = 1 ").count.sort_by {|k,v| -v}
 #***************************************************************************************************************
     # doubles pool leaderboard
     @poolLeaderboardWd = Double.all.group(:player_one).where("result = 'Win' AND game_name = 'Pool'").count.sort_by {|k,v| -v}

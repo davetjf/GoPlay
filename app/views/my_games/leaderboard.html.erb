@@ -51,11 +51,12 @@
     color: blue;
     font-weight: 900;
   }
-  .w3-table th:first-child, .w3-table td:first-child, .w3-table-all th:first-child, .w3-table-all td:first-child {width: 280px;}
+  .w3-table th:first-child, .w3-table td:first-child, .w3-table-all th:first-child, .w3-table-all td:first-child {width: 350px;}
 </style>
 
 <div id="conversation" class="w3-container">
 <br><br>
+
   
 
 <!-- Start of singles -->
@@ -66,12 +67,12 @@
 <% @poolTotal = 0 %>
 <% @poolWin = 0 %>
 <% @poolLost = 0 %>
-<% @poolNotPlayedYet = 0 %>
+<%# @poolNotPlayedYet = 0 %>
 
 
-<% @totalp.each do |k,v| %>
-<% @poolTotal = @poolTotal + v %>
-<% end %>
+<%# @totalp.each do |k,v| %>
+<%# @poolTotal = @poolTotal + v %>
+<%# end %>
 
 <% @poolLeaderboardW.each do |k,v| %>
 <% @poolWin = @poolWin + v %>
@@ -81,11 +82,11 @@
 <% @poolLost = @poolLost + v %>
 <% end %>
 
-<% @poolLeaderboardNP.each do |k,v| %>
-<% @poolNotPlayedYet = @poolNotPlayedYet + v %>
-<% end %>
+<%# @poolLeaderboardNP.each do |k,v| %>
+<%# @poolNotPlayedYet = @poolNotPlayedYet + v %>
+<%# end %>
 
-
+<% @poolTotal = @poolLost + @poolWin %>
 
 
 <div id="lbPoolClick">
@@ -94,7 +95,7 @@
 <p>Total Games Recorded (<%= @poolTotal %>)</p>
 <p><%= @poolWin %><% if @poolWin == 1 %> Win<% else %> Wins<% end %></p>
 <p><%= @poolLost %><% if @poolLost == 1 %> Lost<% else %> Losses<% end %></p>
-<p><%= @poolNotPlayedYet %> Not played yet</p>
+<!--<p><%#= @poolNotPlayedYet %> Not played yet</p>-->
 </div><br>
 </div><br>
 <div id="lbPool" class="w3-responsive">
@@ -112,7 +113,7 @@
   <tbody>
 <% @poolLeaderboardW.each do |key, value| %>
 <tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
+<td><a class="no-decoration" href="/conversations"><% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
@@ -128,33 +129,18 @@
   <tbody>
 <% @poolLeaderboardL.each do |key, value| %>
 <tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
-</tr>   
-  </tbody>
-</table>
-
-<table class="w3-table w3-hoverable">
-  <thead>
-    <tr>
-      <th>To be Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @poolLeaderboardNP.each do |key, value| %>
-<tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
+<td><a class="no-decoration" href="/conversations"><% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
 
 
+
 <table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Recorded</th>
+      <th>Games Played</th>
     </tr>
   </thead>
 
@@ -166,7 +152,7 @@
   
  
 <td><a class="no-decoration" href="/conversations">
-<%= key%>
+<% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%>
 <% if value >= 10 %>
 (<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
 <% elsif value >= 5 %>
@@ -190,12 +176,10 @@
 <% @tableTennisTotal = 0 %>
 <% @tableTennisWin = 0 %>
 <% @tableTennisLost = 0 %>
-<% @tableTennisNotPlayedYet = 0 %>
 
 
-<% @totaltt.each do |k,v| %>
-<% @tableTennisTotal = @tableTennisTotal + v %>
-<% end %>
+
+
 
 <% @ttLeaderboardW.each do |k,v| %>
 <% @tableTennisWin = @tableTennisWin + v %>
@@ -205,9 +189,7 @@
 <% @tableTennisLost = @tableTennisLost + v %>
 <% end %>
 
-<% @ttLeaderboardNP.each do |k,v| %>
-<% @tableTennisNotPlayedYet = @tableTennisNotPlayedYet + v %>
-<% end %>
+<% @tableTennisTotal = @tableTennisWin + @tableTennisLost %>
 
 <div id="lbTTClick">
 <h2 class="orange">Table Tennis</h2>
@@ -215,7 +197,6 @@
 <p>Total Games Recorded (<%= @tableTennisTotal %>)</p>
 <p><%= @tableTennisWin %><% if @tableTennisWin == 1 %> Win<% else %> Wins<% end %></p>
 <p><%= @tableTennisLost %><% if @tableTennisLost == 1 %> Lost<% else %> Losses<% end %></p>
-<p><%= @tableTennisNotPlayedYet %> Not played yet</p>
 </div><br>
 </div><br>
 
@@ -234,7 +215,7 @@
   <tbody>
 <% @ttLeaderboardW.each do |key, value| %>
 <tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
+<td><a class="no-decoration" href="/conversations"><% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>  
@@ -251,31 +232,16 @@
   <tbody>
 <% @ttLeaderboardL.each do |key, value| %>
 <tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
+<td><a class="no-decoration" href="/conversations"><% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table w3-hoverable">
-  <thead>
-    <tr>
-      <th>To be Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @ttLeaderboardNP.each do |key, value| %>
-<tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
-</tr>   
-  </tbody>
-</table>
 
 <table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Recorded</th>
+      <th>Games Played</th>
     </tr>
   </thead>
 
@@ -284,7 +250,7 @@
 <% @totaltt.each do |key, value| %>
 <tr>
 <td><a class="no-decoration" href="/conversations">
-<%= key%>
+<% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%>
 <% if value >= 10 %>
 (<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
 <% elsif value >= 5 %>
@@ -309,12 +275,6 @@
 <% @fuseBallTotal = 0 %>
 <% @fuseBallWin = 0 %>
 <% @fuseBallLost = 0 %>
-<% @fuseBallNotPlayedYet = 0 %>
-
-
-<% @totalfb.each do |k,v| %>
-<% @fuseBallTotal = @fuseBallTotal + v %>
-<% end %>
 
 <% @fbLeaderboardW.each do |k,v| %>
 <% @fuseBallWin = @fuseBallWin + v %>
@@ -324,9 +284,7 @@
 <% @fuseBallLost = @fuseBallLost + v %>
 <% end %>
 
-<% @fbLeaderboardNP.each do |k,v| %>
-<% @fuseBallNotPlayedYet = @fuseBallNotPlayedYet + v %>
-<% end %>
+<% @fuseBallTotal = @fuseBallWin + @fuseBallLost %>
 
 <div id="lbFBClick">
 <h2 class="orange">Fuseball</h2>
@@ -334,7 +292,6 @@
 <p>Total Games Recorded (<%= @fuseBallTotal %>)</p>
 <p><%= @fuseBallWin %><% if @fuseBallWin == 1 %> Win<% else %> Wins<% end %></p>
 <p><%= @fuseBallLost %><% if @fuseBallLost == 1 %> Lost<% else %> Losses<% end %></p>
-<p><%= @fuseBallNotPlayedYet %> Not played yet</p>
 </div><br>
 </div><br>
 
@@ -353,7 +310,7 @@
   <tbody>
 <% @fbLeaderboardW.each do |key, value| %>
 <tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
+<td><a class="no-decoration" href="/conversations"><% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
@@ -369,31 +326,17 @@
   <tbody>
 <% @fbLeaderboardL.each do |key, value| %>
 <tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
+<td><a class="no-decoration" href="/conversations"><% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%> (<%= value %>)</a><% end %></td>
 </tr>   
   </tbody>
 </table>
 
-<table class="w3-table w3-hoverable">
-  <thead>
-    <tr>
-      <th>To be Played</th>
-    </tr>
-  </thead>
 
-
-  <tbody>
-<% @fbLeaderboardNP.each do |key, value| %>
-<tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
-</tr>   
-  </tbody>
-</table>
 
 <table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Recorded</th>
+      <th>Games Played</th>
     </tr>
   </thead>
 
@@ -402,7 +345,7 @@
 <% @totalfb.each do |key, value| %>
 <tr>
 <td><a class="no-decoration" href="/conversations">
-<%= key%>
+<% @users.each do |u| %><% if u.username == key %><%= image_tag avatar_url(u), size: 48, class: "circle" %><% end %><% end %> <%= key%>
 <% if value >= 10 %>
 (<%= value %>)</a><span class="master"> - Loves to Play! Feature Unlocked in "My Games"</span>
 <% elsif value >= 5 %>
@@ -775,19 +718,19 @@
 <!-- end of fuseball -->
 
 
+
+
+
+
 </div>
 <!-----End of doubles leaderboard-------------------->
 
 
 
 
+
 </div>
 <!-- end of container -->
-
-
-
-
-
 
 <style type="text/css">
   table{
