@@ -281,7 +281,6 @@ footer a{
 	border:none;
 	border-bottom:2px solid #bd6019;
 	color: #fff;
-	margin-left: 25px;
 	margin-bottom: 20px;
 
 }
@@ -291,7 +290,6 @@ footer a{
 	border:none;
 	border-bottom:2px solid #bd6019;
 	color: #fff;
-	margin-left: 25px;
 	margin-bottom: 20px;
 }
 #contact_subject, #user_email, #user_password, #user_password_confirmation, #user_username, #user_current_password, #user_avatar_url {
@@ -309,7 +307,6 @@ footer a{
 	border:2px solid #bd6019;
 	color: #fff;
 	height: 300px;
-	margin-left: 25px;
 	margin-bottom: 20px;
 	
 }

@@ -57,11 +57,10 @@
 <div id="conversation" class="w3-container">
 <br><br>
 
-  
 
 <!-- Start of singles -->
 <hr class="hr">
-<h1 id="lbSingleClick">Singles Leaderboard</h1><hr class="hr">
+<h1 id="lbSingleClick">&#9776; Singles Leaderboard</h1><hr class="hr">
 <div class="singleTable">
 <!-- start of pool --> 
 <% @poolTotal = 0 %>
@@ -90,7 +89,7 @@
 
 
 <div id="lbPoolClick">
-<h2 class="orange">Pool</h2>
+<h2 class="orange">&#9776; Pool</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @poolTotal %>)</p>
 <p><%= @poolWin %><% if @poolWin == 1 %> Win<% else %> Wins<% end %></p>
@@ -192,7 +191,7 @@
 <% @tableTennisTotal = @tableTennisWin + @tableTennisLost %>
 
 <div id="lbTTClick">
-<h2 class="orange">Table Tennis</h2>
+<h2 class="orange">&#9776; Table Tennis</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @tableTennisTotal %>)</p>
 <p><%= @tableTennisWin %><% if @tableTennisWin == 1 %> Win<% else %> Wins<% end %></p>
@@ -287,7 +286,7 @@
 <% @fuseBallTotal = @fuseBallWin + @fuseBallLost %>
 
 <div id="lbFBClick">
-<h2 class="orange">Fuseball</h2>
+<h2 class="orange">&#9776; Fuseball</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @fuseBallTotal %>)</p>
 <p><%= @fuseBallWin %><% if @fuseBallWin == 1 %> Win<% else %> Wins<% end %></p>
@@ -369,35 +368,29 @@
 
 <!-- Start of doubles -->
 <hr class="hr">
-<h1 id="lbDoubleClick">Doubles Leaderboard</h1><hr class="hr">
+<h1 id="lbDoubleClick">&#9776; Doubles Leaderboard</h1><hr class="hr">
 <div class="doubleTable">
 <!-- start of pool --> 
 
 <% @poolTotald = 0 %>
 <% @poolWind = 0 %>
 <% @poolLostd = 0 %>
-<% @poolNotPlayedYetd = 0 %>
-
-
-<% @totalpd.each do |k,v| %>
-<% @poolTotald = @poolTotald + v %>
-<% end %>
 
 <% @poolLeaderboardWd.each do |k,v| %>
 <% @poolWind = @poolWind + v %>
 <% end %>
 
-<% @poolLeaderboardL.each do |k,v| %>
+<% @poolLeaderboardLd.each do |k,v| %>
 <% @poolLostd = @poolLostd + v %>
 <% end %>
 
-<% @poolLeaderboardNPd.each do |k,v| %>
-<% @poolNotPlayedYetd = @poolNotPlayedYetd + v %>
-<% end %>
+<% @poolTotald = @poolLostd + @poolWind %>
+
+
 
 
 <div id="lbPoolClickd">
-<h2 class="orange">Pool</h2>
+<h2 class="orange">&#9776; Pool</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @poolTotald %>)</p>
 <p><%= @poolWind %><% if @poolWind == 1 %> Win<% else %> Wins<% end %></p>
@@ -441,27 +434,11 @@
   </tbody>
 </table>
 
-<table class="w3-table w3-hoverable">
-  <thead>
-    <tr>
-      <th>To be Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @poolLeaderboardNPd.each do |key, value| %>
-<tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
-</tr>   
-  </tbody>
-</table>
-
 
 <table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Recorded</th>
+      <th>Games Played</th>
     </tr>
   </thead>
 
@@ -492,12 +469,7 @@
 <% @tableTennisTotald = 0 %>
 <% @tableTennisWind = 0 %>
 <% @tableTennisLostd = 0 %>
-<% @tableTennisNotPlayedYetd = 0 %>
 
-
-<% @totalttd.each do |k,v| %>
-<% @tableTennisTotald = @tableTennisTotald + v %>
-<% end %>
 
 <% @ttLeaderboardWd.each do |k,v| %>
 <% @tableTennisWind = @tableTennisWind + v %>
@@ -507,12 +479,10 @@
 <% @tableTennisLostd = @tableTennisLostd + v %>
 <% end %>
 
-<% @ttLeaderboardNPd.each do |k,v| %>
-<% @tableTennisNotPlayedYetd = @tableTennisNotPlayedYetd + v %>
-<% end %>
+<% @tableTennisTotald = @tableTennisLostd + @tableTennisWind  %>
 
 <div id="lbTTClickd">
-<h2 class="orange">Table Tennis</h2>
+<h2 class="orange">&#9776; Table Tennis</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @tableTennisTotald %>)</p>
 <p><%= @tableTennisWind %><% if @tableTennisWind == 1 %> Win<% else %> Wins<% end %></p>
@@ -557,26 +527,11 @@
   </tbody>
 </table>
 
-<table class="w3-table w3-hoverable">
-  <thead>
-    <tr>
-      <th>To be Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @ttLeaderboardNPd.each do |key, value| %>
-<tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
-</tr>   
-  </tbody>
-</table>
 
 <table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Recorded</th>
+      <th>Games Played</th>
     </tr>
   </thead>
 
@@ -607,12 +562,6 @@
 <% @fuseBallTotald = 0 %>
 <% @fuseBallWind = 0 %>
 <% @fuseBallLostd = 0 %>
-<% @fuseBallNotPlayedYetd = 0 %>
-
-
-<% @totalfbd.each do |k,v| %>
-<% @fuseBallTotald = @fuseBallTotald + v %>
-<% end %>
 
 <% @fbLeaderboardWd.each do |k,v| %>
 <% @fuseBallWind = @fuseBallWind + v %>
@@ -622,12 +571,10 @@
 <% @fuseBallLostd = @fuseBallLostd + v %>
 <% end %>
 
-<% @fbLeaderboardNPd.each do |k,v| %>
-<% @fuseBallNotPlayedYetd = @fuseBallNotPlayedYetd + v %>
-<% end %>
+<% @fuseBallTotald = @fuseBallWind + @fuseBallLostd %>
 
 <div id="lbFBClickd"> 
-<h2 class="orange">Fuseball</h2>
+<h2 class="orange">&#9776; Fuseball</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @fuseBallTotald %>)</p>
 <p><%= @fuseBallWind %><% if @fuseBallWind == 1 %> Win<% else %> Wins<% end %></p>
@@ -672,26 +619,11 @@
   </tbody>
 </table>
 
-<table class="w3-table w3-hoverable">
-  <thead>
-    <tr>
-      <th>To be Played</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-<% @fbLeaderboardNPd.each do |key, value| %>
-<tr>
-<td><a class="no-decoration" href="/conversations"><%= key%> (<%= value %>)</a><% end %></td>
-</tr>   
-  </tbody>
-</table>
 
 <table class="w3-table w3-hoverable">
   <thead>
     <tr>
-      <th>Games Recorded</th>
+      <th>Games Played</th>
     </tr>
   </thead>
 

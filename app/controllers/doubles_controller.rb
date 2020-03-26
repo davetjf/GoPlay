@@ -4,9 +4,25 @@ class DoublesController < ApplicationController
   # GET /doubles
   # GET /doubles.json
   def index
-    @doubles = Double.all.order("date ASC")
+    @doubles = Double.all
     @email = current_user.email
   end
+
+  def confirm_one
+    @double = Double.find_by(id: params[:id])
+    @double.update_attribute(:confirm_one, 1)
+    redirect_to "/my_games"
+  end
+  def confirm_two
+    @double = Double.find_by(id: params[:id])
+    @double.update_attribute(:confirm_two, 1)
+    redirect_to "/my_games"
+  end
+  def confirm_three
+    @double = Double.find_by(id: params[:id])
+    @double.update_attribute(:confirm_three, 1)
+    redirect_to "/my_games"
+  end  
 
   # GET /doubles/1
   # GET /doubles/1.json

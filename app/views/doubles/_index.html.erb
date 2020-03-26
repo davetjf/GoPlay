@@ -1,5 +1,5 @@
 
-<h1 id="dx">Doubles</h1><hr class="hr">
+<h1 id="dx">&#9776; Doubles</h1><hr class="hr">
 
 <div id="dxx">
 
@@ -24,7 +24,7 @@
 <% end %></h3>
 
 
-<div id="doublesTable" class="w3-responsive">
+<div id="doublesTablet" class="w3-responsive">
 <table class="hi w3-table-all w3-hoverable w3-border">
   <thead>
     <tr>
@@ -232,7 +232,105 @@
 <hr class="hr" style="width: 50%;">
 <!--end of fuseball-->
 <br>
+
 </div>
+
+
+<div style="border:2px solid red;">
+
+
+
+<h1>Doubles Testing</h1>
+
+
+<h1>Game confirmations</h1>
+<% @doubles.each do |d| %>
+
+
+<% if d.result == 'Yet to be played' %>
+<% else %>
+
+<p>
+
+<% if d.player_two == current_user.username && d.confirm_one != 1 %>
+<%= d.player_one %> has said that they played with you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p><a href="/confirm_one/<%= d.id %>"><button>Confirm</button></a><br>
+<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a>
+<% end %>
+
+<% if d.player_three == current_user.username && d.confirm_two != 1  %>
+  <%= d.player_one %> has said that they played you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p><a href="/confirm_two/<%= d.id %>"><button>Confirm</button></a><br>
+<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a>
+<% end %>
+
+<% if d.player_four == current_user.username && d.confirm_three != 1  %>
+  <%= d.player_one %> has said that they played you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p><a href="/confirm_three/<%= d.id %>"><button>Confirm</button></a><br>
+<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a>
+<% end %>
+
+
+
+
+<% end %>
+<% end %>
+<hr>
+
+<!--end of game confirmation testing-->
+
+<!-----All doubles table below--------->
+<h1>All doubles table</h1>
+
+<table class="w3-table w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Player One</th>
+      <th>Player Two</th>
+      <th>Player Three</th>
+      <th>Player Four</th>
+      <th>Result</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @doubles.each do |d| %>
+    <tr>
+      <% if d.result != 'Yet to be played' %>
+      <td><%= d.game_name %></td>
+      <td><%= d.player_one %></td>
+
+      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>Waiting to confirm<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%><% if d.confirm_one == 1 %>Confirmed<%end%></td>
+      
+      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>Waiting to confirm<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%><% if d.confirm_two == 1 %>Confirmed<%end%></td>
+
+      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>Waiting to confirm<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%><% if d.confirm_three == 1 %>Confirmed<%end%></td>      
+      
+
+      <td><%= d.result %></td>
+    
+
+      <% end %>
+
+
+      
+
+  
+
+      
+
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<!---------------------------------------------------------------------------------------
+  The above code is for testing only 
+---------------------------------------------------------------------------------------->
+
+
+
 
     <script>
   $(document).ready(function(){

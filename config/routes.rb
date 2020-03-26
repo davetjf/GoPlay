@@ -38,6 +38,9 @@ Rails.application.routes.draw do
 
   get '/mygames' => 'my_games#index'
   get '/confirm/:id' => 'my_games#confirm'
+  get '/confirm_one/:id' => 'doubles#confirm_one'
+  get '/confirm_two/:id' => 'doubles#confirm_two'
+  get '/confirm_three/:id' => 'doubles#confirm_three'
 
   get '/lb' => 'my_games#leaderboard'
   get '/sod' => 'pages#sod'
