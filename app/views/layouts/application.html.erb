@@ -30,6 +30,14 @@
   <% end %>
     <% if user_signed_in? %>
 
+    <!------
+Use this code to diplay profile pic in navbar
+
+<% @users.each do |user|%><% if current_user.username == user.username %><%= image_tag avatar_url(user), size: 40, class: "circle" %><%end%><%end%>
+
+
+    ------->
+
   <span style="padding-left:5px;" id="name"><%= link_to current_user.username, edit_user_registration_path, :method => :get, class: "no-decoration" %></span>
 
   <% end %>

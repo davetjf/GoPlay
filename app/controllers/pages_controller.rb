@@ -13,6 +13,29 @@ class PagesController < ApplicationController
     end
 
   end
+
+
+
+    def secretgame
+    if user_signed_in?
+      @my_games = MyGame.all
+      @gameCount = 0
+      
+      @my_games.each do |m| 
+        if m.player_one == current_user.username && m.confirm == 1
+          @gameCount = @gameCount + 1
+        end
+      end
+      if @gameCount >= 10
+      else
+      redirect_to '/'
+      flash[:notice] = "You can't go here just yet..."
+      end
+    else
+      redirect_to '/'
+      flash[:notice] = "You need to be signed in..."
+    end
+  end
 	
   def allgames
     if user_signed_in? && current_user.admin?

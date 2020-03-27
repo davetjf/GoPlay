@@ -24,14 +24,14 @@
 <% @doubles.each do |d| %>
 <% if current_user.username == d.player_one %><% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %></h1>
 <% @singleConfirmed = @singleConfirmed + 1 %><% end %><% end %><% end %>
-<h4><% if @singleConfirmed > 10 %>
-<button>Secret Button</button>
+<h4><% if @singleConfirmed >= 10 %>
+<button class="requests">Game Unlocked</button>
 <% else %>
 <%= @singleConfirmed %> Confirmed. Get <%= 10-@singleConfirmed%> more to unlock secret game</h4>
 <% end %>
 <hr class="hr">
 
-<div id="dxx">
+
 
 <h3 id="doublesClick">&#9776; Confirmation Requests (<%= @a %>)</h3>
 
@@ -75,6 +75,8 @@
 <% end %>
 <hr>
 </div><br>
+
+<div id="dxx">
 
 
 
@@ -449,7 +451,7 @@
   #dx{
     cursor: pointer;
   }
-  #dxx, #dTT, #dpool, #dfb, #doublesTable{
+  #dxx, #dTT, #dpool, #dfb{
     display: none;
   }
 

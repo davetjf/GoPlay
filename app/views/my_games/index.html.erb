@@ -1,12 +1,13 @@
-<style type="text/css">.hi{background-color:white;color:black;}#singlesTable{display:none;}#TT, #pool, #fb{display: none;}
+<style type="text/css">.hi{background-color:white;color:black;}#TT, #pool, #fb{display: none;}
 
 #gameButton{
   height: 30px;
   background-color: #bd6019;
   color: white;
   border:none;
-  font-size: 20px;
   border-radius: 10%;
+  width: 200px;
+  cursor: pointer;
 }
 #gameButton:hover{
   animation: bounce 1s infinite;
@@ -41,16 +42,18 @@
 </style>
 
 
-<div id="conversation" class="w3-container">
-<br><br>
+<div id="conversation" class="w3-container"><br><br>
+<a href="/sod"><button id="gameButton">Create new game</button></a>
+<a href="/lb"><button id="gameButton">Leaderboard</button></a>
+<br><br><br><br>
 
 <h1 id="x">&#9776; Singles
 <% @singleConfirmed = 0 %>
 <% @my_games.each do |m| %>
 <% if m.player_one == current_user.username && m.confirm == 1 %></h1>
 <% @singleConfirmed = @singleConfirmed + 1 %><% end %><% end %>
-<h4><% if @singleConfirmed > 10 %>
-<button>Secret Button</button>
+<h4><% if @singleConfirmed >= 10 %>
+<a href="/secretgame"><button class="requests">Game Unlocked</button></a>
 <% else %>
 <%= @singleConfirmed %> Confirmed. Get <%= 10-@singleConfirmed%> more to unlock secret game</h4>
 <% end %>
@@ -58,7 +61,7 @@
 
 <hr class="hr">
 
-<div id="xx">
+
 
 
 
@@ -95,7 +98,7 @@
 
 
 </div><br>
-
+<div id="xx">
 
 
 <!--all TT-->
@@ -331,10 +334,10 @@
 
 <br>
 
-<%= render 'doubles/index' %><br>
+<%= render 'doubles/index' %>
 
 
-<a href="/sod"><button id="gameButton">Create new game</button></a>
+
 
 
 
