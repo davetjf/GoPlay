@@ -25,7 +25,7 @@
 <% if current_user.username == d.player_one %><% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %></h1>
 <% @singleConfirmed = @singleConfirmed + 1 %><% end %><% end %><% end %>
 <h4><% if @singleConfirmed >= 10 %>
-<button class="requests">Game Unlocked</button>
+<a href="/anothersecretgame"><button class="requests">Game Unlocked</button></a>
 <% else %>
 <%= @singleConfirmed %> Confirmed. Get <%= 10-@singleConfirmed%> more to unlock secret game</h4>
 <% end %>

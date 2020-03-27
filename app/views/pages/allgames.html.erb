@@ -97,7 +97,7 @@
 
 			<td>
 				<% if d.confirm_one != 1 %>
-				<a href="/confirm/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
+				<a href="/confirm_one/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
 				<% else %>
 				Confirmed
 				<% end %>
@@ -105,7 +105,7 @@
 
 			<td>
 				<% if d.confirm_two != 1 %>
-				<a href="/confirm/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
+				<a href="/confirm_two/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
 				<% else %>
 				Confirmed
 				<% end %>
@@ -113,7 +113,7 @@
 
 			<td>
 				<% if d.confirm_three != 1 %>
-				<a href="/confirm/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
+				<a href="/confirm_three/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
 				<% else %>
 				Confirmed				
 				<% end %>
