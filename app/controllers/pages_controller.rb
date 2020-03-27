@@ -14,6 +14,17 @@ class PagesController < ApplicationController
 
   end
 	
+  def allgames
+    if user_signed_in? && current_user.admin?
+      @my_games = MyGame.all
+      @doubles = Double.all
+    else
+      redirect_to '/'
+      flash[:notice] = "You don't have permissions to view this page."
+    end
+
+  end
+
   def allusers
     if  user_signed_in? && current_user.admin?
     @users = User.all

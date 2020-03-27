@@ -1,0 +1,139 @@
+<style type="text/css">
+	.allgamesButton{
+		background-color: orange;
+		color: white;
+		width: 100px;
+		border: none;
+		border-radius: 10%;
+		cursor: pointer;
+	}
+	.allgamesButton:hover{
+		opacity: 0.8;
+	}
+
+	table tr:hover{
+  		color:orange;
+	}
+	table th{
+  		background-color: orange;
+	}
+</style>
+
+<div id="conversation" class="w3-container w3-responsive">
+<!-- start of singles -->
+<br>
+<h1>Singles</h1><hr class="hr">
+<div class="w3-responsive">
+<table class="w3-table">
+	<thead>
+		<tr>
+			<th>Game</th>
+			<th>Player One</th>
+			<th>Player Two</th>
+			<th>Date</th>
+			<th>Result</th>
+			<th>Confirmed</th>
+			
+		</tr>
+	</thead>
+<% @my_games.each do |m| %>
+	<tbody>
+		<tr>
+			<td><%= m.game_name %></td>
+			<td><%= m.player_one %></td>
+			<td><%= m.player_two %></td>
+			<td><%= m.date %></td>
+			<td><%= m.result %></td>
+			<td>
+				<% if m.confirm != 1 %>
+				<a href="/confirm/<%= m.id %>"><button class="allgamesButton">Confirm</button></a>
+				<% else %>
+				Confirmed
+				<% end %>
+
+			</td>
+			<td><i class="far fa-edit"></i><%= link_to 'Edit', edit_my_game_path(m), class: 'no-decoration' %></td>
+      		<td><%= link_to 'Delete', m, method: :delete, class: "no-decoration", data: { confirm: 'Are you sure?' } %></td>
+			
+			
+		</tr>
+	</tbody>
+<% end %>	
+</table>
+</div>
+<hr><br>
+
+<!-- end of singles --> 
+
+<!-- start of doubles -->
+<h1>Doubles</h1><hr class="hr">
+<div class="w3-responsive">
+<table class="w3-table">
+	<thead>
+		<tr>
+			<th>Game</th>
+			<th>Player One</th>
+			<th>Player Two</th>
+			<th>Player Three</th>
+			<th>Player Four</th>
+			<th>Date</th>
+			<th>Result</th>
+			<th>P2 Confirmed</th>
+			<th>P3 Confirmed</th>
+			<th>P4 Confirmed</th>
+			
+		</tr>
+	</thead>
+<% @doubles.each do |d| %>
+	<tbody>
+		<tr>
+			<td><%= d.game_name %></td>
+			<td><%= d.player_one %></td>
+			<td><%= d.player_two %></td>
+			<td><%= d.player_three %></td>
+			<td><%= d.player_four %></td>
+			<td><%= d.date %></td>
+			<td><%= d.result %></td>
+
+			<td>
+				<% if d.confirm_one != 1 %>
+				<a href="/confirm/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
+				<% else %>
+				Confirmed
+				<% end %>
+			</td>
+
+			<td>
+				<% if d.confirm_two != 1 %>
+				<a href="/confirm/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
+				<% else %>
+				Confirmed
+				<% end %>
+			</td>
+
+			<td>
+				<% if d.confirm_three != 1 %>
+				<a href="/confirm/<%= d.id %>"><button class="allgamesButton">Confirm</button></a>
+				<% else %>
+				Confirmed				
+				<% end %>
+			</td>
+
+
+
+			<td><i class="far fa-edit"></i><%= link_to 'Edit', edit_my_game_path(d), class: 'no-decoration' %></td>
+      		<td><%= link_to 'Delete', d, method: :delete, class: "no-decoration", data: { confirm: 'Are you sure?' } %></td>
+			
+			
+		</tr>
+	</tbody>
+<% end %>	
+</table><hr>
+</div>
+
+<!-- end of doubles -->
+
+
+
+
+</div><!--end of container-->

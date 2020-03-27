@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   get '/dashboard' => 'pages#dashboard'
 
+  get '/allgames' => 'pages#allgames'
+
   
 
 
