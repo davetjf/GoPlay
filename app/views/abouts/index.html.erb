@@ -1,3 +1,15 @@
+<style type="text/css">
+    .aButton{
+        width: 200px;
+        border-radius: 10%;
+        background-color: orange;
+        border:none;
+        color: white;
+    }
+    .aButton:hover{
+        opacity: 0.8;
+    }
+</style>
 <div id="aboutPage" class="white w3-container w3-center">
 
 <p id="notice"><%= notice %></p><br>
@@ -8,22 +20,21 @@
 
   
     <% @abouts.each do |about| %>
-     <%= time_ago_in_words(about.created_at) %>
       
         <%= about.title %>
         <%= about.body %><br><br>
 
         <% if user_signed_in? && current_user.admin? %>
         <%#= link_to 'Show', about %><br>
-        <%= link_to 'Edit', edit_about_path(about) %><br>
+        <button class="aButton"><%= link_to 'Edit', edit_about_path(about), class: 'no-decoration' %></button><br><br>
         
-        <%= link_to 'Destroy', about, method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+        <button class="aButton"><%= link_to 'Destroy', about, method: :delete, class: 'no-decoration', data: { confirm: 'Are you sure?' } %></button><br><br>
         <% end %>
     <% end %>
 
 <br>
 <% if user_signed_in? && current_user.admin? %>
-<%= link_to 'New Content', new_about_path %>
+<button class="aButton"><%= link_to 'New Content', new_about_path, class: 'no-decoration' %></button>
 <% end %>
 
 </div>

@@ -22,6 +22,13 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    if user_signed_in? && current_user.admin?
+      @posts = Post.all
+    else
+      redirect_to '/'
+      flash[:notice] = "You don't have permissions to view this page."
+    end
+
   end
 
   def on 

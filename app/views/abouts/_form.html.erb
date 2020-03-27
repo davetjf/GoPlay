@@ -1,3 +1,13 @@
+<style type="text/css">
+  #about_body{
+    background-color: transparent;
+    border: 1px solid orange;
+    width: 100%;
+    height: 300px;
+    color: white;
+  }
+
+</style>
 <%= form_with(model: about, local: true) do |form| %>
   <% if about.errors.any? %>
     <div id="error_explanation">
@@ -11,15 +21,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :about_title %>
-  </div>
+
 
   <div class="field">
-    <%= form.label :body %>
+    <%#= form.label :body %>
     <%= form.text_area :body, id: :about_body %>
-  </div>
+  </div><br>
 
   <div class="actions">
     <%= form.submit %>

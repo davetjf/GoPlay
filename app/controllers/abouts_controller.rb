@@ -10,6 +10,12 @@ class AboutsController < ApplicationController
   # GET /abouts/1
   # GET /abouts/1.json
   def show
+    if user_signed_in? && current_user.admin?
+      @abouts = About.all
+    else
+      redirect_to '/'
+      flash[:notice] = "You don't have permissions to view this page."
+    end
   end
 
   # GET /abouts/new
@@ -33,7 +39,7 @@ class AboutsController < ApplicationController
 
     respond_to do |format|
       if @about.save
-        format.html { redirect_to @about, notice: 'About was successfully created.' }
+        format.html { redirect_to '/abouts', notice: 'About was successfully created.' }
         format.json { render :show, status: :created, location: @about }
       else
         format.html { render :new }
@@ -47,7 +53,7 @@ class AboutsController < ApplicationController
   def update
     respond_to do |format|
       if @about.update(about_params)
-        format.html { redirect_to @about, notice: 'About was successfully updated.' }
+        format.html { redirect_to '/abouts', notice: 'About was successfully updated.' }
         format.json { render :show, status: :ok, location: @about }
       else
         format.html { render :edit }
