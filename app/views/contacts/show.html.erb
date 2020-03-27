@@ -1,24 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div id='conversation' class="w3-container w3-responsive">
 
-<p>
-  <strong>Name:</strong>
+<p style="color:orange">
+  <strong>Name:</strong></p><p>
   <%= @contact.Name %>
 </p>
 
-<p>
-  <strong>Email:</strong>
+<p style="color:orange">
+  <strong>Email:</strong></p><p>
   <%= @contact.email %>
 </p>
 
-<p>
-  <strong>Subject:</strong>
+<p style="color:orange">
+  <strong>Subject:</strong></p><p>
   <%= @contact.subject %>
 </p>
 
-<p>
-  <strong>Message:</strong>
+<p style="color:orange">
+  <strong>Message:</strong></p><p>
   <%= @contact.message %>
 </p>
-
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+<br><br>
+<%#= link_to 'Edit', edit_contact_path(@contact) %>
+<%= link_to 'Back', contacts_path, class: 'no-decoration' %>
+</div>

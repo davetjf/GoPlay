@@ -11,6 +11,13 @@ class ContactsController < ApplicationController
     end
   end
 
+
+  def actioned
+    @contacts = Contact.find_by(id: params[:id])
+    @contacts.update_attribute(:actioned, 1)
+    redirect_to "/messages"
+  end  
+
   # GET /contacts/1
   # GET /contacts/1.json
   def show

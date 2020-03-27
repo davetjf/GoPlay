@@ -1,14 +1,36 @@
-<p id="notice"><%= notice %></p>
+<style type="text/css">
+  .actionedButton{
+    background-color: orange;
+    color: white;
+    width: 100px;
+    border: none;
+    border-radius: 10%;
+    cursor: pointer;
+  }
+  .actionedButton:hover{
+    opacity: 0.8;
+  }
+
+  table tr:hover{
+      color:orange;
+  }
+  table th{
+      background-color: orange;
+  }
+</style>
+
+<div id="conversation" class="w3-container w3-responsive">
 
 <h1>Contacts</h1>
-
-<table>
+<div class="w3-responsive">
+<table class="w3-table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Email</th>
       <th>Subject</th>
-      <th>Message</th>
+      <th>Show</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,15 +41,30 @@
         <td><%= contact.Name %></td>
         <td><%= contact.email %></td>
         <td><%= contact.subject %></td>
-        <td><%= contact.message %></td>
-        <td><%= link_to 'Show', contact %></td>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-        <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', contact, class: 'no-decoration' %></td>
+        <td>
+          <% if contact.actioned != 1 %>
+          <a href="/actioned/<%= contact.id %>"><button class="actionedButton">Actioned</button></a>
+          <% else %>
+          Completed
+          <% end %>
+        </td>
+        
+
+        <!--
+        <td><%#= link_to 'Edit', edit_contact_path(contact) %></td>
+        <td><%#= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        -->
+        <td><%#= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
-<%= link_to 'New Contact', new_contact_path %>
+<%#= link_to 'New Contact', new_contact_path %>
+
+
+</div><!-- end of container -->

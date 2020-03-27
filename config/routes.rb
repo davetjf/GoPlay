@@ -47,5 +47,7 @@ Rails.application.routes.draw do
   get '/lb' => 'my_games#leaderboard'
   get '/sod' => 'pages#sod'
 
+  get '/actioned/:id' => 'contacts#actioned'  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
