@@ -1,249 +1,44 @@
+<% @a = 0 %>
+<% @doubles.each do |d| %>
+<% if d.result == 'Yet to be played' %>
+<% else %>
+<% if d.player_two == current_user.username && d.confirm_one != 1 %>
+<% @a = @a+1 %>
 
-<h1 id="dx">&#9776; Doubles</h1><hr class="hr">
+<% end %>
+<% if d.player_three == current_user.username && d.confirm_two != 1  %>
+<% @a = @a+1 %>
+<% end %>
+<% if d.player_four == current_user.username && d.confirm_three != 1  %>
+<% @a = @a+1 %>
+<% end %>
+<% end %>
+<% end %>
+<!---------------------------->
+
+
+
+
+<h1 id="dx">&#9776; Doubles
+<% @singleConfirmed = 0 %>
+<% @doubles.each do |d| %>
+<% if current_user.username == d.player_one %><% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %></h1>
+<% @singleConfirmed = @singleConfirmed + 1 %><% end %><% end %><% end %>
+<h4><% if @singleConfirmed > 10 %>
+<button>Secret Button</button>
+<% else %>
+<%= @singleConfirmed %> Confirmed. Get <%= 10-@singleConfirmed%> more to unlock secret game</h4>
+<% end %>
+<hr class="hr">
 
 <div id="dxx">
 
+<h3 id="doublesClick">&#9776; Confirmation Requests (<%= @a %>)</h3>
 
 
+<div id="doublesTable" class="w3-responsive">
 
 
-<h3 id="doublesClick">All Games <% @count = 0 %>
-<% @doubles.each do |double| %>
-<% if double.player_one == current_user.username %>
-<% @count = @count + 1 %>
-
-<% end %>
-
-<% end %>
-<% if @count == 0 %>
-(No games played yet)
-<% elsif @count == 1 %>
-(<%= @count %> Game Recorded)
-<% else %>
-(<%= @count %> Games Recorded)
-<% end %></h3>
-
-
-<div id="doublesTablet" class="w3-responsive">
-<table class="hi w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Game name</th>
-      <th>Date</th>
-      <th>Teammate</th>
-      <th>Opponent</th>
-      <th>Opponent</th>
-      <th>Result</th>
-      
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @doubles.each do |double| %>
-      <tr>
-        <% if current_user.username == double.player_one %>
-
-        <td><%= double.game_name %></td>
-        <td><%= double.date %></td>
-        <td><%= double.player_two %></td>
-        <td><%= double.player_three %></td>
-        <td><%= double.player_four %></td>
-        <td><%= double.result %></td>
-        <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(double) %></td>
-        <td><%= link_to 'Delete', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <% else %>
-      
-    <% end %>
-      
-    <% end %>
-  </tbody>
-</table>
-</div>
-<hr class="hr" style="width: 50%;">
-
-
-<!--all TT-->
-<h3 id="dclickTT">Table Tennis <% @count = 0 %>
-<% @doubles.each do |double| %>
-<% if double.player_one == current_user.username %>
-<% if double.game_name == 'Table Tennis' %>
-<% @count = @count + 1 %>
-<% end %>
-<% end %>
-
-<% end %>
-(<%= @count %>)</h3>
-
-
-<div id="dTT" class="w3-responsive">
-<table class="hi w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Game name</th>
-      <th>Date</th>
-      <th>Teammate</th>
-      <th>Opponent</th>
-      <th>Opponent</th>
-      <th>Result</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @doubles.each do |double| %>
-      <tr>
-        <% if current_user.username == double.player_one %>
-        <% if double.game_name == 'Table Tennis' %>
-
-        <td><%= double.game_name %></td>
-        <td><%= double.date %></td>
-        <td><%= double.player_two %></td>
-        <td><%= double.player_three %></td>
-        <td><%= double.player_four %></td>
-        <td><%= double.result %></td>
-        <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(double) %></td>
-        <td><%= link_to 'Delete', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      
-      <% end %>
-
-      <% end %>
-       
-    <% end %>
-      
-  
-  </tbody>
-</table>
-</div> 
-<hr class="hr" style="width: 50%;">
-<!--end of tt-->
-
-<!--all pool-->
-<h3 id="dclickPool">Pool <% @count = 0 %>
-<% @doubles.each do |double| %>
-<% if double.player_one == current_user.username %>
-<% if double.game_name == 'Pool' %>
-<% @count = @count + 1 %>
-<% end %>
-<% end %>
-
-<% end %>
-(<%= @count %>)</h3>
-
-
-<div id="dpool" class="w3-responsive">
-<table class="hi w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Game name</th>
-      <th>Date</th>
-      <th>Teammate</th>
-      <th>Opponent</th>
-      <th>Opponent</th>
-      <th>Result</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @doubles.each do |double| %>
-      <tr>
-        <% if current_user.username == double.player_one %>
-        <% if double.game_name == 'Pool' %>
-
-
-        <td><%= double.game_name %></td>
-        <td><%= double.date %></td>
-        <td><%= double.player_two %></td>
-        <td><%= double.player_three %></td>
-        <td><%= double.player_four %></td>
-        <td><%= double.result %></td>
-        <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(double) %></td>
-        <td><%= link_to 'Delete', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <% end %>
-
-      <% end %>
-       
-    <% end %>
-      
-  
-  </tbody>
-</table>
-</div> 
-<hr class="hr" style="width: 50%;">
-<!--end of pool-->
-
-<!--all fuseball-->
-<h3 id="dclickFB">Fuseball <% @count = 0 %>
-<% @doubles.each do |double| %>
-<% if double.player_one == current_user.username %>
-<% if double.game_name == 'Fuseball' %>
-<% @count = @count + 1 %>
-
-<% end %>
-<% end %>
-<% end %>
-(<%= @count %>)</h3>
-
-
-<div id="dfb" class="w3-responsive">
-<table class="hi w3-table-all w3-hoverable w3-border">
-  <thead>
-    <tr>
-      <th>Game name</th>
-      <th>Date</th>
-      <th>Teammate</th>
-      <th>Opponent</th>
-      <th>Opponent</th>
-      <th>Result</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @doubles.each do |double| %>
-      <tr>
-        <% if current_user.username == double.player_one %>
-        <% if double.game_name == 'Fuseball' %>
-
-
-        <td><%= double.game_name %></td>
-        <td><%= double.date %></td>
-        <td><%= double.player_two %></td>
-        <td><%= double.player_three %></td>
-        <td><%= double.player_four %></td>
-        <td><%= double.result %></td>
-        <td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(double) %></td>
-        <td><%= link_to 'Delete', double, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <% end %>
-
-      <% end %>
-       
-    <% end %>
-      
-  
-  </tbody>
-</table>
-</div> 
-<hr class="hr" style="width: 50%;">
-<!--end of fuseball-->
-<br>
-
-</div>
-
-
-<div style="border:2px solid red;">
-
-
-
-<h1>Doubles Testing</h1>
-
-
-<h1>Game confirmations</h1>
 <% @doubles.each do |d| %>
 
 
@@ -253,18 +48,24 @@
 <p>
 
 <% if d.player_two == current_user.username && d.confirm_one != 1 %>
-<%= d.player_one %> has said that they played with you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p><a href="/confirm_one/<%= d.id %>"><button>Confirm</button></a><br>
-<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a>
+<%= d.player_one %> has said that they played with you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p>
+<a href="/confirm_one/<%= d.id %>"><button class="requests" id="requests1">Confirm</button></a>
+<a href="/conversations"><button class="requests">Message User</button></a>
+<a href="/contacts/new"><button class="requests">Report to Admin</button></a><hr>
 <% end %>
 
 <% if d.player_three == current_user.username && d.confirm_two != 1  %>
-  <%= d.player_one %> has said that they played you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p><a href="/confirm_two/<%= d.id %>"><button>Confirm</button></a><br>
-<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a>
+  <%= d.player_one %> has said that they played you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p>
+<a href="/confirm_two/<%= d.id %>"><button class="requests" id="requests1">Confirm</button></a>
+<a href="/conversations"><button class="requests">Message User</button></a>
+<a href="/contacts/new"><button class="requests">Report to Admin</button></a><hr>
 <% end %>
 
 <% if d.player_four == current_user.username && d.confirm_three != 1  %>
-  <%= d.player_one %> has said that they played you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p><a href="/confirm_three/<%= d.id %>"><button>Confirm</button></a><br>
-<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a>
+  <%= d.player_one %> has said that they played you in <%= d.game_name %> (doubles) on <%= d.date %> and that they <% if d.result == 'Lose' %> Lost<% else %> Won<% end %></p>
+<a href="/confirm_three/<%= d.id %>"><button class="requests" id="requests1">Confirm</button></a>
+<a href="/conversations"><button class="requests">Message User</button></a>
+<a href="/contacts/new"><button class="requests">Report to Admin</button></a><hr>
 <% end %>
 
 
@@ -273,17 +74,60 @@
 <% end %>
 <% end %>
 <hr>
+</div><br>
 
-<!--end of game confirmation testing-->
 
-<!-----All doubles table below--------->
-<h1>All doubles table</h1>
 
+
+<!--all TT-->
+<h3 id="dclickTT">&#9776; Table Tennis
+<% @count = 0 %>
+<% @confirmedNP = 0 %>
+<% @confirmedLost = 0 %>
+<% @confirmedWin = 0 %>
+<% @confirmed = 0 %>
+<% @doubles.each do |d| %>
+<% if d.player_one == current_user.username %>
+<% if d.game_name == 'Table Tennis' %>
+<% @count = @count + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Table Tennis' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmed = @confirmed + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Table Tennis' && d.result == 'Win' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmedWin = @confirmedWin + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Table Tennis' && d.result == 'Lose' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmedLost = @confirmedLost + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Table Tennis' && d.result == 'Yet to be played' && current_user.username == d.player_one %>
+<% @confirmedNP = @confirmedNP + 1 %>
+<% end %>
+<% end %>  
+</h3>
+<ul>
+<li>Recorded: <%= @count %></li>
+<li>Confirmed: <%= @confirmed %></li>
+<li>Won: <%= @confirmedWin %></li>
+<li>Lost: <%= @confirmedLost %></li>
+<li>Waiting to be confirmed: <%= @count - @confirmed - @confirmedNP %></li>
+<li>Still to be played: <%= @confirmedNP %></li>
+</ul><br>
+
+
+<div id="dTT" class="w3-responsive">
 <table class="w3-table w3-hoverable">
   <thead>
     <tr>
       <th>Game</th>
-      <th>Player One</th>
+      <th>Date</th>
       <th>Player Two</th>
       <th>Player Three</th>
       <th>Player Four</th>
@@ -295,39 +139,282 @@
   <tbody>
     <% @doubles.each do |d| %>
     <tr>
-      <% if d.result != 'Yet to be played' %>
+      <% if d.player_one == current_user.username %>
+      <% if d.game_name == 'Table Tennis' %>
       <td><%= d.game_name %></td>
-      <td><%= d.player_one %></td>
+      <td><%= d.date %></td>
 
-      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>Waiting to confirm<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%><% if d.confirm_one == 1 %>Confirmed<%end%></td>
-      
-      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>Waiting to confirm<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%><% if d.confirm_two == 1 %>Confirmed<%end%></td>
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_two %></td>
+      <% else %>
+      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_one == 1 %>Confirmed<%end%></td>
+      <% end %>
 
-      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>Waiting to confirm<a href="/conversations"><button>Message User</button></a><a href="/contacts/new"><button>Report to Admin</button></a><%end%><% if d.confirm_three == 1 %>Confirmed<%end%></td>      
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_three %></td>
+      <% else %>
+      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_two == 1 %>Confirmed<%end%></td>
+      <% end %>
+
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_four %></td>
+      <% else %>
+      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_three == 1 %>Confirmed<%end%></td> 
+      <% end %>
       
 
       <td><%= d.result %></td>
+      <% if d.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(d), class: 'no-decoration' %></td>
+      <td><%= link_to 'Delete', d, method: :delete,class: 'no-decoration', data: { confirm: 'Are you sure?' } %></td><% end %>
     
 
       <% end %>
-
-
-      
-
-  
-
-      
-
-
     </tr>
+   
+    <% end %>
     <% end %>
   </tbody>
 </table>
+<hr class="hr">
+</div><br>
+<hr>
+
+<!--end of tt-->
+
+<!--all pool-->
+<h3 id="dclickPool">&#9776; Pool
+<% @count = 0 %>
+<% @confirmedNP = 0 %>
+<% @confirmedLost = 0 %>
+<% @confirmedWin = 0 %>
+<% @confirmed = 0 %>
+<% @doubles.each do |d| %>
+<% if d.player_one == current_user.username %>
+<% if d.game_name == 'Pool' %>
+<% @count = @count + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Pool' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmed = @confirmed + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Pool' && d.result == 'Win' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmedWin = @confirmedWin + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Pool' && d.result == 'Lose' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmedLost = @confirmedLost + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Pool' && d.result == 'Yet to be played' %>
+<% @confirmedNP = @confirmedNP + 1 %>
+<% end %>
+<% end %>  
+</h3>
+<ul>
+<li>Recorded: <%= @count %></li>
+<li>Confirmed: <%= @confirmed %></li>
+<li>Won: <%= @confirmedWin %></li>
+<li>Lost: <%= @confirmedLost %></li>
+<li>Waiting to be confirmed: <%= @count - @confirmed - @confirmedNP %></li>
+<li>Still to be played: <%= @confirmedNP %></li>
+</ul><br>
+
+
+<div id="dpool" class="w3-responsive">
+<table class="w3-table w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Date</th>
+      <th>Player Two</th>
+      <th>Player Three</th>
+      <th>Player Four</th>
+      <th>Result</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @doubles.each do |d| %>
+    <tr>
+      <% if d.player_one == current_user.username %>
+      <% if d.game_name == 'Pool' %>
+      <td><%= d.game_name %></td>
+      <td><%= d.date %></td>
+
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_two %></td>
+      <% else %>
+      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_one == 1 %>Confirmed<%end%></td>
+      <% end %>
+
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_three %></td>
+      <% else %>
+      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_two == 1 %>Confirmed<%end%></td>
+      <% end %>
+
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_four %></td>
+      <% else %>
+      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_three == 1 %>Confirmed<%end%></td> 
+      <% end %>
+      
+
+      <td><%= d.result %></td>
+      <% if d.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(d), class: 'no-decoration' %></td>
+      <td><%= link_to 'Delete', d, method: :delete,class: 'no-decoration', data: { confirm: 'Are you sure?' } %></td><% end %>
+    
+
+      <% end %>
+    </tr>
+   
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+<hr class="hr">
+</div><br>
+<hr>
+
+<!--end of pool-->
+
+<!--all fuseball-->
+<h3 id="dclickFB">&#9776; Fuseball
+<% @count = 0 %>
+<% @confirmedNP = 0 %>
+<% @confirmedLost = 0 %>
+<% @confirmedWin = 0 %>
+<% @confirmed = 0 %>
+<% @doubles.each do |d| %>
+<% if d.player_one == current_user.username %>
+<% if d.game_name == 'Fuseball' %>
+<% @count = @count + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Fuseball' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmed = @confirmed + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Fuseball' && d.result == 'Win' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmedWin = @confirmedWin + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Fuseball' && d.result == 'Lose' && current_user.username == d.player_one %>
+<% if d.confirm_one == 1 && d.confirm_two == 1 && d.confirm_three == 1 %>
+<% @confirmedLost = @confirmedLost + 1 %>
+<% end %>
+<% end %>
+<% if d.game_name == 'Fuseball' && d.result == 'Yet to be played' && current_user.username == d.player_one %>
+<% @confirmedNP = @confirmedNP + 1 %>
+<% end %>
+<% end %>  
+</h3>
+<ul>
+<li>Recorded: <%= @count %></li>
+<li>Confirmed: <%= @confirmed %></li>
+<li>Won: <%= @confirmedWin %></li>
+<li>Lost: <%= @confirmedLost %></li>
+<li>Waiting to be confirmed: <%= @count - @confirmed - @confirmedNP %></li>
+<li>Still to be played: <%= @confirmedNP %></li>
+</ul><br>
+
+
+<div id="dfb" class="w3-responsive">
+<table class="w3-table w3-hoverable">
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Date</th>
+      <th>Player Two</th>
+      <th>Player Three</th>
+      <th>Player Four</th>
+      <th>Result</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @doubles.each do |d| %>
+    <tr>
+      <% if d.player_one == current_user.username %>
+      <% if d.game_name == 'Fuseball' %>
+      <td><%= d.game_name %></td>
+      <td><%= d.date %></td>
+
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_two %></td>
+      <% else %>
+      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_one == 1 %>Confirmed<%end%></td>
+      <% end %>
+
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_three %></td>
+      <% else %>
+      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_two == 1 %>Confirmed<%end%></td>
+      <% end %>
+
+      <% if d.result == 'Yet to be played' %>
+      <td><%= d.player_four %></td>
+      <% else %>
+      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>Waiting to confirm
+      <a href="/conversations"><button class="requests">Message User</button></a>
+      <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
+      <%end%><% if d.confirm_three == 1 %>Confirmed<%end%></td> 
+      <% end %>
+      
+
+      <td><%= d.result %></td>
+      <% if d.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(d), class: 'no-decoration' %></td>
+      <td><%= link_to 'Delete', d, method: :delete,class: 'no-decoration', data: { confirm: 'Are you sure?' } %></td><% end %>
+    
+
+      <% end %>
+    </tr>
+   
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+<hr class="hr">
+</div><br>
+
+
+<!--end of fuseball-->
+
+<hr class="hr">
 </div>
 
-<!---------------------------------------------------------------------------------------
-  The above code is for testing only 
----------------------------------------------------------------------------------------->
 
 
 

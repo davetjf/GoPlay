@@ -31,10 +31,10 @@
 .requests:hover{
   animation: bounce 1s infinite;
 }
-#TT table tr:hover, #pool table tr:hover{
+#TT table tr:hover, #pool table tr:hover, #fb table tr:hover, #dTT table tr:hover, #dpool table tr:hover, #dfb table tr:hover{
   color:black;
 }
-#TT table th, #pool table th{
+#TT table th, #pool table th, #fb table th, #dTT table th, #dpool table th, #dfb table th{
   background-color: orange;
 }
 
@@ -170,7 +170,8 @@
   </tbody>
 </table>
 <hr class="hr">
-</div> 
+</div>
+<hr>
 
 <!--end of tt-->
 
@@ -246,11 +247,12 @@
 </table>
 <hr class="hr">
 </div> 
+<hr>
 
 <!--end of pool-->
 
 <!--all fuseball-->
-<h3 id="clickFB">&#9776; Pool
+<h3 id="clickFB">&#9776; Fuseball
 <% @count = 0 %>
 <% @confirmedNP = 0 %>
 <% @confirmedLost = 0 %>
@@ -321,6 +323,7 @@
 </table>
 <hr class="hr">
 </div> 
+<hr>
 
 <!--end of fuseball-->
 </div> <!--end of singles container-->
@@ -333,19 +336,7 @@
 
 <a href="/sod"><button id="gameButton">Create new game</button></a>
 
-<!---------------------------------------------------------------------------------------
-  The below code is for testing only 
----------------------------------------------------------------------------------------->
 
-
-
-
-
-
-
-<!---------------------------------------------------------------------------------------
-  The above code is for testing only 
----------------------------------------------------------------------------------------->
 
 
 
