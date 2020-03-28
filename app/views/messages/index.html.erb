@@ -26,8 +26,9 @@
 <%= form_for [@conversation, @message] do |f| %>
   <%= f.text_area :body, class: "textareaConvo", placeholder: "type your message here..." %>
   <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div class="text-align-right">
-    <%= f.submit "Send", class: "messageButton" %>
+  <div class="text-align-right"><br>
+    <%= f.submit "Send", class: "messageButton" %><br><br><br>
+    <a href="/conversations" class="no-decoration">Back</a>
   </div>
 <% end %>
 </div>
@@ -35,7 +36,7 @@
 <style type="text/css">
 
   .messageButton{
-    width: 15%;
+    width:100px;
     height: 35px;
     color:white;
     background-color: #bd6019;

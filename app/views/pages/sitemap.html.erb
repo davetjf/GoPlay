@@ -1,0 +1,60 @@
+<div id="conversation" class="w3-container w3-responsive">
+	
+<ul>
+	<li><a href="/">Home</a></li>
+		<ul>
+			<li><a href="/about">About</a></li>
+			<li><a href="/dashboard">Dashboard</a></li>
+			<% if user_signed_in? %>
+			<li><a><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></a></li>
+			<li><a><%= link_to 'Edit Profile', edit_user_registration_path, :method => :get %></a></li>
+			<% else %>
+			<li><a><%= link_to 'Login', new_user_session_path %></a></li>
+      		<li><a><%= link_to 'Register', new_user_registration_path %></a></li>
+			<% end %>
+			<li><a href="/contacts/new">Message Admin</a></li>
+			<li><a href="/sitemap">Sitemap</a></li>
+		</ul><br>
+
+	<li><a href="/dashboard">Dashboard</a></li>
+		<ul>
+			<li><a href="/my_games">My Games</a></li>
+				<ul>
+					<li><a href="/sod">Create New Game</a></li>
+				</ul>
+			<li><a href="/lb">Leaderboard</a></li>
+			<li><a href="/posts">Notice Board</a></li>
+			<li><a href="/conversations">Chats</a></li>
+		</ul><br><hr>
+
+	<% if user_signed_in? && current_user.admin? %>
+
+		<p>Admin Panel</p>
+      <li><a><%= link_to 'All Users', '/allusers' %></a></li>
+      <li><a><%= link_to 'Messages', '/messages' %></a></li>
+      <li><a><%= link_to 'Edit "About" Page', '/about' %></a></li>
+      <li><a><%= link_to 'New Notice', new_post_path %></a></li>
+      <li><a><%= link_to 'All Games', '/allgames' %></a></li>
+      <hr>
+	
+	<% end%>
+</ul>
+
+
+
+
+
+
+</div>
+
+<style type="text/css">
+	li{
+		color: orange;
+	}
+	li a{
+		text-decoration: none;
+	}
+	a:hover{
+		opacity: 0.8;
+	}
+</style>

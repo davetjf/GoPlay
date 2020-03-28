@@ -16,6 +16,7 @@ class PagesController < ApplicationController
 
 
 
+
     def secretgame
     if user_signed_in?
       @my_games = MyGame.all

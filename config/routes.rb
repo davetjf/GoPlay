@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   root :to => 'pages#home'
   get '/user' => "pages#dashboard", :as => :user_root
   
-  
+  get '/sitemap' => 'pages#sitemap'
 
   get '/contact' => 'contacts#new'
   get '/messages' => 'contacts#index'
