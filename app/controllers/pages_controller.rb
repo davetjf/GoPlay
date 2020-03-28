@@ -6,10 +6,16 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @posts=Post.all
-    if  user_signed_in? == false 
-      redirect_to '/users/sign_in'
-      flash[:notice] = "You need to register or log in first"
+
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
+      @posts=Post.all
+        if  user_signed_in? == false 
+        redirect_to '/users/sign_in'
+        flash[:notice] = "You need to register or log in first"
+        end
     end
 
   end
@@ -18,6 +24,10 @@ class PagesController < ApplicationController
 
 
     def secretgame
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     if user_signed_in?
       @my_games = MyGame.all
       @gameCount = 0
@@ -36,9 +46,14 @@ class PagesController < ApplicationController
       redirect_to '/'
       flash[:notice] = "You need to be signed in..."
     end
+    end
   end
 
     def anothersecretgame
+        if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     if user_signed_in?
       @doubles = Double.all
       @gameCount = 0
@@ -57,6 +72,7 @@ class PagesController < ApplicationController
       redirect_to '/'
       flash[:notice] = "You need to be signed in..."
     end
+  end
   end
 	
   def allgames
@@ -91,12 +107,28 @@ class PagesController < ApplicationController
     redirect_to "/allusers"
    end
 
+  def block
+    @user = User.find_by(id: params[:id])
+    @user.update_attribute(:blocked, true)
+    redirect_to "/allusers"
+  end
+  
+  def unblock
+    @user = User.find_by(id: params[:id])
+    @user.update_attribute(:blocked, false)
+    redirect_to "/allusers"
+  end
+
     def sod
+          if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     if  user_signed_in? == false 
       redirect_to '/'
       flash[:notice] = "You need to register or log in first"
     end
-
+end
   end
 
 

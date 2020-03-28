@@ -3,8 +3,13 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     @users = User.all
     @conversations = Conversation.all    
+  end
     
   end
 

@@ -5,8 +5,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     @posts = Post.all.order("created_at DESC")
-    
+    end
   end
 
   # GET /posts/1

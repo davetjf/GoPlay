@@ -4,7 +4,7 @@ class GameNamesController < ApplicationController
   # GET /game_names
   # GET /game_names.json
   def index
-    @game_names = GameName.all
+redirect_to '/'
   end
 
   # GET /game_names/1
@@ -14,7 +14,7 @@ class GameNamesController < ApplicationController
 
   # GET /game_names/new
   def new
-    @game_name = GameName.new
+redirect_to '/'
   end
 
   # GET /game_names/1/edit

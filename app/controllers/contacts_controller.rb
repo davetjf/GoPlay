@@ -38,6 +38,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+    redirect_to '/contacts'
   end
 
   # POST /contacts

@@ -3,6 +3,10 @@ class MessagesController < ApplicationController
   before_action :find_conversation
 
   def index
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     @messages = @conversation.messages
     
 
@@ -18,8 +22,10 @@ class MessagesController < ApplicationController
 
     @message = @conversation.messages.new
   end
+  end
 
   def create
+    
     @message = @conversation.messages.new(message_params)
     if @message.save
       redirect_to conversation_messages_path(@conversation)
@@ -27,7 +33,12 @@ class MessagesController < ApplicationController
   end
 
   def new
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else    
     @message = @conversation.messages.new
+  end
   end
 
 

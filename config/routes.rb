@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   get '/upgrade/:id' => 'pages#upgrade'
   get '/downgrade/:id' => 'pages#downgrade'
+  get '/block/:id' => 'pages#block'
+  get '/unblock/:id' => 'pages#unblock'
   get '/allusers' => 'pages#allusers'
 
   get '/mygames' => 'my_games#index'

@@ -4,8 +4,13 @@ class DoublesController < ApplicationController
   # GET /doubles
   # GET /doubles.json
   def index
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else    
     @doubles = Double.all
     @email = current_user.email
+  end
   end
 
   def confirm_one
@@ -27,21 +32,31 @@ class DoublesController < ApplicationController
   # GET /doubles/1
   # GET /doubles/1.json
   def show
+    redirect_to '/my_games'
   end
 
   # GET /doubles/new
   def new
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     @double = Double.new
     @users = User.all
     @email = current_user.email
     @game_names = GameName.all
-   
+    end
   end
 
   # GET /doubles/1/edit
   def edit
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     @users = User.all
     @game_names = GameName.all
+    end
   end
 
   # POST /doubles

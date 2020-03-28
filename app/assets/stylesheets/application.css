@@ -372,10 +372,10 @@ footer a{
 	text-decoration: none;
 
 }
-#div1 { background: #64AFE4; border-left:5px solid #bd6019;}
+#div1 { background: #103f4f; border-left:5px solid #bd6019;}
 #div2 { background: #528BB3; border-right:5px solid #bd6019;}
-#div3 { background: #81A5BD; border-left:5px solid #bd6019;}
-#div4 { background: #9ACBEC; border-right:5px solid #bd6019;}
+#div3 { background: #528BB3; border-left:5px solid #bd6019;}
+#div4 { background: #103f4f; border-right:5px solid #bd6019;}
 
 #dash{
 	height: 100%;

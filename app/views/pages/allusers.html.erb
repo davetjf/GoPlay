@@ -12,13 +12,20 @@
    <tr><td>User Id: <%= user.id %></td></tr>
    <tr><td>Email: <%= user.email %></td></tr>
    <tr><td>Username: <%= user.username %></td></tr>
-   <tr><td>Admin: <%= user.admin %></td></tr>
-
-   <% if user.admin == true %>
-   <tr><td><a href="/downgrade/<%= user.id %>"><button class="adminButton">Remove Admin</button></a></td></tr>
+   <tr><td>Admin:    <% if user.admin == true %>
+  <a href="/downgrade/<%= user.id %>"><button class="adminButton">Remove Admin</button></a>
    <% else %>
-   <tr><td><a href="/upgrade/<%= user.id %>"><button class="adminButton">Make Admin</button></a></td><tr>
-   <% end %>
+   <a href="/upgrade/<%= user.id %>"><button class="adminButton">Make Admin</button></a>
+   <% end %></td></tr>
+   <tr><td>Blocked:    <% if user.blocked == true %>
+   <a href="/unblock/<%= user.id %>"><button class="adminButton">Unblock</button></a>
+   <% else %>
+  <a href="/block/<%= user.id %>"><button class="adminButton">Block</button></a>
+   <% end %>   </td></tr>
+
+
+
+
    
 	
     </table>

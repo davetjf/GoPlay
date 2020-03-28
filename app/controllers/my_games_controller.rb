@@ -5,9 +5,14 @@ class MyGamesController < ApplicationController
   # GET /my_games
   # GET /my_games.json
   def index
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else
     @my_games = MyGame.all
     @doubles = Double.all
     @users = User.all
+  end
   end
 
   def confirm
@@ -23,6 +28,10 @@ class MyGamesController < ApplicationController
 
 
   def leaderboard
+    if current_user.blocked == true
+      redirect_to '/contacts/new'
+      flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
+    else    
     @my_games = MyGame.all
     @users = User.all
     @doubles = Double.all
@@ -65,7 +74,7 @@ class MyGamesController < ApplicationController
     #@fbLeaderboardNPd = Double.all.group(:player_one).where("result = 'Yet to be played' AND game_name = 'Fuseball' AND confirm_one = 1 AND confirm_two = 1 AND confirm_three = 1 ").count.sort_by {|k,v| -v}
     @totalfbd = Double.all.group(:player_one).where("game_name = 'Fuseball' AND confirm_one = 1 AND confirm_two = 1 AND confirm_three = 1 ").count.sort_by {|k,v| -v}
 
-
+end
 
 
   end
