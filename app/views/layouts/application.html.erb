@@ -24,30 +24,35 @@
 
 <div id="navbar">
 
-  
-  <% if user_signed_in? && current_user.admin? %>
-  <span id="adminButton" onclick="openAdmin()">Admin Panel</span>
-  <% end %>
-    <% if user_signed_in? %>
+ <% if user_signed_in? %>
+<span style="margin-left: 5px"><% @users.each do |user|%><% if current_user.username == user.username %><a href="/users/edit"><%= image_tag avatar_url(user), size: 40, class: "circle" %></a><%end%><%end%></span>  
+
+   
 
     <!------
 Use this code to diplay profile pic in navbar
 
 <% @users.each do |user|%><% if current_user.username == user.username %><%= image_tag avatar_url(user), size: 40, class: "circle" %><%end%><%end%>
+------->
 
 
-    ------->
 
+    
+<!--
   <span style="padding-left:5px;" id="name"><%= link_to current_user.username, edit_user_registration_path, :method => :get, class: "no-decoration" %></span>
+-->
 
   <% end %>
 
-  <span id="navbarMenu" onclick="openNav()">&#9776;</span>
+  <span style="line-height: 2; margin-left: 5px" id="navbarMenu" onclick="openNav()">&#9776;</span>
+    <% if user_signed_in? && current_user.admin? %>
+  <span style="line-height: 2;" id="adminButton" onclick="openAdmin()">&#9776;</span>
+  <% end %>
   <a href="/"><img id="navlogo" class="w3-responsive" src="https://sem4project.s3-eu-west-1.amazonaws.com/assets/favicon.PNG"/></a>
 
 
 </div>
-<div style="background-color:#bd6019" class="white w3-center"><%= notice %></div>
+<div style="background-color:#bd6019; margin-right: 5px" class="white w3-center"><%= notice %></div>
 
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -133,6 +138,7 @@ function closeAdmin() {
   
   <footer>
   	<div class="top-footer w3-center"><a href="/contact"><i id="bfm"  class="far fa-comment fa-2x">  Message Admin</i></a></div>
+
   	<div class="bottom-footer w3-center">GoPlay &copy; 2020 </div>
   </footer>
   </body>
