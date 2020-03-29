@@ -12,6 +12,13 @@ class ConversationsController < ApplicationController
   end
     
   end
+  
+  def search
+     st = "%#{params[:q]}%"
+     @users = User.where("username like ? or lower(username) like ? or upper(username) like ?", st, st, st)
+     @st = "#{params[:q]}"
+  end
+
 
   def create
     if Conversation.between(params[:sender_id], params[:recipient_id]).present?

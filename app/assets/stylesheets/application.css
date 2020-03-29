@@ -171,7 +171,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 
 .homeContainer{
 	height:100%;
-	background-image: url(https://sem4project.s3-eu-west-1.amazonaws.com/assets/homepage.jfif);
+	background-image: url(https://sem4project.s3-eu-west-1.amazonaws.com/9.jpg);
 	background-size: cover;
 	background-position: center;
 	/*background: #103f4f;
@@ -190,6 +190,7 @@ https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay
 	background-color: #103f4f;
 	border:2px solid #bd6019;
 	color: #fff;
+	cursor: pointer;
 }
 
 .fa-chevron-right{

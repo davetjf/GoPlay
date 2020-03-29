@@ -1,0 +1,20 @@
+<div id="conversation" class="w3-container w3-responsive">
+<h2>You searched for <%= @st %></h2>
+
+<% if @users.length == 0  %>
+<br />
+<h2>No users were found to match your search</h2>
+<% end %>
+
+  <% @users.each do |user| %>
+      <% if user.id != current_user.id %>
+
+       <div><%= image_tag avatar_url(user), size: 48, class: "circle" %><%= link_to "  #{user.username}", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post", class: "no-decoration testButton" %> <i class="far fa-comment-dots fa-md"></i><br><br></div>
+
+
+
+      <% end %>
+    <% end %>
+    
+    <%= render 'layouts/search' %>
+</div

@@ -12,6 +12,11 @@ class MyGamesController < ApplicationController
     @my_games = MyGame.all
     @doubles = Double.all
     @users = User.all
+
+
+
+    @mostPlayed = MyGame.all.where("result = 'Win' OR result = 'Lose'")
+
   end
   end
 
