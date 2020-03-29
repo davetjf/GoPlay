@@ -22,9 +22,20 @@
   color: white;
   padding: 5px;
   margin: 2px;
-
-
-
+}
+.requestsTable{
+  width: 100px;
+  font-size: 15px;
+  background-color: #103f4f;
+  border: 2px solid orange;
+  border-radius: 10%;
+  cursor: pointer;
+  color: white;
+  margin: 2px;
+}
+.requestsTable:hover{
+  background-color: orange;
+  color: black;
 }
 #requests1{
   background-color: orange;
@@ -204,10 +215,10 @@
 
 
         <% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
-        <a href="/conversations"><button class="requests">Message User</button></a>
-        <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
-        <a href="/conversations"><button class="requests">Message User</button></a>
-        <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%></td>
+        <a href="/conversations"><button class="requestsTable">Message</button></a>
+        <a href="/contacts/new"><button class="requestsTable">Report</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
+        <a href="/conversations"><button class="requestsTable">Message</button></a>
+        <a href="/contacts/new"><button class="requestsTable">Report</button></a><%end%></td>
     </tr>
     <% else %>
     <% end %>
@@ -318,10 +329,10 @@
 
 
         <% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
-        <a href="/conversations"><button class="requests">Message User</button></a>
-        <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
-        <a href="/conversations"><button class="requests">Message User</button></a>
-        <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%></td>
+        <a href="/conversations"><button class="requestsTable">Message</button></a>
+        <a href="/contacts/new"><button class="requestsTable">Report</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
+        <a href="/conversations"><button class="requestsTable">Message</button></a>
+        <a href="/contacts/new"><button class="requestsTable">Report</button></a><%end%></td>
     </tr>
     <% else %>
     <% end %>
@@ -429,10 +440,10 @@
 
 
         <% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
-        <a href="/conversations"><button class="requests">Message User</button></a>
-        <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
-        <a href="/conversations"><button class="requests">Message User</button></a>
-        <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%></td>
+        <a href="/conversations"><button class="requestsTable">Message</button></a>
+        <a href="/contacts/new"><button class="requestsTable">Report</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
+        <a href="/conversations"><button class="requestsTable">Message</button></a>
+        <a href="/contacts/new"><button class="requestsTable">Report</button></a><%end%></td>
     </tr>
     <% else %>
     <% end %>
