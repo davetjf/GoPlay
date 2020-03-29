@@ -39,12 +39,12 @@
 <br>
 <% if user_signed_in? && current_user.admin? %>
 <button class="aButton"><%= link_to 'New Content', new_about_path, class: 'no-decoration' %></button>
-<% end %>
+<% end %><br><br>
 
             <% if user_signed_in? %>
             <button class="aButton"><a class="no-decoration" href="/dashboard">Dashboard</a></button>
             <% else %>
-            <button class="aButton"><%= link_to 'Login', new_user_session_path, class: 'no-decoration' %></button>
+            <button class="aButton"><%= link_to 'Login', new_user_session_path, class: 'no-decoration' %></button><br><br>
             <button class="aButton"><%= link_to 'Register', new_user_registration_path, class: 'no-decoration' %></button>
             <% end %><br><br>
             <%= link_to "Back", :back, class: "no-decoration white" %>

@@ -52,7 +52,7 @@ Use this code to diplay profile pic in navbar
 
 
 </div>
-<div style="background-color:#bd6019; margin-right: 5px" class="white w3-center"><%= notice %></div>
+<div id="notice" style="background-color:#bd6019; margin-right: 5px" class="white w3-center"><%= notice %></div>
 
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -145,5 +145,14 @@ function closeAdmin() {
   	<div class="bottom-footer w3-center">GoPlay &copy; 2020 | 
     <a href="/sitemap"><i class="fas fa-sitemap"></i></a> </div>
   </footer>
+
+
+<script>
+  $(document).ready(function(){
+$("#notice").delay(2000).fadeOut("slow");
+});
+</script>
+
+
   </body>
 </html>
