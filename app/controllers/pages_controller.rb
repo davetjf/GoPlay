@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def dashboard
 
-    if current_user.blocked == true
+    if user_signed_in? && current_user.blocked == true
       redirect_to '/contacts/new'
       flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
     else
@@ -24,7 +24,7 @@ class PagesController < ApplicationController
 
 
     def secretgame
-    if current_user.blocked == true
+    if  user_signed_in? && current_user.blocked == true
       redirect_to '/contacts/new'
       flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
     else
