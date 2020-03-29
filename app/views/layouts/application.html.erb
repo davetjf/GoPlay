@@ -44,9 +44,9 @@ Use this code to diplay profile pic in navbar
 
   <% end %>
 
-  <span style="line-height: 2; margin-left: 5px; color: orange;" id="navbarMenu" onclick="openNav()">&#9776;</span>
+  <span style="line-height: 2; margin-left: 5px; color: orange;" id="navbarMenu" onclick="openNav()"><i class="fas fa-bars"></i></span>
     <% if user_signed_in? && current_user.admin? %>
-  <span style="line-height: 2; color: orange;" id="adminButton" onclick="openAdmin()">&#9776;</span>
+  <span style="line-height: 2; color: orange;" id="adminButton" onclick="openAdmin()"><i class="fas fa-bars"></i></span>
   <% end %>
   <a href="/"><img id="navlogo" class="w3-responsive" src="https://sem4project.s3-eu-west-1.amazonaws.com/assets/favicon.PNG"/></a>
 
