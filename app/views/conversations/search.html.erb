@@ -1,9 +1,12 @@
 <div id="conversation" class="w3-container w3-responsive">
-<h2>You searched for <%= @st %></h2>
+<h4>You searched for <span style="color: orange;font-weight: 700"><%= @st %></span></h4><br><br>
+<% if @st == current_user.username %>
+<p>No need to search for yourself!</p>
+<% end %> 
 
 <% if @users.length == 0  %>
 <br />
-<h2>No users were found to match your search</h2>
+<h4>No users were found to match your search</h4><br><br>
 <% end %>
 
   <% @users.each do |user| %>
@@ -14,7 +17,25 @@
 
 
       <% end %>
-    <% end %>
+    <% end %><br><br>
     
-    <%= render 'layouts/search' %>
-</div
+    <%= render 'layouts/search' %> <br><br><br>
+
+    <a href="/dashboard"><button>Dashboard</button></a><br><br>
+</div>
+
+<style type="text/css">
+	button{
+  width:200px;
+  color: white;
+  background-color: #bd6019;
+  border-radius: 10%;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover{
+  opacity: 0.8;
+  animation: bounce 1s infinite;
+}
+</style>

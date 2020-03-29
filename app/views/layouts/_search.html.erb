@@ -1,5 +1,28 @@
 <%= form_tag("/search", :method => "post") do %>
-<%= label_tag(:q, "Search for:") %>
-<%= text_field_tag(:q) %>
-<%= submit_tag("Search") %>
+<%#= label_tag(:q, "Search for:") %>
+<%= text_field_tag(:q, 'Search users...') %><br><br>
+<%= submit_tag("Search", :class=>"sButton") %>
 <% end %>
+
+<style type="text/css">
+	#q{
+		background-color: #103f4f;
+		border: none;
+		color: white;
+		width: 100%;
+		border: 1px solid orange;
+		height: 50px;
+	}
+.sButton{
+	width: 150px;
+	background-color: orange;
+	border-radius: 10%;
+	border: none;
+	font-weight: 700;
+}
+.sButton:hover{
+	background-color: transparent;
+	color: white;
+	border: 1px solid orange;
+}
+</style>
