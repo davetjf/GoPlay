@@ -60,7 +60,7 @@
 
 <!-- Start of singles -->
 <hr class="hr">
-<h1 id="lbSingleClick">&#9776; Singles Leaderboard</h1><hr class="hr">
+<h1 id="lbSingleClick"><i class="fas fa-bars"></i> Singles Leaderboard</h1><hr class="hr">
 <div class="singleTable">
 <!-- start of pool --> 
 <% @poolTotal = 0 %>
@@ -89,7 +89,7 @@
 
 
 <div id="lbPoolClick">
-<h2 class="orange">&#9776; Pool</h2>
+<h2 class="orange"><i class="fas fa-bars"></i> Pool</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @poolTotal %>)</p>
 <p><%= @poolWin %><% if @poolWin == 1 %> Win<% else %> Wins<% end %></p>
@@ -190,7 +190,7 @@
 <% @tableTennisTotal = @tableTennisWin + @tableTennisLost %>
 
 <div id="lbTTClick">
-<h2 class="orange">&#9776; Table Tennis</h2>
+<h2 class="orange"><i class="fas fa-bars"></i> Table Tennis</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @tableTennisTotal %>)</p>
 <p><%= @tableTennisWin %><% if @tableTennisWin == 1 %> Win<% else %> Wins<% end %></p>
@@ -285,7 +285,7 @@
 <% @fuseBallTotal = @fuseBallWin + @fuseBallLost %>
 
 <div id="lbFBClick">
-<h2 class="orange">&#9776; Fuseball</h2>
+<h2 class="orange"><i class="fas fa-bars"></i> Fuseball</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @fuseBallTotal %>)</p>
 <p><%= @fuseBallWin %><% if @fuseBallWin == 1 %> Win<% else %> Wins<% end %></p>
@@ -367,7 +367,7 @@
 
 <!-- Start of doubles -->
 <hr class="hr">
-<h1 id="lbDoubleClick">&#9776; Doubles Leaderboard</h1><hr class="hr">
+<h1 id="lbDoubleClick"><i class="fas fa-bars"></i> Doubles Leaderboard</h1><hr class="hr">
 <div class="doubleTable">
 <!-- start of pool --> 
 
@@ -389,7 +389,7 @@
 
 
 <div id="lbPoolClickd">
-<h2 class="orange">&#9776; Pool</h2>
+<h2 class="orange"><i class="fas fa-bars"></i> Pool</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @poolTotald %>)</p>
 <p><%= @poolWind %><% if @poolWind == 1 %> Win<% else %> Wins<% end %></p>
@@ -481,7 +481,7 @@
 <% @tableTennisTotald = @tableTennisLostd + @tableTennisWind  %>
 
 <div id="lbTTClickd">
-<h2 class="orange">&#9776; Table Tennis</h2>
+<h2 class="orange"><i class="fas fa-bars"></i> Table Tennis</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @tableTennisTotald %>)</p>
 <p><%= @tableTennisWind %><% if @tableTennisWind == 1 %> Win<% else %> Wins<% end %></p>
@@ -572,7 +572,7 @@
 <% @fuseBallTotald = @fuseBallWind + @fuseBallLostd %>
 
 <div id="lbFBClickd"> 
-<h2 class="orange">&#9776; Fuseball</h2>
+<h2 class="orange"><i class="fas fa-bars"></i> Fuseball</h2>
 <div class="lbBorder">
 <p>Total Games Recorded (<%= @fuseBallTotald %>)</p>
 <p><%= @fuseBallWind %><% if @fuseBallWind == 1 %> Win<% else %> Wins<% end %></p>

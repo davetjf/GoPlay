@@ -58,7 +58,7 @@
 <div id="conversation" class="w3-container"><br><br>
 
 
-<h1 id="x">&#9776; Singles
+<h1 id="x"><i class="fas fa-bars"></i> Singles
 <% @singleConfirmed = 0 %>
 <% @my_games.each do |m| %>
 <% if m.player_one == current_user.username && m.confirm == 1 %></h1>
@@ -85,7 +85,7 @@
 <% end %>
 <% end %>
 
-<h3 id="singlesClick">&#9776; Confirmation Requests (<%= @c %>)</h3>
+<h3 id="singlesClick"><i class="fas fa-bars"></i> Confirmation Requests (<%= @c %>)</h3>
 <% if @c == 0 %><p>You have no confirmation requests</p><% end %>
 
 
@@ -116,7 +116,7 @@
 
 
 <!--all TT-->
-<h3 id="clickTT">&#9776; Table Tennis
+<h3 id="clickTT"><i class="fas fa-bars"></i> Table Tennis
 <% @count = 0 %>
 <% @confirmedNP = 0 %>
 <% @confirmedLost = 0 %>
@@ -235,7 +235,7 @@
 <!--end of tt-->
 
 <!--all pool-->
-<h3 id="clickPool">&#9776; Pool
+<h3 id="clickPool"><i class="fas fa-bars"></i> Pool
 <% @count = 0 %>
 <% @confirmedNP = 0 %>
 <% @confirmedLost = 0 %>
@@ -349,7 +349,7 @@
 <!--end of pool-->
 
 <!--all fuseball-->
-<h3 id="clickFB">&#9776; Fuseball
+<h3 id="clickFB"><i class="fas fa-bars"></i> Fuseball
 <% @count = 0 %>
 <% @confirmedNP = 0 %>
 <% @confirmedLost = 0 %>
