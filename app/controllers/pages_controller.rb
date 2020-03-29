@@ -77,8 +77,8 @@ class PagesController < ApplicationController
 	
   def allgames
     if user_signed_in? && current_user.admin?
-      @my_games = MyGame.all
-      @doubles = Double.all
+      @my_games = MyGame.all.order("created_at DESC")
+      @doubles = Double.all.order("created_at DESC")
     else
       redirect_to '/'
       flash[:notice] = "You don't have permissions to view this page."
