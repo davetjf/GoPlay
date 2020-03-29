@@ -146,12 +146,31 @@
       <% if d.player_one == current_user.username %>
       <% if d.game_name == 'Table Tennis' %>
       <td><%= d.game_name %></td>
-      <td><%= d.date %></td>
+            <td>
+        
+        <% if d.result == 'Yet to be played' && d.date < Date.today %>
+        <span style="color: red; font-weight: 500;">Reschedule</span>
+        <% elsif  d.result == 'Yet to be played' && d.date >= Date.today %>
+        <% @x = d.date - Date.today %>
+        <% @x = @x.to_i %>
+
+        <% if @x == 0 %>
+        <span style="color: orange">Today</span>
+        <% elsif @x == 1 %>
+        <span style="color: orange">Tomorrow</span>
+        <% else %>
+        <span style="color: orange">In <%= @x %> Days</span>          
+        <% end %>
+
+        <% else %>
+        <%= d.date.to_s(:long) %>
+         <% end %> 
+        </td>
 
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_two %></td>
       <% else %>
-      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>Waiting to confirm
+      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_one == 1 %>Confirmed<%end%></td>
@@ -160,7 +179,7 @@
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_three %></td>
       <% else %>
-      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>Waiting to confirm
+      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_two == 1 %>Confirmed<%end%></td>
@@ -169,16 +188,24 @@
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_four %></td>
       <% else %>
-      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>Waiting to confirm
+      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_three == 1 %>Confirmed<%end%></td> 
       <% end %>
       
 
-      <td><%= d.result %></td>
-      <% if d.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(d), class: 'no-decoration' %></td>
-      <td><%= link_to 'Delete', d, method: :delete,class: 'no-decoration', data: { confirm: 'Are you sure?' } %></td><% end %>
+      <td>        <% if d.result == 'Win' %>
+        <span style="color: green; font-weight: 700;"><%= d.result %></span>
+        <% elsif d.result == 'Lose' %>
+        <span style="color: red; font-weight: 700;"><%= d.result %></span>
+        <% else %>
+        <%= d.result %>
+        <% end %>    <br>  <% if d.result == 'Yet to be played' %>
+        <a style="margin-right: 15px;" href="/doubles/<%= d.id %>/edit"><i class="far fa-edit"></i></a>
+        
+      <%= link_to '<i class="fas fa-trash"></i>'.html_safe, d, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %></td>
     
 
       <% end %>
@@ -257,12 +284,31 @@
       <% if d.player_one == current_user.username %>
       <% if d.game_name == 'Pool' %>
       <td><%= d.game_name %></td>
-      <td><%= d.date %></td>
+            <td>
+        
+        <% if d.result == 'Yet to be played' && d.date < Date.today %>
+        <span style="color: red; font-weight: 500;">Reschedule</span>
+        <% elsif  d.result == 'Yet to be played' && d.date >= Date.today %>
+        <% @x = d.date - Date.today %>
+        <% @x = @x.to_i %>
+
+        <% if @x == 0 %>
+        <span style="color: orange">Today</span>
+        <% elsif @x == 1 %>
+        <span style="color: orange">Tomorrow</span>
+        <% else %>
+        <span style="color: orange">In <%= @x %> Days</span>          
+        <% end %>
+
+        <% else %>
+        <%= d.date.to_s(:long) %>
+         <% end %> 
+        </td>
 
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_two %></td>
       <% else %>
-      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>Waiting to confirm
+      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_one == 1 %>Confirmed<%end%></td>
@@ -271,7 +317,7 @@
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_three %></td>
       <% else %>
-      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>Waiting to confirm
+      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_two == 1 %>Confirmed<%end%></td>
@@ -280,17 +326,23 @@
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_four %></td>
       <% else %>
-      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>Waiting to confirm
+      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_three == 1 %>Confirmed<%end%></td> 
       <% end %>
       
-
-      <td><%= d.result %></td>
-      <% if d.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(d), class: 'no-decoration' %></td>
-      <td><%= link_to 'Delete', d, method: :delete,class: 'no-decoration', data: { confirm: 'Are you sure?' } %></td><% end %>
-    
+      <td>        <% if d.result == 'Win' %>
+        <span style="color: green; font-weight: 700;"><%= d.result %></span>
+        <% elsif d.result == 'Lose' %>
+        <span style="color: red; font-weight: 700;"><%= d.result %></span>
+        <% else %>
+        <%= d.result %>
+        <% end %>     <br>  <% if d.result == 'Yet to be played' %>
+        <a style="margin-right: 15px;" href="/doubles/<%= d.id %>/edit"><i class="far fa-edit"></i></a>
+        
+      <%= link_to '<i class="fas fa-trash"></i>'.html_safe, d, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %></td>
 
       <% end %>
     </tr>
@@ -368,12 +420,31 @@
       <% if d.player_one == current_user.username %>
       <% if d.game_name == 'Fuseball' %>
       <td><%= d.game_name %></td>
-      <td><%= d.date %></td>
+            <td>
+        
+        <% if d.result == 'Yet to be played' && d.date < Date.today %>
+        <span style="color: red; font-weight: 500;">Reschedule</span>
+        <% elsif  d.result == 'Yet to be played' && d.date >= Date.today %>
+        <% @x = d.date - Date.today %>
+        <% @x = @x.to_i %>
+
+        <% if @x == 0 %>
+        <span style="color: orange">Today</span>
+        <% elsif @x == 1 %>
+        <span style="color: orange">Tomorrow</span>
+        <% else %>
+        <span style="color: orange">In <%= @x %> Days</span>          
+        <% end %>
+
+        <% else %>
+        <%= d.date.to_s(:long) %>
+         <% end %> 
+        </td>
 
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_two %></td>
       <% else %>
-      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>Waiting to confirm
+      <td><%= d.player_two %> - <% if d.confirm_one != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_one == 1 %>Confirmed<%end%></td>
@@ -382,7 +453,7 @@
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_three %></td>
       <% else %>
-      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>Waiting to confirm
+      <td><%= d.player_three %> - <% if d.confirm_two != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_two == 1 %>Confirmed<%end%></td>
@@ -391,16 +462,25 @@
       <% if d.result == 'Yet to be played' %>
       <td><%= d.player_four %></td>
       <% else %>
-      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>Waiting to confirm
+      <td><%= d.player_four %> - <% if d.confirm_three != 1 %>TBC
       <a href="/conversations"><button class="requests">Message User</button></a>
       <a href="/contacts/new"><button class="requests">Report to Admin</button></a>
       <%end%><% if d.confirm_three == 1 %>Confirmed<%end%></td> 
       <% end %>
       
 
-      <td><%= d.result %></td>
-      <% if d.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_double_path(d), class: 'no-decoration' %></td>
-      <td><%= link_to 'Delete', d, method: :delete,class: 'no-decoration', data: { confirm: 'Are you sure?' } %></td><% end %>
+      <td>        <% if d.result == 'Win' %>
+        <span style="color: green; font-weight: 700;"><%= d.result %></span>
+        <% elsif d.result == 'Lose' %>
+        <span style="color: red; font-weight: 700;"><%= d.result %></span>
+        <% else %>
+        <%= d.result %>
+        <% end %>    <br>  <% if d.result == 'Yet to be played' %>
+        <a style="margin-right: 15px;" href="/doubles/<%= d.id %>/edit"><i class="far fa-edit"></i></a>
+        
+      <%= link_to '<i class="fas fa-trash"></i>'.html_safe, d, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %></td>
+
     
 
       <% end %>

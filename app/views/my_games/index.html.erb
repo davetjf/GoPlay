@@ -160,7 +160,18 @@
      <tr>
       <td><%= m.game_name %></td>
       <td><%= m.player_two %></td>
-      <td><%= m.result %></td>
+      <td>
+        <% if m.result == 'Win' %>
+        <span style="color: green; font-weight: 700;"><%= m.result %></span>
+        <% elsif m.result == 'Lose' %>
+        <span style="color: red; font-weight: 700;"><%= m.result %></span>
+        <% else %>
+        <%= m.result %>
+        <% end %>
+
+        </td>
+      
+
       <td>
         
         <% if m.result == 'Yet to be played' && m.date < Date.today %>
@@ -172,7 +183,7 @@
         <% if @x == 0 %>
         <span style="color: orange">Today</span>
         <% elsif @x == 1 %>
-        <span style="color: orange">In <%= @x %> Day</span>
+        <span style="color: orange">Tomorrow</span>
         <% else %>
         <span style="color: orange">In <%= @x %> Days</span>          
         <% end %>
@@ -267,7 +278,16 @@
     <tr>
       <td><%= m.game_name %></td>
       <td><%= m.player_two %></td>
-      <td><%= m.result %></td>
+      <td>
+        <% if m.result == 'Win' %>
+        <span style="color: green; font-weight: 700;"><%= m.result %></span>
+        <% elsif m.result == 'Lose' %>
+        <span style="color: red; font-weight: 700;"><%= m.result %></span>
+        <% else %>
+        <%= m.result %>
+        <% end %>
+
+        </td>
       <td>
         
         <% if m.result == 'Yet to be played' && m.date < Date.today %>
@@ -279,7 +299,7 @@
         <% if @x == 0 %>
         <span style="color: orange">Today</span>
         <% elsif @x == 1 %>
-        <span style="color: orange">In <%= @x %> Day</span>
+        <span style="color: orange">Tomorrow</span>
         <% else %>
         <span style="color: orange">In <%= @x %> Days</span>          
         <% end %>
@@ -369,7 +389,16 @@
     <tr>
       <td><%= m.game_name %></td>
       <td><%= m.player_two %></td>
-      <td><%= m.result %></td>
+      <td>
+        <% if m.result == 'Win' %>
+        <span style="color: green; font-weight: 700;"><%= m.result %></span>
+        <% elsif m.result == 'Lose' %>
+        <span style="color: red; font-weight: 700;"><%= m.result %></span>
+        <% else %>
+        <%= m.result %>
+        <% end %>
+
+        </td>
       <td>
         
         <% if m.result == 'Yet to be played' && m.date < Date.today %>
@@ -381,7 +410,7 @@
         <% if @x == 0 %>
         <span style="color: orange">Today</span>
         <% elsif @x == 1 %>
-        <span style="color: orange">In <%= @x %> Day</span>
+        <span style="color: orange">Tomorrow</span>
         <% else %>
         <span style="color: orange">In <%= @x %> Days</span>          
         <% end %>
