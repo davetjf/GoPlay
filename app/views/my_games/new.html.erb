@@ -1,7 +1,23 @@
 <div id="conversation" class="w3-container w3-center"> 
 
 <%= render 'form', my_game: @my_game %><br>
-
+<a href="/dashboard"><button id="gameButton">Dashboard</button></a><br><br>
+<a href="/my_games"><button id="gameButton">My Games</button></a> <br><br>
 <%= link_to "Back", :back, class: "no-decoration white" %>
 
 </div>
+
+<style type="text/css">
+	#gameButton{
+  height: 30px;
+  background-color: #bd6019;
+  color: white;
+  border:none;
+  border-radius: 10%;
+  width: 200px;
+  cursor: pointer;
+}
+#gameButton:hover{
+  opacity: 0.8;
+}
+</style>

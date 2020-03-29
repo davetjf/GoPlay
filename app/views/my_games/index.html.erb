@@ -66,11 +66,14 @@
 <% @c = 0 %>
 <% @my_games.each do |m| %>
 <% if m.player_two == current_user.username && m.confirm != 1 %>
+<% if m.result == 'Win' || m.result == 'Lose' %>
 <% @c = @c + 1 %>
+<% end %>
 <% end %>
 <% end %>
 
 <h3 id="singlesClick">&#9776; Confirmation Requests (<%= @c %>)</h3>
+<% if @c == 0 %><p>You have no confirmation requests</p><% end %>
 
 
 
@@ -126,6 +129,9 @@
 <% end %>
 <% end %>  
 </h3>
+
+
+
 <ul>
 <li>Recorded: <%= @count %></li>
 <li>Confirmed: <%= @confirmed %></li>
@@ -151,18 +157,46 @@
     <% @my_games.each do |m| %>
     <% if current_user.username == m.player_one %>
     <% if m.game_name == 'Table Tennis' %>
-    <tr>
+     <tr>
       <td><%= m.game_name %></td>
       <td><%= m.player_two %></td>
       <td><%= m.result %></td>
-      <td><%= m.date %></td>
-      <td><% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
+      <td>
+        
+        <% if m.result == 'Yet to be played' && m.date < Date.today %>
+        <span style="color: red; font-weight: 500;">Reschedule</span>
+        <% elsif  m.result == 'Yet to be played' && m.date >= Date.today %>
+        <% @x = m.date - Date.today %>
+        <% @x = @x.to_i %>
+
+        <% if @x == 0 %>
+        <span style="color: orange">Today</span>
+        <% elsif @x == 1 %>
+        <span style="color: orange">In <%= @x %> Day</span>
+        <% else %>
+        <span style="color: orange">In <%= @x %> Days</span>          
+        <% end %>
+
+        <% else %>
+        <%= m.date.to_s(:long) %>
+         <% end %> 
+        </td>
+
+
+      <td>
+       <% if m.result == 'Yet to be played' %>
+        <a style="margin-right: 15px;" href="/my_games/<%= m.id %>/edit"><i class="far fa-edit"></i></a>
+        
+      <%= link_to '<i class="fas fa-trash"></i>'.html_safe, m, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+
+
+
+        <% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
         <a href="/conversations"><button class="requests">Message User</button></a>
         <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
         <a href="/conversations"><button class="requests">Message User</button></a>
         <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%></td>
-      <% if m.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_my_game_path(m), class: 'no-decoration' %></td><% end %>
-      <td><%#= link_to 'Delete', m, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% else %>
     <% end %>
@@ -202,6 +236,9 @@
 <% @confirmedNP = @confirmedNP + 1 %>
 <% end %>
 <% end %></h3>
+
+
+
 <ul>
 <li>Recorded: <%= @count %></li>
 <li>Confirmed: <%= @confirmed %></li>
@@ -231,14 +268,40 @@
       <td><%= m.game_name %></td>
       <td><%= m.player_two %></td>
       <td><%= m.result %></td>
-      <td><%= m.date %></td>
-      <td><% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
+      <td>
+        
+        <% if m.result == 'Yet to be played' && m.date < Date.today %>
+        <span style="color: red; font-weight: 500;">Reschedule</span>
+        <% elsif  m.result == 'Yet to be played' && m.date >= Date.today %>
+        <% @x = m.date - Date.today %>
+        <% @x = @x.to_i %>
+
+        <% if @x == 0 %>
+        <span style="color: orange">Today</span>
+        <% elsif @x == 1 %>
+        <span style="color: orange">In <%= @x %> Day</span>
+        <% else %>
+        <span style="color: orange">In <%= @x %> Days</span>          
+        <% end %>
+
+        <% else %>
+        <%= m.date.to_s(:long) %>
+         <% end %> 
+        </td>
+      <td>
+       <% if m.result == 'Yet to be played' %>
+        <a style="margin-right: 15px;" href="/my_games/<%= m.id %>/edit"><i class="far fa-edit"></i></a>
+        
+      <%= link_to '<i class="fas fa-trash"></i>'.html_safe, m, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+
+
+
+        <% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
         <a href="/conversations"><button class="requests">Message User</button></a>
         <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
         <a href="/conversations"><button class="requests">Message User</button></a>
         <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%></td>
-      <% if m.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_my_game_path(m), class: 'no-decoration' %></td><% end %>
-      <td><%#= link_to 'Delete', m, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% else %>
     <% end %>
@@ -307,14 +370,40 @@
       <td><%= m.game_name %></td>
       <td><%= m.player_two %></td>
       <td><%= m.result %></td>
-      <td><%= m.date %></td>
-      <td><% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
+      <td>
+        
+        <% if m.result == 'Yet to be played' && m.date < Date.today %>
+        <span style="color: red; font-weight: 500;">Reschedule</span>
+        <% elsif  m.result == 'Yet to be played' && m.date >= Date.today %>
+        <% @x = m.date - Date.today %>
+        <% @x = @x.to_i %>
+
+        <% if @x == 0 %>
+        <span style="color: orange">Today</span>
+        <% elsif @x == 1 %>
+        <span style="color: orange">In <%= @x %> Day</span>
+        <% else %>
+        <span style="color: orange">In <%= @x %> Days</span>          
+        <% end %>
+
+        <% else %>
+        <%= m.date.to_s(:long) %>
+         <% end %> 
+        </td>
+      <td>
+       <% if m.result == 'Yet to be played' %>
+        <a style="margin-right: 15px;" href="/my_games/<%= m.id %>/edit"><i class="far fa-edit"></i></a>
+        
+      <%= link_to '<i class="fas fa-trash"></i>'.html_safe, m, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+
+
+
+        <% if m.confirm == 1 %>Confirmed<% end %><% if m.confirm != 1 && m.result == 'Win' %>Not confirmed yet<br>
         <a href="/conversations"><button class="requests">Message User</button></a>
         <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%><% if m.confirm != 1 && m.result == 'Lose' %>Not confirmed yet<br>
         <a href="/conversations"><button class="requests">Message User</button></a>
         <a href="/contacts/new"><button class="requests">Report to Admin</button></a><%end%></td>
-      <% if m.result == 'Yet to be played' %><td><i class="far fa-edit"></i><%= link_to 'Edit', edit_my_game_path(m), class: 'no-decoration' %></td><% end %>
-      <td><%#= link_to 'Delete', m, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% else %>
     <% end %>
