@@ -42,7 +42,7 @@ class DoublesController < ApplicationController
       flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
     else
     @double = Double.new
-    @users = User.all
+    @users = User.all - [current_user]
     @email = current_user.email
     @game_names = GameName.all
     end

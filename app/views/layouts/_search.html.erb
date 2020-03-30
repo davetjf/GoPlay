@@ -1,6 +1,6 @@
 <%= form_tag("/search", :method => "post") do %>
 <%#= label_tag(:q, "Search for:") %>
-<%= text_field_tag(:q, 'Search users...') %><br><br>
+<%= text_field_tag(:q, nil, placeholder: 'Search users...') %><br><br>
 <%= submit_tag("Search", :class=>"sButton") %>
 <% end %>
 

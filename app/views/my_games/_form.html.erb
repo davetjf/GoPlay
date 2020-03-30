@@ -16,7 +16,7 @@
   <div id="singleForm" class="w3-center w3-container">
   <div class="field">
     <%= form.label :game_name, 'Game' %><br>
-    <%= form.select :game_name, @game_names.collect {|u| [ u.name ] }, :prompt => 'Select One', id: :my_game_game_name %>
+    <%= form.select :game_name, @game_names.collect {|u| [ u.name ] }, id: :my_game_game_name %>
   </div><br><br>
 
 <!---------------------------------------------------------
@@ -40,7 +40,7 @@
 
   <div class="field">
     <%= form.label :player_two, 'Opponent' %><br>
-    <%= form.select :player_two, @users.collect {|u| [ u.username ] }, :prompt => 'Select One', id: :my_game_player_two %>
+    <%= form.select :player_two, @users.collect {|u| [ u.username ] }, id: :my_game_player_two %>
   </div><br><br>
 
 <!---------------------------------------------------------
@@ -62,7 +62,7 @@
 
     <div class="field">
     <%= form.label :result %><br>
-    <%= form.select :result, [ 'Win', 'Lose', 'Yet to be played'], :prompt => 'Select One',  id: :my_game_result %>
+    <%= form.select :result, [ 'Win', 'Lose', 'Yet to be played'],  id: :my_game_result %>
   </div><br><br>
 
 <!---------------------------------------------------------

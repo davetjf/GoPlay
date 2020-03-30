@@ -1,5 +1,3 @@
 class MyGame < ApplicationRecord
 
-
-
 end

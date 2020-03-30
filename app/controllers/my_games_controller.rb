@@ -98,7 +98,7 @@ end
 
   # GET /my_games/new
   def new
-    @users = User.all
+    @users = User.all - [current_user]
     @email = current_user.email
     @game_names = GameName.all
     @my_game = MyGame.new
