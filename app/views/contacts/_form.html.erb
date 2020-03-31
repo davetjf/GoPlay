@@ -15,22 +15,22 @@
 
   <div class="messageField">
     <!--<%= form.label :Name %> <span class="white"> : </span>-->
-    <%= form.text_field :Name, id: :contact_Name, placeholder: "Name" %>
+    <%= form.text_field :Name, id: :contact_Name, placeholder: "Name", required: true %>
   </div>
 
   <div class="messageField">
     <!--<%= form.label :email %><span class="white"> :</span>-->
-    <%= form.text_field :email, id: :contact_email, placeholder: "email@email.com"  %>
+    <%= form.text_field :email, id: :contact_email, placeholder: "email@email.com", required: true  %>
   </div>
 
   <div class="messageField">
     <!--<%= form.label :subject %><span class="white"> :</span>-->
-    <%= form.text_field :subject, id: :contact_subject, placeholder: "Subject"  %>
+    <%= form.text_field :subject, id: :contact_subject, placeholder: "Subject", required: true  %>
   </div>
 
   <div class="messageField">
     <!--<%= form.label :message %><span class="white"> :</span>-->
-    <%= form.text_area :message, id: :contact_message, placeholder: "Message"  %>
+    <%= form.text_area :message, id: :contact_message, placeholder: "Message", required: true  %>
   </div>
 
   <div class="actions">
