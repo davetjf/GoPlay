@@ -4,7 +4,7 @@ class AboutsController < ApplicationController
   # GET /abouts
   # GET /abouts.json
   def index
-    @abouts = About.all
+    @abouts = About.all.order("created_at ASC")
   end
 
   # GET /abouts/1

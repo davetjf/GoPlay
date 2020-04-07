@@ -127,7 +127,7 @@
 <% if my_game.game_name == 'Table Tennis' %>
 <% @count = @count + 1 %>
 <% end %>
-<% end %>
+
 <% if my_game.game_name == 'Table Tennis' && my_game.confirm == 1%>
 <% @confirmed = @confirmed + 1 %>
 <% end %>
@@ -140,7 +140,8 @@
 <% if my_game.game_name == 'Table Tennis' && my_game.result == 'Yet to be played' %>
 <% @confirmedNP = @confirmedNP + 1 %>
 <% end %>
-<% end %>  
+<% end %> 
+<% end %> 
 </h3>
 
 
@@ -246,7 +247,7 @@
 <% if my_game.game_name == 'Pool' %>
 <% @count = @count + 1 %>
 <% end %>
-<% end %>
+
 <% if my_game.game_name == 'Pool' && my_game.confirm == 1%>
 <% @confirmed = @confirmed + 1 %>
 <% end %>
@@ -259,7 +260,9 @@
 <% if my_game.game_name == 'Pool' && my_game.result == 'Yet to be played' %>
 <% @confirmedNP = @confirmedNP + 1 %>
 <% end %>
-<% end %></h3>
+<% end %>
+<% end %>
+</h3>
 
 
 
@@ -360,7 +363,7 @@
 <% if my_game.game_name == 'Fuseball' %>
 <% @count = @count + 1 %>
 <% end %>
-<% end %>
+
 <% if my_game.game_name == 'Fuseball' && my_game.confirm == 1%>
 <% @confirmed = @confirmed + 1 %>
 <% end %>
@@ -373,7 +376,9 @@
 <% if my_game.game_name == 'Fuseball' && my_game.result == 'Yet to be played' %>
 <% @confirmedNP = @confirmedNP + 1 %>
 <% end %>
-<% end %></h3>
+<% end %>
+<% end %>
+</h3>
 <ul>
 <li>Recorded: <%= @count %></li>
 <li>Confirmed: <%= @confirmed %></li>
