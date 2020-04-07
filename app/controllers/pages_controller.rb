@@ -120,7 +120,7 @@ class PagesController < ApplicationController
   end
 
     def sod
-          if current_user.blocked == true
+          if user_signed_in? && current_user.blocked == true
       redirect_to '/contacts/new'
       flash[:notice] = "You have been blocked! Please contact the admin if you think this is an error"
     else
