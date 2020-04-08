@@ -53,6 +53,8 @@ Rails.application.routes.draw do
   get '/secretgame' => 'pages#secretgame'
   get '/anothersecretgame' => 'pages#anothersecretgame' 
 
-  post '/search' => 'conversations#search' 
+  post '/search' => 'conversations#search'
+
+  get '/search' => 'conversations#searchback' 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

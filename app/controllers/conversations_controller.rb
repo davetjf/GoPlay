@@ -19,6 +19,10 @@ class ConversationsController < ApplicationController
      @st = "#{params[:q]}"
   end
 
+  def searchback
+    redirect_to '/conversations'
+  end
+
 
   def create
     if Conversation.between(params[:sender_id], params[:recipient_id]).present?
